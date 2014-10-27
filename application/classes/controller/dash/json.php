@@ -25,10 +25,23 @@ class Controller_Dash_Json extends Controller_Json {
 		$date_end = $this->request->post('date_end');
 
 		if( ! $date_start )
-			$date_start = date("Y-m-d",strtotime("-6 Months"));
+		{
+			if( Session::instance()->get('dash_incomeexpense_date_start') )
+				$date_start = Session::instance()->get('dash_incomeexpense_date_start');
+			else
+				$date_start = date("Y-m",strtotime("-5 Months")).'-01';
+		}
 
 		if( ! $date_end )
-			$date_end = date("Y-m-d");
+		{
+			if( Session::instance()->get('dash_incomeexpense_date_end') )
+				$date_end = Session::instance()->get('dash_incomeexpense_date_end');
+			else
+				$date_end = date("Y-m-d");
+		}
+
+		Session::instance()->set('dash_incomeexpense_date_start',$date_start);
+		Session::instance()->set('dash_incomeexpense_date_end',$date_end);
 
 		$report_budget = new Beans_Report_Budget($this->_beans_data_auth((object)array(
 			'date_start' => $date_start,
@@ -58,16 +71,29 @@ class Controller_Dash_Json extends Controller_Json {
 		$date_end = $this->request->post('date_end');
 
 		if( ! $date_start )
-			$date_start = date("Y").'-01-01';
+		{
+			if( Session::instance()->get('dash_income_date_start') )
+				$date_start = Session::instance()->get('dash_income_date_start');
+			else
+				$date_start = date("Y-m",strtotime("-11 Months")).'-01';
+		}
 
 		if( ! $date_end )
-			$date_end = date("Y-m-d");
+		{
+			if( Session::instance()->get('dash_income_date_end') )
+				$date_end = Session::instance()->get('dash_income_date_end');
+			else
+				$date_end = date("Y-m-d");
+		}
 
 		if( strtotime($date_end) < strtotime($date_start) )
 		{
-			$date_start = date("Y").'-01-01';
+			$date_start = date("Y-m",strtotime("-11 Months")).'-01';
 			$date_end = date("Y-m-d");
 		}
+
+		Session::instance()->set('dash_income_date_start',$date_start);
+		Session::instance()->set('dash_income_date_end',$date_end);
 
 		$date_counter = $date_start;
 
@@ -102,6 +128,15 @@ class Controller_Dash_Json extends Controller_Json {
 
 			$date_counter = date("Y-m",strtotime($date_counter." +1 Month"))."-01";
 		}
+
+		if( count($this->_return_object->data->date_ranges) == 1 ) 
+		{
+			$this->_return_object->data->date_ranges[] = $this->_return_object->data->date_ranges[0];
+			$this->_return_object->data->income[] = $this->_return_object->data->income[0];
+			$this->_return_object->data->gross_income[] = $this->_return_object->data->gross_income[0];
+			$this->_return_object->data->expense[] = $this->_return_object->data->expense[0];
+			$this->_return_object->data->net_income[] = $this->_return_object->data->net_income[0];
+		}
 	}
 
 	public function action_monthlyexpenses()
@@ -109,7 +144,14 @@ class Controller_Dash_Json extends Controller_Json {
 		$date = $this->request->post('date');
 
 		if( ! $date )
-			$date = date("Y-m-d");
+		{
+			if( Session::instance()->get('dash_expense_date') )
+				$date = Session::instance()->get('dash_expense_date');
+			else
+				$date = date("Y-m-d");
+		}
+
+		Session::instance()->set('dash_expense_date',$date);
 
 		$report_budget = new Beans_Report_Budget($this->_beans_data_auth((object)array(
 			'date_start' => date("Y-m",strtotime($date))."-01",
@@ -146,9 +188,20 @@ class Controller_Dash_Json extends Controller_Json {
 
 	public function action_closebooks()
 	{
+		$include_account_ids = array();
+		if( $this->request->post('include_account_ids') )
+		{
+			foreach( explode(',', $this->request->post('include_account_ids')) as $include_account_id )
+			{
+				if( trim($include_account_id) )
+					$include_account_ids[] = $include_account_id;
+			}
+		}
+
 		$account_closebooks = new Beans_Account_Closebooks($this->_beans_data_auth((object)array(
 			'date' => $this->request->post('date'),
 			'transfer_account_id' => $this->request->post('transfer_account_id'),
+			'include_account_ids' => $include_account_ids
 		)));
 		$account_closebooks_result = $account_closebooks->execute();
 

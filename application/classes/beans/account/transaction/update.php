@@ -83,6 +83,9 @@ class Beans_Account_Transaction_Update extends Beans_Account_Transaction {
 		if( $this->_check_books_closed($this->_old_transaction->date) )
 			throw new Exception("FYE for that transaction has been closed.");
 
+		if( $this->_old_transaction->close_books )
+			throw new Exception("Close books transactions cannot be changed.");
+
 		// VALIDATE IF TIED TO A FORM.
 		if( (
 				$this->_old_transaction->create_form->loaded() AND
@@ -135,6 +138,9 @@ class Beans_Account_Transaction_Update extends Beans_Account_Transaction {
 										   ? $this->_data->entity_id
 										   : $this->_old_transaction->entity_id;
 
+		$this->_transaction->form_type = $this->_old_transaction->form_type;
+		$this->_transaction->form_id = $this->_old_transaction->form_id;
+
 		// If this was previously a payment we retain that attribute
 		// However, if this is a new payment ( i.e. Payment/Replace ) then we want 
 		// to apply the new flag appropriately.
@@ -144,8 +150,6 @@ class Beans_Account_Transaction_Update extends Beans_Account_Transaction {
 				  isset($this->_data->payment) AND 
 				  $this->_data->payment )
 			$this->_transaction->payment = $this->_data->payment;
-
-		// TODO - If changing FYE transactions is enabled, add close_books here.
 
 		$this->_validate_transaction($this->_transaction);
 
@@ -222,9 +226,8 @@ class Beans_Account_Transaction_Update extends Beans_Account_Transaction {
 				$account_transaction->writeoff )
 				$new_account_transaction->writeoff = TRUE;
 
-			// TODO - If we ever allow updating close books transactions, 
-			// then add that above for $this->_transaction and add the proper logic here.
-			$new_account_transaction->close_books = FALSE;//( $account_transaction->close_books ) ? TRUE : FALSE;
+			// We do not allow updating close books transactions - no matter what.
+			$new_account_transaction->close_books = FALSE;
 
 			$this->_validate_account_transaction($new_account_transaction);
 

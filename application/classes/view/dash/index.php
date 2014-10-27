@@ -107,28 +107,46 @@ class View_Dash_Index extends View_Template {
 	}
 
 	public function incomeexpense_date_start() {
-		return date("Y-m-d",strtotime("-6 Months"));
+		if( Session::instance()->get('dash_incomeexpense_date_start') )
+			return Session::instance()->get('dash_incomeexpense_date_start');
+
+		return date("Y-m",strtotime("-5 Months")).'-01';
 	}
 
 	public function incomeexpense_date_end() {
+		if( Session::instance()->get('dash_incomeexpense_date_end') )
+			return Session::instance()->get('dash_incomeexpense_date_end');
+
 		return date("Y-m-d");
 	}
 
 	public function income_date_start() {
-		return date("Y")."-01-01";
+		if( Session::instance()->get('dash_income_date_start') )
+			return Session::instance()->get('dash_income_date_start');
+
+		return date("Y-m",strtotime("-11 Months")).'-01';
 	}
 
 	public function income_date_end() {
+		if( Session::instance()->get('dash_income_date_end') )
+			return Session::instance()->get('dash_income_date_end');
+
 		return date("Y-m-d");
 	}
 
 	public function expenses_months() {
 		$return_array = array();
 
+		$date = date("Y-m-d");
+
+		if( Session::instance()->get('dash_expense_date') )
+			$date = Session::instance()->get('dash_expense_date');
+
 		for( $i = 0; $i <= 36; $i++ )
 			$return_array[] = array(
 				'value' => date("Y-m-d",strtotime("-".$i." Months")),
-				'label' => date("F Y",strtotime("-".$i." Months"))
+				'label' => date("F Y",strtotime("-".$i." Months")),
+				'default' => ( $date == date("Y-m-d",strtotime("-".$i." Months")) ) ? TRUE : FALSE,
 			);
 
 		return $return_array;
@@ -176,7 +194,7 @@ class View_Dash_Index extends View_Template {
 		if( ! isset($this->sales_not_invoiced_result) )
 			return FALSE;
 
-		$return_array = $this->_generate_form_lines($this->sales_not_invoiced_result->data->sales);
+		$return_array = $this->_generate_form_lines($this->sales_not_invoiced_result->data->sales, 'date_created');
 
 		$j = 1;
 		foreach( $return_array as $index => $array )
@@ -209,7 +227,7 @@ class View_Dash_Index extends View_Template {
 		if( ! isset($this->purchases_not_invoiced_result) )
 			return FALSE;
 
-		$return_array = $this->_generate_form_lines($this->purchases_not_invoiced_result->data->purchases);
+		$return_array = $this->_generate_form_lines($this->purchases_not_invoiced_result->data->purchases, 'date_created');
 
 		$j = 1;
 		foreach( $return_array as $index => $array )
@@ -266,7 +284,7 @@ class View_Dash_Index extends View_Template {
 		return FALSE;
 	}
 
-	private function _generate_form_lines($forms)
+	private function _generate_form_lines($forms, $date_field = "date_due")
 	{
 		$settings = $this->beans_settings();
 
@@ -282,13 +300,13 @@ class View_Dash_Index extends View_Template {
 					  ? '/customers/invoices/'.$form->id
 					  : '/vendors/purchases/'.$form->id,
 				'name' => ( isset($form->customer) )
-					   ? $form->customer->first_name.' '.$form->customer->last_name
-					   : $form->vendor->company_name,
+					   ? $form->customer->display_name
+					   : $form->vendor->display_name,
 				'amount_formatted' => ( ( ( isset($form->customer) AND $form->balance > 0 ) OR ( ! isset($form->customer) AND $form->balance < 0 ) ) ? '<span class="text-red">-' : '' ).
 										$settings->company_currency.
 										number_format(abs($form->balance),2,'.',',').
 										( ( ( isset($form->customer) AND $form->balance > 0 ) OR ( ! isset($form->customer) AND $form->balance < 0 ) ) ? '</span>' : '' ),
-				'date' => $form->date_due
+				'date' => $form->{$date_field}
 			);
 
 		return $return_array;

@@ -60,19 +60,6 @@ class Beans_Account_Transaction_Create extends Beans_Account_Transaction {
 
 	protected function _execute()
 	{
-		// V2Item
-		// Consider making the ability to force_id public.
-		if( $this->_beans_internal_call() AND
-			isset($this->_data->force_id) AND 
-			$this->_data->force_id )
-		{
-			$transaction_id_check = $this->_load_transaction($this->_data->force_id);
-			if( $transaction_id_check->loaded() )
-				throw new Exception("Invalid transaction ID: already taken.");
-
-			$this->_transaction->id = $this->_data->force_id;
-		}
-
 		if( $this->_beans_internal_call() AND 
 			isset($this->_data->entity_id) AND
 			$this->_data->entity_id )
@@ -92,7 +79,9 @@ class Beans_Account_Transaction_Create extends Beans_Account_Transaction {
 								  ? $this->_data->date
 								  : NULL;
 
-		$this->_transaction->payment = ( $this->_beans_internal_call() AND isset($this->_data->payment) AND $this->_data->payment )
+		$this->_transaction->payment = ( isset($this->_data->payment) AND 
+										 $this->_data->payment AND 
+										 $this->_beans_internal_call() )
 									 ? $this->_data->payment
 									 : FALSE;
 
@@ -105,10 +94,20 @@ class Beans_Account_Transaction_Create extends Beans_Account_Transaction {
 									   : NULL;
 
 
-		$this->_transaction->close_books = ( $this->_beans_internal_call() AND
-											 isset($this->_data->close_books) )
+		$this->_transaction->close_books = ( isset($this->_data->close_books) AND
+											 $this->_beans_internal_call() )
 										 ? substr($this->_data->close_books,0,7).'-00'
 										 : NULL;
+
+		$this->_transaction->form_type = ( isset($this->_data->form_type) AND 
+										   $this->_beans_internal_call() )
+									   ? $this->_data->form_type 
+									   : NULL;
+
+		$this->_transaction->form_id = ( isset($this->_data->form_id) AND 
+										 $this->_beans_internal_call() )
+									 ? $this->_data->form_id
+									 : NULL;
 
 		$this->_validate_transaction($this->_transaction);
 

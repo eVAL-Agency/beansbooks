@@ -223,9 +223,11 @@ class Beans_Account extends Beans {
 	@attribute balance DECIMAL The account balance after this transaction. 
 	@attribute reconciled BOOLEAN 
 	@attribute account OBJECT The #Beans_Account# this transaction is tied to. 
-	@attribute account_transaction_forms ARRAY An array of #Beans_Account_Transaction_Form# delineating how this transaction affects form balances. 
 	---BEANSENDSPEC---
 	 */
+
+	// Removed & Deprecated
+	// @attribute account_transaction_forms ARRAY An array of #Beans_Account_Transaction_Form# delineating how this transaction affects form balances. 
 
 	/**
 	 * Returns an object of the properties for the given Model_Account_Transaction (ORM)
@@ -252,7 +254,8 @@ class Beans_Account extends Beans {
 		$return_object->reconciled = $account_transaction->account_reconcile_id ? TRUE : FALSE;
 
 		// Reference IDs
-		$return_object->account_transaction_forms = $this->_return_account_transaction_forms_array($account_transaction->account_transaction_forms->find_all());
+		// REMOVED - Greatly improved query time 
+		// $return_object->_return_account_transaction_forms_array = $this->_return_account_transaction_forms_array($account_transaction->account_transaction_forms->find_all());
 		
 		// OBJECT?
 		// *** FAT ***
@@ -304,8 +307,8 @@ class Beans_Account extends Beans {
 		if( get_class($account_transaction_form) != "Model_Account_Transaction_Form" )
 			throw new Exception("Invalid Account Transaction Form.");
 
-		if( isset($this->_return_account_transaction_form_element[$account_transaction_form->id]) )
-			return $this->_return_account_transaction_form_element[$account_transaction_form->id];
+		if( isset($this->_return_account_transaction_form_element_cache[$account_transaction_form->id]) )
+			return $this->_return_account_transaction_form_element_cache[$account_transaction_form->id];
 
 		// Don't link to objects - just reference by ID.
 		$return_object->id = $account_transaction_form->id;
@@ -313,8 +316,8 @@ class Beans_Account extends Beans {
 		$return_object->form_id = $account_transaction_form->form_id;
 		$return_object->amount = $account_transaction_form->amount;
 
-		$this->_return_account_transaction_form_element[$account_transaction_form->id] = $return_object;
-		return $this->_return_account_transaction_form_element[$account_transaction_form->id];
+		$this->_return_account_transaction_form_element_cache[$account_transaction_form->id] = $return_object;
+		return $this->_return_account_transaction_form_element_cache[$account_transaction_form->id];
 	}
 
 	/**
@@ -376,6 +379,7 @@ class Beans_Account extends Beans {
 		$return_object->check_number = $transaction->reference;
 		$return_object->description = $transaction->description;
 		$return_object->date = $transaction->date;
+		$return_object->close_books = $transaction->close_books;
 		$return_object->amount = $transaction->amount;
 		$return_object->payment = ( $transaction->payment )
 								? $transaction->payment
@@ -383,7 +387,21 @@ class Beans_Account extends Beans {
 
 		// If this is directly tied to a form.
 		$return_object->form = FALSE;
+		$return_object->tax_payment = FALSE;
 		
+		if( $transaction->form_type == "tax_payment" )
+		{
+			$return_object->tax_payment = new stdClass;
+			$return_object->tax_payment->id = $transaction->form_id;
+		}
+		else if ( $transaction->form_type )
+		{
+			$return_object->form = new stdClass;
+			$return_object->form->id = $transaction->form_id;
+			$return_object->form->type = $transaction->form_type;
+		}
+
+		/*
 		// V2Item - See if we can replace this in the views with betterlogic and remove these loads.
 		if( $transaction->create_form->loaded() )
 		{
@@ -411,7 +429,8 @@ class Beans_Account extends Beans {
 			$return_object->tax_payment = new stdClass;
 			$return_object->tax_payment->id = $transaction->tax_payment->id;
 		}
-		
+		*/
+
 		$return_object->account_transactions = $this->_return_account_transactions_array($transaction->account_transactions->find_all());
 
 		$return_object->reconciled = FALSE;
@@ -475,6 +494,16 @@ class Beans_Account extends Beans {
 		if( $transaction->entity_id AND 
 			! ORM::Factory('entity',$transaction->entity_id)->loaded() )
 			throw new Exception("Internal error: invalid entity referenced on transaction.");
+
+		if( (
+				$this->_transaction->form_type OR
+				$this->_transaction->form_id 
+			) AND
+			(
+				! $this->_transaction->form_type OR
+				! $this->_transaction->form_id 
+			) )
+			throw new Exception("Invalid transaction form information: must provide both form_type and form_id.");
 
 	}
 
@@ -628,6 +657,43 @@ class Beans_Account extends Beans {
 	 */
 	protected function _account_transaction_insert($account_transaction)
 	{
+		// Split avoids deadlocks
+		$balance_sql = 'SELECT IFNULL(SUM(bbalance),0.00) as new_balance FROM ('.
+					   '		SELECT IFNULL(balance,0.00) as bbalance FROM '.
+					   '		account_transactions as aaccount_transactions WHERE '.
+					   '		account_id = "'.$account_transaction->account_id.'" AND '.
+					   '		( '.
+					   '			date < DATE("'.$account_transaction->date.'") OR '.
+					   '			( '.
+					   '				date <= DATE("'.$account_transaction->date.'") AND ( '.
+					   ' 				transaction_id < '.$account_transaction->transaction_id.' OR '.
+					   ' 				( close_books >= '.( $account_transaction->close_books ? '1' : '0' ).' AND '.
+					   ' 				transaction_id < '.$account_transaction->transaction_id.' ) '.
+					   '			) '.
+					   '		) '.
+					   ' 	) ORDER BY date DESC, close_books ASC, transaction_id DESC LIMIT 1 FOR UPDATE '.
+					   ') as baccount_transactions';
+		$balance_result = DB::Query(Database::SELECT,$balance_sql)->execute();
+
+		$insert_sql = 'INSERT INTO account_transactions '.
+					  '(transaction_id, account_id, date, amount, transfer, writeoff, close_books, account_reconcile_id, balance) '.
+					  'VALUES ( '.
+					  $account_transaction->transaction_id.', '.
+					  $account_transaction->account_id.', '.
+					  'DATE("'.$account_transaction->date.'"), '.
+					  $account_transaction->amount.', '.
+					  ( $account_transaction->transfer ? '1' : '0' ).', '.
+					  ( $account_transaction->writeoff ? '1' : '0' ).', '.
+					  ( $account_transaction->close_books ? '1' : '0' ).', '.
+					  ( $account_transaction->account_reconcile_id ? $account_transaction->account_reconcile_id : 'NULL' ).', '.
+					  $balance_result[0]['new_balance'].' '.
+					  ') ';
+		
+		$insert_result = DB::Query(Database::INSERT,$insert_sql)->execute();
+
+		$account_transaction_id = $insert_result[0];
+
+		/*
 		// Insert new account transaction.
 		$insert_sql = 'INSERT INTO account_transactions '.
 					  '(transaction_id, account_id, date, amount, transfer, writeoff, close_books, account_reconcile_id, balance) '.
@@ -644,10 +710,15 @@ class Beans_Account extends Beans {
 					  '		SELECT IFNULL(balance,0.00) as bbalance FROM '.
 					  '		account_transactions as aaccount_transactions WHERE '.
 					  '		account_id = "'.$account_transaction->account_id.'" AND '.
-					  '		date <= DATE("'.$account_transaction->date.'") AND ( '.
-					  ' 		transaction_id < '.$account_transaction->transaction_id.' OR '.
-					  ' 		( close_books >= '.( $account_transaction->close_books ? '1' : '0' ).' AND '.
-					  ' 		transaction_id < '.$account_transaction->transaction_id.' ) '.
+					  '		( '.
+					  '			date < DATE("'.$account_transaction->date.'") OR '.
+					  '			( '.
+					  '				date <= DATE("'.$account_transaction->date.'") AND ( '.
+					  ' 				transaction_id < '.$account_transaction->transaction_id.' OR '.
+					  ' 				( close_books >= '.( $account_transaction->close_books ? '1' : '0' ).' AND '.
+					  ' 				transaction_id < '.$account_transaction->transaction_id.' ) '.
+					  '			) '.
+					  '		) '.
 					  ' 	) ORDER BY date DESC, close_books ASC, transaction_id DESC LIMIT 1 FOR UPDATE '.
 					  ') as baccount_transactions ) '.
 					  ') ';
@@ -655,7 +726,8 @@ class Beans_Account extends Beans {
 		$insert_result = DB::Query(Database::INSERT,$insert_sql)->execute();
 
 		$account_transaction_id = $insert_result[0];
-
+		*/
+		
 		// Update transaction balances.
 		$update_sql = 'UPDATE account_transactions '.
 					  'SET balance = balance + '.$account_transaction->amount.' WHERE '.
@@ -718,13 +790,16 @@ class Beans_Account extends Beans {
 		if( ! $form_id )
 			throw new Exception("Invalid form ID - none provided.");
 
+		$balance_sql = 'SELECT IFNULL(balance,0.00) as new_balance FROM ( '.
+					   ' 	SELECT SUM(amount) as balance '.
+					   '		FROM account_transaction_forms '.
+					   '		WHERE form_id = '.$form_id.' '.
+					   ') as aforms';
+		
+		$balance_result = DB::Query(Database::SELECT,$balance_sql)->execute();
+
 		$update_sql = 'UPDATE forms '.
-					  'SET balance = ( '.
-					  '		SELECT IFNULL(balance,0.00) FROM ( '.
-					  ' 		SELECT SUM(amount) as balance '.
-					  '			FROM account_transaction_forms '.
-					  '			WHERE form_id = '.$form_id.' '.
-					  '		) as aforms ) '.
+					  'SET balance = '.$balance_result[0]['new_balance'].' '.
 					  'WHERE id = "'.$form_id.'"';
 
 		DB::Query(Database::UPDATE, $update_sql)->execute();
