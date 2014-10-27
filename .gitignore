@@ -20,16 +20,6 @@
 *.swp
 
 # Skip some additional PhpStorm metafiles.  These are all project centric
-# I need to explicitly list the files to ignore in this directory because ONE needs to be included,
-# codeStyleSettings.xml is extremely useful for ensuring that additional installations of phpStorm play nicely.
-/.idea/.*
-/.idea/*.iml
-/.idea/*/
-/.idea/encodings.xml
-/.idea/misc.xml
-/.idea/modules.xml
-/.idea/vcs.xml
-/.idea/workspace.xml
-/.idea/dataSources.ids
-/.idea/dataSources.xml
-/.idea/sqldialects.xml
+# I need to include codeStyleSettings.xml since that is useful to have in the project.
+.idea/*
+!.idea/codeStyleSettings.xml
