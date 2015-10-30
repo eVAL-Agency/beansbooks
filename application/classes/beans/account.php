@@ -461,8 +461,8 @@ class Beans_Account extends Beans {
 			! strlen($transaction->code) )
 			throw new Exception("Invalid transaction code: none provided.");
 
-		if( strlen($transaction->code) > 16 )
-			throw new Exception("Invalid transaction code: maximum of 16 characters.");
+		if( strlen($transaction->code) > 32 )
+			throw new Exception("Invalid transaction code: maximum of 32 characters.");
 
 		if( ! $transaction->description OR 
 			! strlen($transaction->description) )
@@ -471,8 +471,8 @@ class Beans_Account extends Beans {
 		if( strlen($transaction->description) > 128 )
 			throw new Exception("Invalid transaction description: maxiumum of 128 characters.");
 
-		if( strlen($transaction->reference) > 16 )
-			throw new Exception("Transaction reference (check number) must be 16 characters of less.");
+		if( strlen($transaction->reference) > 32 )
+			throw new Exception("Transaction reference (check number) must be 32 characters of less.");
 
 		if( ! $transaction->date OR 
 			! strlen($transaction->date) )

@@ -1159,14 +1159,16 @@ class Controller_Customers_Json extends Controller_Json {
 		{
 			// REPLACE
 			$customer_payment_replace = new Beans_Customer_Payment_Replace($this->_beans_data_auth((object)array(
-				'transaction_id' => $this->request->post('replace_transaction_id'),
-				'date' => ( $this->request->post('date') ) ? $this->request->post('date') : date("Y-m-d"),
-				'amount' => $this->request->post('amount'),
-				'adjustment_amount' => $this->request->post('adjustment_amount'),
-				'deposit_account_id' => $this->request->post('deposit_account_id'),
-				'writeoff_account_id' => $this->request->post('writeoff_account_id'),
+				'transaction_id'        => $this->request->post('replace_transaction_id'),
+				'date'                  => ( $this->request->post('date') ) ? $this->request->post('date') : date("Y-m-d"),
+				'type'                  => $this->request->post('type'),
+				'reference'             => $this->request->post('reference'),
+				'amount'                => $this->request->post('amount'),
+				'adjustment_amount'     => $this->request->post('adjustment_amount'),
+				'deposit_account_id'    => $this->request->post('deposit_account_id'),
+				'writeoff_account_id'   => $this->request->post('writeoff_account_id'),
 				'adjustment_account_id' => $this->request->post('adjustment_account_id'),
-				'sales' => $sales,
+				'sales'                 => $sales,
 			)));
 
 			$customer_payment_replace_result = $customer_payment_replace->execute();

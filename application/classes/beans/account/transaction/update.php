@@ -128,6 +128,10 @@ class Beans_Account_Transaction_Update extends Beans_Account_Transaction {
 									  ? $this->_data->date
 									  : $this->_old_transaction->date;
 
+		$this->_transaction->type = (isset($this->_data->type) AND $this->_data->type)
+			? $this->_data->type
+			: $this->_old_transaction->type;
+
 		$this->_transaction->reference = ( isset($this->_data->reference) AND $this->_data->reference )
 									   ? $this->_data->reference
 									   : $this->_old_transaction->reference;
