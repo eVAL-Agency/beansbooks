@@ -7,6 +7,9 @@
 
 # Skip the configuration file, this is developer and server centric
 /application/classes/beans/config.php
+deployfile
+application/classes/controller/test.php
+dev/
 
 # Skip some Apple directories, these is machine centric
 .DS_Store
