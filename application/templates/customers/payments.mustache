@@ -13,6 +13,8 @@
 				Date<span id="customers-payments-payments-paging">{{#customer_payments_more}}|&nbsp;&nbsp;<a href="#" rel="1">View More &gt;</a>{{/customer_payments_more}}
 					{{^customer_payments_more}}&nbsp;{{/customer_payments_more}}</span>
 			</span>
+            <span class="customer-payment-type text-center">Payment Type</span>
+            <span class="customer-payment-reference text-center">Ref #</span>
 			<span class="customer-payment-amount text-center">Payment Amount</span>
 			<span class="customer-payment-account text-center">Deposit Account</span>
 			<span class="customer-payment-actions">&nbsp;</span>
@@ -32,19 +34,19 @@
 
 	<div class="form bump-down">
 		<div class="row labels column-10">
-			<span class="oop-oop-oop">Date</span>
+			<span class="oop-oop">Date</span>
 			<span class="oppa-gangnam-style">Deposit Account</span>
-
-			<span class="oop-oop-oop">Invoice Total</span>
-			<span class="oop-oop-oop">Write-Off Total</span>
-			<span class="oop-oop-oop">Adjustment</span>
+            <span class="oop-oop-oop">Payment Type</span>
+            <span class="oop-oop">Reference #</span>
+			<span class="oop-oop">Invoice Total</span>
+			<span class="oop-oop">Write-Off Total</span>
+			<span class="oop-oop">Adjustment</span>
 			<span class="oop">&nbsp;</span>
-			<span class="oop-oop-oop">Payment Amount</span>
 			<!-- <span class="ehhh-sexy-lady">&nbsp;</span> -->
 		</div>
 		
 		<div class="row column-10">
-			<span class="oop-oop-oop"><input type="text" name="date" class="datepicker" value="{{dateYYYYMMDD}}"></span>
+			<span class="oop-oop"><input type="text" name="date" class="datepicker" value="{{dateYYYYMMDD}}"></span>
 			<span class="oppa-gangnam-style"><select class="account-dropdown" name="deposit_account_id" {{#payment_deposit_account_default}}rel="{{id}}"{{/payment_deposit_account_default}}>
 				<option value="">&nbsp;</option>
 				{{#payment_deposit_accounts}}
@@ -53,25 +55,34 @@
 					{{/reserved}}
 				{{/payment_deposit_accounts}}
 			</select></span>
-
-			<span class="oop-oop-oop"><input type="text" readonly="readonly" name="sale_total"></span>
-			<span class="oop-oop-oop"><input type="text" readonly="readonly" name="writeoff_amount"></span>
-			<span class="oop-oop-oop"><input type="text" name="adjustment_amount"></span>
+            <span class="oop-oop-oop">
+                <select class="account-dropdown" name="type">
+                    <option value="">&nbsp;</option>
+                    <option value="cash">Cash</option>
+                    <option value="check">Check</option>
+                    <option value="credit card">Credit Card</option>
+                    <option value="transfer">Transfer</option>
+                    <option value="other">Other</option>
+                </select>
+            </span>
+            <span class="oop-oop"><input type="text" name="reference"></span>
+			<span class="oop-oop"><input type="text" readonly="readonly" name="sale_total"></span>
+			<span class="oop-oop"><input type="text" readonly="readonly" name="writeoff_amount"></span>
+			<span class="oop-oop"><input type="text" name="adjustment_amount"></span>
 			<span class="oop">&nbsp;</span>
-			<span class="oop-oop-oop"><input type="text" readonly="readonly" name="amount"></span>
+
 			<!-- <span class="ehhh-sexy-lady">&nbsp;</span> -->
 		</div>
 		
 		<div class="row column-10 labels">
-			
+			<span class="oop-oop">Payment Amount</span>
 			<span class="ehhh-sexy-lady">Write Off Account</span>
 			<span class="ehhh-sexy-lady">Adjustment Account</span>
-			<span class="ehhh-sexy-lady">&nbsp;</span>
 			<span class="ehhh-sexy-lady">&nbsp;</span>
 		</div>
 
 		<div class="row column-10">
-			
+			<span class="oop-oop"><input type="text" readonly="readonly" name="amount"></span>
 			<span class="ehhh-sexy-lady"><select class="account-dropdown" name="writeoff_account_id">
 				<option value="">No Write Off</option>
 				{{#all_accounts_chart_flat}}
@@ -88,7 +99,6 @@
 					{{/reserved}}
 				{{/all_accounts_chart_flat}}
 			</select></span>
-			<span class="oppa-gangnam-style">&nbsp;</span>
 			<span class="oop-oop customers-payments-create-actions-deleteplaceholder">&nbsp;</span>
 			<span class="oop-oop customers-payments-create-actions-delete" style="display:none;"><a href="#" class="button" id="customers-payments-create-delete">Delete</a></span>
 			<span class="oop-oop"><a href="#" class="button" id="customers-payments-create-cancel">Cancel</a></span>
