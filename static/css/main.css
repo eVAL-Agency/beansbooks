@@ -244,14 +244,8 @@ hr {
 
 
 .masthead {
-	background-color: #589b5c;
-	background-image: -moz-linear-gradient(top, #589b5c, #518f55);
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#589b5c), to(#518f55));
-	background-image: -webkit-linear-gradient(top, #589b5c, #518f55);
-	background-image: -o-linear-gradient(top, #589b5c, #518f55);
-	background: -ms-linear-gradient(top, #589b5c, #518f55);
-	background: linear-gradient(top, #589b5c, #518f55);
-	border: 1px solid #589b5c;
+	background-color: #19294C;
+	border: 1px solid #19294C;
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -309,29 +303,15 @@ hr {
 }
 
 .masthead ul li a:hover {
-	background: #467f49;
-	background-color: #518f55;
-	background-image: -moz-linear-gradient(top, #518f55, #467f49);
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#518f55), to(#467f49));
-	background-image: -webkit-linear-gradient(top, #518f55, #467f49);
-	background-image: -o-linear-gradient(top, #518f55, #467f49);
-	background: -ms-linear-gradient(top, #518f55, #467f49);
-	background: linear-gradient(top, #518f55, #467f49);
+	background: #2b4580;
 }
 
 .masthead ul li a.current {
-	background: #467f49;
-	background-color: #518f55;
-	background-image: -moz-linear-gradient(top, #518f55, #467f49);
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#518f55), to(#467f49));
-	background-image: -webkit-linear-gradient(top, #518f55, #467f49);
-	background-image: -o-linear-gradient(top, #518f55, #467f49);
-	background: -ms-linear-gradient(top, #518f55, #467f49);
-	background: linear-gradient(top, #518f55, #467f49);
+	background: #2b4580;
 }
 
 .system-message {
-	margin: 5px 0px;
+	margin: 5px 0;
 	padding: 5px;
 	text-align: center;
 }
@@ -373,8 +353,8 @@ hr {
 	height: 35px;
 	margin: 0px 0px 0px 5px;
 	padding: 0px 10px;
-	background: #e8f1e8;
-	border: 2px solid #b6d2b7;
+	background: #e1e9fa;
+	border: 2px solid #2B4580;
 	font-size: 14px;
 	line-height: 30px;
 	vertical-align: middle;
@@ -393,7 +373,7 @@ hr {
 }
 
 .tabs ul li.current a {
-	color: #3b6d3d;
+	color: #19294C;
 	font-weight: bold;
 }
 
@@ -419,7 +399,7 @@ hr {
 	padding: 5px;
 	margin-bottom: 50px;
 	z-index: 1;
-	border: 2px solid #b6d2b7;
+	border: 2px solid #2B4580;
 	min-height: 600px; /* TODO - Check this - maybe 800 ? */
 }
 
@@ -866,7 +846,7 @@ input[type="text"][disabled="disabled"],input[type="password"][disabled="disable
 
 
 .checkbox input[type="checkbox"] {
-	display: hidden;
+	display: none;
 }
 
 a.button.small, input[type="text"].small, .green-select.small, .select.small {
@@ -1012,7 +992,7 @@ a.button {
 	line-height: 14px;
 	color: #ffffff;
 	font-weight: bold;
-	background-color: #589b5c;
+	background-color: #19294C;
 	text-align: center;
 }
 
@@ -1026,8 +1006,7 @@ a.button.short {
 }
 
 a.button:focus {
-	background: #4f7451; /* A OR B ? */
-	background: #1d6521;
+	background: #2b4580;
 	-webkit-box-shadow: 0 0 5px rgba(0,0,0,.4);
     -moz-box-shadow   : 0 0 5px rgba(0,0,0,.4);
     box-shadow        : 0 0 5px rgba(0,0,0,.4);
@@ -1049,10 +1028,6 @@ a.button.short:focus {
 
 .text-strikethrough {
 	text-decoration: line-through;
-}
-
-.text-color {
-	color: color;
 }
 
 /* i.e. */
