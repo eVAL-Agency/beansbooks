@@ -551,22 +551,22 @@ class Beans_Vendor extends Beans {
 			! strlen($expense->code) )
 			throw new Exception("Invalid expense number: none provided.");
 		
-		if( strlen($expense->code) > 16 )
-			throw new Exception("Invalid expense number: maximum of 16 characters.");
+		if( strlen($expense->code) > 32 )
+			throw new Exception("Invalid expense number: maximum of 32 characters.");
 
 		if( (
 				$expense->reference OR
 				strlen($expense->reference)
 			) AND 
-			strlen($expense->reference) > 16 )
-			throw new Exception("Invalid expense purchase order number: maximum of 16 characters.");
+			strlen($expense->reference) > 32 )
+			throw new Exception("Invalid expense purchase order number: maximum of 32 characters.");
 
 		if( (
 				$expense->alt_reference OR
 				strlen($expense->alt_reference)
 			) AND 
-			strlen($expense->alt_reference) > 16 )
-			throw new Exception("Invalid expense purchase order number: maximum of 16 characters.");
+			strlen($expense->alt_reference) > 32 )
+			throw new Exception("Invalid expense purchase order number: maximum of 32 characters.");
 
 		if( ! $expense->date_created OR 
 			! strlen($expense->date_created) )
