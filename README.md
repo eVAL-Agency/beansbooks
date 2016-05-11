@@ -1,8 +1,33 @@
 # BeansBooks (eVAL Fork)
 
-This is an unofficial fork of the BeansBooks project to introduce new features, better performance, and more updated library support.
+This is an unofficial fork of the BeansBooks project to introduce new features, 
+better performance, and more updated library support.
 
-Some noteworthy changes with this fork is support for MariaDB 10 and MySQLi thanks to an updated Kohana base.  PHP 7.0 is also supported out of the box.
+## Noteable Changes
+
+### Kohana Base Framework
+
+Kohana has been upgraded to 3.3.5; all supporting modules have been upgraded to the newest versions along with it.
+
+### PHP 7.0 Support
+
+This version of Beans was developed on PHP 7.0 and should work on PHP 5.4.0 - 7.0.6.
+This addresses the upstream bug of https://github.com/system76/beansbooks/issues/269.
+
+### MariaDB Support
+
+Along with PHP 7 and the removal of the outdated mysql library,
+support for php-mysqli allows use for MariaDB and MySQL 10.1 without problem.
+
+### Site Logo
+
+The site logo now displays on every page to provide better and more consistent branding for your business.
+
+### Relative Path Fixes
+
+The entire Beans codebase has been updated to allow installation in a subdirectory instead of just the root path!
+This means that it can be installed along-side other applications much easier.
+This addresses the upstream bug https://github.com/system76/beansbooks/issues/238.
 
 
 ## Getting Started
