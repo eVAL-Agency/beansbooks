@@ -51,12 +51,12 @@ class Database_MySQL extends Kohana_Database_MySQL {
 			if ($persistent)
 			{
 				// Create a persistent connection
-				$this->_connection = @mysql_pconnect($hostname, $username, $password);
+				$this->_connection = mysqli_pconnect($hostname, $username, $password);
 			}
 			else
 			{
 				// Create a connection and force it to be a new link
-				$this->_connection = @mysql_connect($hostname, $username, $password, TRUE);
+				$this->_connection = mysqli_connect($hostname, $username, $password, TRUE);
 			}
 		}
 		catch (Exception $e)
@@ -90,7 +90,7 @@ class Database_MySQL extends Kohana_Database_MySQL {
 				$variables[] = 'SESSION '.$var.' = '.$this->quote($val);
 			}
 
-			mysql_query('SET '.implode(', ', $variables), $this->_connection);
+			mysqli_query($this->_connection, 'SET '.implode(', ', $variables));
 		}
 	}
 }

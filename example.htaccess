@@ -1,7 +1,6 @@
 # Turn on URL rewriting
 RewriteEngine On
 
-# Disable Log Dumps
 # If you are testing you should comment this line out.
 SetEnv KOHANA_ENV PRODUCTION
 
@@ -12,6 +11,7 @@ RewriteCond %{HTTPS} !=on
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Installation directory
+# If Beans is installed in a different directory, then set that here!
 RewriteBase /
 
 # Protect hidden files from being viewed

@@ -16,14 +16,25 @@
 
 	<div class="explanation form text-medium bump-down-most">
 		<div class="text-medium">Please enter your MySQL database details.</div>
-		
+
+        <div class="left-right-row bump-down-more">
+            <span class="left">Database Type</span>
+            <span class="right">
+                <select name="type">
+                    {{#db_types}}
+                        <option value="{{value}}">{{title}}</option>
+                    {{/db_types}}
+                </select>
+            </span>
+        </div>
+        
 		<div class="left-right-row bump-down-more">
 			<span class="left">Hostname</span>
 			<span class="right"><input type="text" name="database_hostname" placeholder="i.e. localhost or 192.168.0.1:1337" value=""></span>
 		</div>
 
 		<div class="left-right-row bump-down-more">
-			<span class="left">Database</span>
+			<span class="left">Database Name</span>
 			<span class="right"><input type="text" name="database_database" placeholder="i.e. beans" value=""></span>
 		</div>
 

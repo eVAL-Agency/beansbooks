@@ -1,4 +1,9 @@
-# BeansBooks
+# BeansBooks (eVAL Fork)
+
+This is an unofficial fork of the BeansBooks project to introduce new features, better performance, and more updated library support.
+
+Some noteworthy changes with this fork is support for MariaDB 10 and MySQLi thanks to an updated Kohana base.  PHP 7.0 is also supported out of the box.
+
 
 ## Getting Started
 
@@ -8,9 +13,8 @@ for running a live environment.  In order to get started, you'll need the
 following:  
 
   *  Apache 2
-  *  PHP 5.3+
-  *  MySQL 5+
-  *  Git Client
+  *  PHP 5.4+
+  *  MySQL 5+ (MySQL 5.6 or MariaDB 10.1 Recommended)
 
 On Ubuntu, you can run the following to get up to speed:  
 
@@ -25,7 +29,7 @@ and install BeansBooks there.
     cd ~
     mkdir source
     cd source
-    git clone --recursive https://github.com/system76/beansbooks.git
+    git clone --recursive git@github.com:eVAL-Agency/beansbooks.git
     cd beansbooks
 
 Copy the example.htaccess file to .htaccess within your working directory
@@ -35,38 +39,23 @@ Copy the example.htaccess file to .htaccess within your working directory
 If you are not planning on hosting with SSL, then we need to comment out two
 lines in the .htaccess file.  Open the file for editing:
 
-    nano .htaccess
+    vim .htaccess
 
-Look for the following two lines:
+
+It is strongly adviced to use SSL for this site, but if you need to disable it, 
+look for the following two lines:
 
     RewriteCond %{HTTPS} !=on
     RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-Add a # character before them:
+and add a # character before them:
 
     #RewriteCond %{HTTPS} !=on
     #RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-Additionally, you'll need to update the permissions on two directories before proceeding:
 
-    chmod 770 -R application/logs
-    chmod 770 -R application/cache
-
-And create a configuration file:
-
-    touch application/classes/beans/config.php
-    chmod 660 application/classes/beans/config.php
-
-Finally, your web user ( presumably, www-data ) will require access to the owner of
-your application directory.  Presuming you've setup BeansBooks to run locally, it's easiest 
-to add www-data to your user group.
-
-    sudo usermod -a -G `whoami` www-data
-
-If you'd like a more secure solution, you should create a user specifically 
-for BeansBooks and install everything within a sub-folder of the home 
-directory for that user.  In that case, you could want to replace \`whoami\` 
-in the above solution with the name of the user you created.
+If you want to use the web user as the main owner of the files, a simple `chown www-data` will do the trick.
+Otherwise ensure that the web user can write to `application/cache`, `application/logs`, and `application/config`. 
 
 You should now have everything you need to run BeansBooks locally.  Next, we'll 
 configure and setup several dependencies to enable your application to run.
@@ -118,7 +107,7 @@ We're going to setup our instance of BeansBooks to be found at http://beansbooks
 this is convenient as it will neither interfere with an actual domain, and 
 can be configured fairly easily.  Go ahead and run the following command:  
 
-    sudo nano /etc/apache2/sites-available/beansbooks.conf
+    sudo vim /etc/apache2/sites-available/beansbooks.conf
 
 That will open a text editor for a new virtual host configuration - go ahead and 
 copy and paste the following into the file.  Make sure to replace PWDHERE with 
@@ -160,47 +149,13 @@ enable the beansbooks.conf virtual host and reload the Apache configuration.
 
     sudo a2dissite 000-default
     sudo a2ensite beansbooks.conf
-    sudo service apache2 reload
+    sudo systemctl restart apache2
   
-Then we need to add an entry to your hosts file to be able to load the local 
-instance of beans.  
-
-	sudo sh -c "echo '127.0.0.1 beansbooks' >> /etc/hosts"
   
 ## Installation
 
-At this point you should be able to navigate to http://beansbooks/ to finish the installation
-process.  If you would prefer to run the installation and initial database setup from 
-the command line please do as follows:
-
-## Manually Configure BeansBooks  
-
-Copy example.config.php to config.php in application/classes/beans/ and fill in the appropriate information.
-
-    cd application/classes/beans/
-    cp example.config.php config.php
-    chmod 660 config.php
-    nano config.php
-
-It's important that your config file is not world-readable.  The keys that encrypt your data, 
-in addition to your database and email credentials, should be secure.
-
-There are quite a few values that should be changed in the file, however it's mostly
-self explanatory.  For starters, every place that you see "INSERT_STRONG_KEY" should have
-a unique, long ( at least 128 characters ), string of random characters.  You can generate
-random data from here: https://www.grc.com/passwords.htm
-
-Also note that you should enter the MySQL username and password you setup above under
-the "database" section.
-
-Lastly, email support is optional - though it enables quite a few useful features when 
-communication with customers and vendors.  If you have an SMTP email provider, you should
-enter the correct information in the "email" section.
-
-Once you've saved the config.php file, it's time to manually run the installation process.
-
-    cd ~/source/beansbooks
-    php index.php --uri=/install/manual --name="Your Name" --password="password" --email="you@email.address" --accounts="full"
+At this point you should be able to navigate to https://SITENAME.TLD/install to finish the installation
+process.
 
 ## SSL Support
 
@@ -211,7 +166,7 @@ support to your web server:
 
 Then go ahead and edit your virtual host to support SSL connections:
 
-    sudo nano /etc/apache2/sites-available/beansbooks.conf
+    sudo vim /etc/apache2/sites-available/beansbooks.conf
 
     <IfModule mod_ssl.c>
         <VirtualHost *:443>

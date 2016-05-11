@@ -8,7 +8,7 @@
 
 class Kohana_Exception extends Kohana_Kohana_Exception {
 
-	public static function handler(Exception $e)
+	public static function handler($e)
 	{
 		if( Kohana::$environment == Kohana::DEVELOPMENT )
 			return parent::handler($e);

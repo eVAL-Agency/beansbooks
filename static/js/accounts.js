@@ -15,9 +15,6 @@ See the BeansBooks Public License for more details.
 You should have received a copy of the BeansBooks Public License
 along with BeansBooks; if not, email info@beansbooks.com.
 */
-
-if ( document.body.className.match(new RegExp('(\\s|^)accounts(\\s|$)')) !== null ) {
-
 	/**
 	 * Javascript for pages related to accounts/
 	 */
@@ -156,7 +153,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)accounts(\\s|$)')) !== nul
 		function deleteAccount() {
 			showPleaseWait();
 			$.post(
-				'/accounts/json/accountdelete',
+				window.ROOT_WDIR + 'accounts/json/accountdelete',
 				{
 					account_id: delete_account_id,
 					transfer_account_id: delete_transfer_account_id
@@ -203,7 +200,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)accounts(\\s|$)')) !== nul
 			if( $editRow.attr('rel') &&
 				$editRow.attr('rel').length ) {
 				$.post(
-					'/accounts/json/accountupdate',
+					window.ROOT_WDIR + 'accounts/json/accountupdate',
 					$editRow.find('input,select').serialize()+'&account_id='+$editRow.attr('rel'),
 					function(data) {
 						hidePleaseWait();
@@ -219,7 +216,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)accounts(\\s|$)')) !== nul
 				);
 			} else {
 				$.post(
-					'/accounts/json/accountcreate',
+					window.ROOT_WDIR + 'accounts/json/accountcreate',
 					$editRow.find('input,select').serialize(),
 					function(data) {
 						hidePleaseWait();
@@ -281,7 +278,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)accounts(\\s|$)')) !== nul
 				return;
 			}
 			$.post(
-				'/accounts/json/transactionsjumptomonth',
+				window.ROOT_WDIR + 'accounts/json/transactionsjumptomonth',
 				{
 					account_id: $('#accounts-view-fields-account_id').val(),
 					last_transaction_id: $('#accounts-view-transactions  li.account-transaction:not(.static-row):last').attr('rel'),
@@ -373,7 +370,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)accounts(\\s|$)')) !== nul
 						$('#accounts-view-loadtransactions').show();
 						$('#accounts-view-loadtransactions').find('.spinme').spin();
 						$.post(
-							'/accounts/json/transactionsloadmore',
+							window.ROOT_WDIR + 'accounts/json/transactionsloadmore',
 							{
 								account_id: $('#accounts-view-fields-account_id').val(),
 								last_transaction_id: last_transaction_id,
@@ -495,7 +492,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)accounts(\\s|$)')) !== nul
 		 		i++;
 		 	});
 		 	$.post(
-		 		'/accounts/json/transactioncreate',
+		 		window.ROOT_WDIR + 'accounts/json/transactioncreate',
 		 		$('#accounts-view-transactions li.new input,#accounts-view-transactions li.new select').serialize(),
 		 		function(data) {
 		 			if( data.success != 1 ) {
@@ -572,7 +569,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)accounts(\\s|$)')) !== nul
 			if( confirm("Are you sure you want to delete this transaction?") ) {
 				showPleaseWait();
 				$.post(
-					'/accounts/json/transactiondelete',
+					window.ROOT_WDIR + 'accounts/json/transactiondelete',
 					{
 						transaction_id: $id
 					},
@@ -725,7 +722,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)accounts(\\s|$)')) !== nul
 			if( confirm("Are you sure you want to delete this transaction?") ) {
 				showPleaseWait();
 				$.post(
-					'/accounts/json/transactiondelete',
+					window.ROOT_WDIR + 'accounts/json/transactiondelete',
 					{
 						transaction_id: $id
 					},
@@ -773,7 +770,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)accounts(\\s|$)')) !== nul
 		 		i++;
 		 	});
 		 	$.post(
-		 		'/accounts/json/transactionupdate',
+		 		window.ROOT_WDIR + 'accounts/json/transactionupdate',
 		 		$editTransaction.add($editTransactionSplit).find('input,select').serialize()+'&transaction_id='+$id,
 		 		function(data) {
 		 			hidePleaseWait();
@@ -925,7 +922,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)accounts(\\s|$)')) !== nul
 			$('#accounts-import-save-form input[name="importdata"]').val(JSON.stringify($importdata));
 			
 			$.post(
-				'/accounts/json/importvalidatetransactions',
+				window.ROOT_WDIR + 'accounts/json/importvalidatetransactions',
 				$('#accounts-import-save-form input').serialize(),
 				function(data) {
 					if( ! data.success ) {
@@ -1137,7 +1134,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)accounts(\\s|$)')) !== nul
 			
 			showPleaseWait();
 			$.post(
-				'/accounts/json/reconcilevalidate',
+				window.ROOT_WDIR + 'accounts/json/reconcilevalidate',
 				$('#accounts-reconcile-status input,#accounts-reconcile-form input').serialize(),
 				function(data) {
 					if( data.success != 1 ) {
@@ -1164,7 +1161,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)accounts(\\s|$)')) !== nul
 		function deleteTransaction() {
 			showPleaseWait();
 			$.post(
-				'/accounts/json/transactiondelete',
+				window.ROOT_WDIR + 'accounts/json/transactiondelete',
 				{
 					transaction_id: delete_transaction_id
 				},
@@ -1290,7 +1287,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)accounts(\\s|$)')) !== nul
 		 	});
 		 	
 		 	$.post(
-		 		'/accounts/json/transactioncreate',
+		 		window.ROOT_WDIR + 'accounts/json/transactioncreate',
 		 		$target.find('li.account-reconcile-transaction.new input,li.account-reconcile-transaction.new select').serialize(),
 		 		function(data) {
 		 			if( data.success != 1 ) {
@@ -1403,7 +1400,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)accounts(\\s|$)')) !== nul
 			});
 			$form.find('input[name="account_transactions"]').val(JSON.stringify(account_transactions));
 			$.post(
-				'/accounts/json/startingbalancevalidate',
+				window.ROOT_WDIR + 'accounts/json/startingbalancevalidate',
 				$form.find('input[name]').serialize(),
 				function(data) {
 					if( ! data.success ) {
@@ -1541,5 +1538,3 @@ if ( document.body.className.match(new RegExp('(\\s|^)accounts(\\s|$)')) !== nul
 			}
 		});
 	}
-
-}

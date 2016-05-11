@@ -1,12 +1,12 @@
 <div class="header">
-	<a href="/"><img src="/static/images/logo.png" class="logo"></a>
+	<a href="{{root_wdir}}"><img src="{{root_wdir}}static/images/logo.png" class="logo"></a>
 	
 	{{#logged_in}}
 		<div class="links">
 			<ul>
-				<li><a href="/auth/logout">Logout</a></li>
-				<li><a href="/myaccount/">My Account</a></li>
-				<li><a href="/help">Help</a></li>
+				<li><a href="{{root_wdir}}auth/logout">Logout</a></li>
+				<li><a href="{{root_wdir}}myaccount/">My Account</a></li>
+				<li><a href="{{root_wdir}}help">Help</a></li>
 			</ul>
 		</div>
 	{{/logged_in}}

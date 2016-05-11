@@ -20,11 +20,11 @@ along with BeansBooks; if not, email info@beansbooks.com.
 return array(
 	// Default Session = Cookie
 	'cookie' => array(
-		'encrypted' => TRUE,
+		'encrypted' => false,
 	),
 	// For Install we use File
 	'native' => array(
         'name' => 'beans_install',
-        'lifetime' => 60*10,
+        'lifetime' => 60*15,
     ),
 );

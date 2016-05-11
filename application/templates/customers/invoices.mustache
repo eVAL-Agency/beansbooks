@@ -75,7 +75,7 @@
 						{{#taxes}}
 							<div class="option {{#visible}}visible-tax{{/visible}}{{^visible}}hidden-tax{{/visible}}" {{^visible}}style="display: none;"{{/visible}}><input type="checkbox" class="form-tax" value="{{id}}" data-tax-percent="{{percent}}" title="{{name}}"><span class="label"> {{name}}</span></div>
 						{{/taxes}}
-						<div class="option no-tax" style="display: none; text-indent: 5px;">No Configured Taxes - <a href="/setup/taxes" target="_blank">Click Here to Setup</a>.</div>
+						<div class="option no-tax" style="display: none; text-indent: 5px;">No Configured Taxes - <a href="{{root_wdir}}setup/taxes" target="_blank">Click Here to Setup</a>.</div>
 					</div>
 				</div>
 			</span>

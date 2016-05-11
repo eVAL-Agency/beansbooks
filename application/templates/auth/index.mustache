@@ -5,10 +5,13 @@
 		<div class="clear"></div>
 		<input type="password" name="password" placeholder="Password">
 		<div class="clear"></div>
-		<a href="#" class="button auth-login-submit" onclick="showPleaseWait(); $(this).closest('form').submit();">Login</a>
+		<a href="#" class="button auth-login-submit" onclick="">Login</a>
+        
+        <!-- Render a submit button so 'ENTER' works as expected. -->
+        <input type="submit" style="display:none;"/>
 	</form>
 </div>
 
 <div class="text-center">
-	<a href="/auth/reset/">Forgot your password?</a>
+	<a href="{{root_wdir}}auth/reset/">Forgot your password?</a>
 </div>

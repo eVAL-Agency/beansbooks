@@ -16,8 +16,6 @@ You should have received a copy of the BeansBooks Public License
 along with BeansBooks; if not, email info@beansbooks.com.
 */
 
-if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== null ) {
-
 	var saleDescriptionCache = {};
 	var saleDescriptionParams = {
 		autoFocus: true,
@@ -42,7 +40,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 				return;
 			}
 			$.post(
-				'/customers/json/salelines',
+				window.ROOT_WDIR + 'customers/json/salelines',
 				{
 					search_term: search
 				},
@@ -137,7 +135,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 			showPleaseWait();
 			$saleLine = $('#customers-sales-sales .customer-sale[rel="'+cancel_customer_sale_id+'"]');
 			$.post(
-				'/customers/json/salecancel',
+				window.ROOT_WDIR + 'customers/json/salecancel',
 				{
 					sale_id: cancel_customer_sale_id,
 					invoice_view: ( customer_invoice_view ? '1' : '' )
@@ -280,7 +278,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 				print = true;
 			}
 			$.post(
-				'/customers/json/salesend',
+				window.ROOT_WDIR + 'customers/json/salesend',
 				$(this).closest('.customer-sale-send').find('input').serialize()+'&sale_id='+$(this).closest('.customer-sale-send').attr('rel')+'&invoice_view='+( customer_invoice_view ? '1' : ''),
 				function(data) {
 					hidePleaseWait();
@@ -439,7 +437,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 			$saleinvoice = $(this).closest('.customer-sale-invoice');
 
 			$.post(
-				'/customers/json/salesendvalidate',
+				window.ROOT_WDIR + 'customers/json/salesendvalidate',
 				$saleinvoice.find('input').serialize()+'&sale_id='+$saleinvoice.attr('rel'),
 				function (validatedata) {
 					if( ! validatedata.success ) {
@@ -447,7 +445,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 						showError(validatedata.error);
 					} else {
 						$.post(
-							'/customers/json/saleinvoice',
+							window.ROOT_WDIR + 'customers/json/saleinvoice',
 							$saleinvoice.find('input').serialize()+'&sale_id='+$saleinvoice.attr('rel'),
 							function(data) {
 								hidePleaseWait();
@@ -541,7 +539,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 			if( $('#customers-sales-create-form-send').attr('rel') == "send" ) {
 				showPleaseWait();
 				$.post(
-					'/customers/json/salesend',
+					window.ROOT_WDIR + 'customers/json/salesend',
 					$('#customers-sales-create-form-send').find('input').serialize()+'&sale_id='+$('#customers-sales-create').attr('rel')+'&invoice_view='+( customer_invoice_view ? '1' : ''),
 					function(data) {
 						hidePleaseWait();
@@ -559,7 +557,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 									} else {
 										$('#customers-sales-create-status').append(',');
 									}
-									$('#customers-sales-create-status').append(' <a href="/customers/payments/'+data.data.sale.payments[i].id+'">'+data.data.sale.payments[i].date+'</a>');
+									$('#customers-sales-create-status').append(' <a href="' + window.ROOT_WDIR + 'customers/payments/'+data.data.sale.payments[i].id+'">'+data.data.sale.payments[i].date+'</a>');
 								}
 							} else {
 								$('#customers-sales-create-status').html('<span class="text-bold">'+data.data.sale.status+'</span>');
@@ -577,7 +575,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 				createSaleIndexLines();
 				// Validate First
 				$.post(
-					'/customers/json/salesendvalidate',
+					window.ROOT_WDIR + 'customers/json/salesendvalidate',
 					$('#customers-sales-create-form-send').find('input').serialize()+'&sale_id='+$('#customers-sales-create').attr('rel'),
 					function(datavalid) {
 						if( datavalid.success != 1 ) {
@@ -594,7 +592,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 								});
 								createSaleUpdateTotals();
 								$.post(
-									'/customers/json/salerefund',
+									window.ROOT_WDIR + 'customers/json/salerefund',
 									$('#customers-sales-create input,#customers-sales-create select').serialize(),
 									function(datacreate) {
 										if( datacreate.success != 1 ) {
@@ -605,7 +603,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 											$('#customers-sales-create').attr('rel',datacreate.data.sale.id);
 
 											$.post(
-												'/customers/json/salesend',
+												window.ROOT_WDIR + 'customers/json/salesend',
 												$('#customers-sales-create-form-send').find('input').serialize()+'&sale_id='+$('#customers-sales-create').attr('rel')+'&invoice_view='+( customer_invoice_view ? '1' : ''),
 												function(data) {
 													hidePleaseWait();
@@ -634,7 +632,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 																} else {
 																	$('#customers-sales-create-status').append(',');
 																}
-																$('#customers-sales-create-status').append(' <a href="/customers/payments/'+data.data.sale.payments[i].id+'">'+data.data.sale.payments[i].date+'</a>');
+																$('#customers-sales-create-status').append(' <a href="' + window.ROOT_WDIR + 'customers/payments/'+data.data.sale.payments[i].id+'">'+data.data.sale.payments[i].date+'</a>');
 															}
 														} else {
 															$('#customers-sales-create-status').html('<span class="text-bold">'+data.data.sale.status+'</span>');
@@ -657,7 +655,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 								$('#customers-sales-create').attr('rel').length ) {
 								// UPDATE
 								$.post(
-									'/customers/json/saleupdate',
+									window.ROOT_WDIR + 'customers/json/saleupdate',
 									$('#customers-sales-create input,#customers-sales-create select').serialize()+'&sale_id='+$('#customers-sales-create').attr('rel'),
 									function(datacreate) {
 										hidePleaseWait();
@@ -668,7 +666,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 											$('#customers-sales-create').attr('rel',datacreate.data.sale.id);
 
 											$.post(
-												'/customers/json/salesend',
+												window.ROOT_WDIR + 'customers/json/salesend',
 												$('#customers-sales-create-form-send').find('input').serialize()+'&sale_id='+$('#customers-sales-create').attr('rel')+'&invoice_view='+( customer_invoice_view ? '1' : ''),
 												function(data) {
 													hidePleaseWait();
@@ -707,7 +705,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 							} else {
 								// NEW
 								$.post(
-									'/customers/json/salecreate',
+									window.ROOT_WDIR + 'customers/json/salecreate',
 									$('#customers-sales-create input,#customers-sales-create select').serialize(),
 									function(datacreate) {
 										hidePleaseWait();
@@ -717,7 +715,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 											$('#customers-sales-create').attr('rel',datacreate.data.sale.id);
 
 											$.post(
-												'/customers/json/salesend',
+												window.ROOT_WDIR + 'customers/json/salesend',
 												$('#customers-sales-create-form-send').find('input').serialize()+'&sale_id='+$('#customers-sales-create').attr('rel')+'&invoice_view='+( customer_invoice_view ? '1' : ''),
 												function(data) {
 													hidePleaseWait();
@@ -835,7 +833,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 				print = true;
 			}
 			$.post(
-				'/customers/json/salesendvalidate',
+				window.ROOT_WDIR + 'customers/json/salesendvalidate',
 				$('#customers-sales-create-form-invoice input').serialize()+'&sale_id='+$('#customers-sales-create').attr('rel'),
 				function (validatedata) {
 					if( ! validatedata.success ) {
@@ -843,7 +841,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 						showError(validatedata.error);
 					} else {
 						$.post(
-							'/customers/json/saleinvoice',
+							window.ROOT_WDIR + 'customers/json/saleinvoice',
 							$('#customers-sales-create-form-invoice input').serialize()+'&sale_id='+$('#customers-sales-create').attr('rel'),
 							function(data) {
 								hidePleaseWait();
@@ -896,7 +894,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 					$currentDialog = $(this);
 					showPleaseWait();
 					$.post(
-						'/customers/json/customercreate',
+						window.ROOT_WDIR + 'customers/json/customercreate',
 						$currentDialog.find('input,select').serialize(),
 						function(data) {
 							hidePleaseWait();
@@ -950,7 +948,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 					$currentDialog = $(this);
 					showPleaseWait();
 					$.post(
-						'/customers/json/customeraddresscreate',
+						window.ROOT_WDIR + 'customers/json/customeraddresscreate',
 						$currentDialog.find('input,select').serialize(),
 						function(data){
 							hidePleaseWait();
@@ -1123,7 +1121,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 				});
 				createSaleUpdateTotals();
 				$.post(
-					'/customers/json/salerefund',
+					window.ROOT_WDIR + 'customers/json/salerefund',
 					$('#customers-sales-create input,#customers-sales-create select').serialize(),
 					function(data) {
 						hidePleaseWait();
@@ -1149,7 +1147,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 				$('#customers-sales-create').attr('rel').length ) {
 				// UPDATE
 				$.post(
-					'/customers/json/saleupdate',
+					window.ROOT_WDIR + 'customers/json/saleupdate',
 					$('#customers-sales-create input,#customers-sales-create select').serialize()+'&sale_id='+$('#customers-sales-create').attr('rel'),
 					function(data) {
 						hidePleaseWait();
@@ -1180,7 +1178,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 			} else {
 				// NEW
 				$.post(
-					'/customers/json/salecreate',
+					window.ROOT_WDIR + 'customers/json/salecreate',
 					$('#customers-sales-create input,#customers-sales-create select').serialize(),
 					function(data) {
 						hidePleaseWait();
@@ -1290,7 +1288,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 		$('#customers-sales-create input[name="customer"]').select2({
 			minimumInputLength: 1,
 			ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-				url: "/customers/json/customersloadmore",
+				url: window.ROOT_WDIR + "customers/json/customersloadmore",
 				type: "POST",
 				dataType: 'json',
 				data: function (term) {
@@ -1350,7 +1348,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 			}
 
 			$.post(
-				'/customers/json/customeraddresses',
+				window.ROOT_WDIR + 'customers/json/customeraddresses',
 				{
 					customer_id: customer[0]
 				},
@@ -1541,7 +1539,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 		function saveNewCustomer() {
 			showPleaseWait();
 			$.post(
-				'/customers/json/customercreate',
+				window.ROOT_WDIR + 'customers/json/customercreate',
 				$form.find('input,select').serialize(),
 				function(data) {
 					hidePleaseWait();
@@ -1737,7 +1735,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 		$('#customers-customer-edit-save').click(function() {
 			showPleaseWait();
 			$.post(
-				'/customers/json/customerupdate',
+				window.ROOT_WDIR + 'customers/json/customerupdate',
 				$('#customers-customer-edit input,#customers-customer-edit select').serialize(),
 				function(data) {
 					if( data.success == 1 ) {
@@ -1837,7 +1835,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 				$form.attr('rel').length > 0 ) {
 				// Existing Address
 				$.post(
-					'/customers/json/customeraddressupdate',
+					window.ROOT_WDIR + 'customers/json/customeraddressupdate',
 					$form.find('input,select').serialize()+'&address_id='+$form.attr('rel'),
 					function(data) {
 						if( ! data.success ) {
@@ -1874,7 +1872,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 			} else {
 				// New Address
 				$.post(
-					'/customers/json/customeraddresscreate',
+					window.ROOT_WDIR + 'customers/json/customeraddresscreate',
 					$form.find('input,select').serialize(),
 					function(data){
 						if( ! data.success ) {
@@ -1959,7 +1957,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 				$('#customers-payments-create').attr('rel').length ) {
 				// Update
 				$.post(
-					'/customers/json/paymentupdate',
+					window.ROOT_WDIR + 'customers/json/paymentupdate',
 					$('#customers-payments-create input, #customers-payments-create select').serialize()+'&payment_id='+$('#customers-payments-create').attr('rel'),
 					function(data) {
 						// Don't let the value sit in there in case of error.
@@ -2007,7 +2005,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 			} else {
 				// Create New
 				$.post(
-					'/customers/json/paymentcreate',
+					window.ROOT_WDIR + 'customers/json/paymentcreate',
 					$('#customers-payments-create input, #customers-payments-create select').serialize(),
 					function(data) {
 						// Don't let the value sit in there in case of error.
@@ -2066,7 +2064,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 		function deleteCustomerPayment() {
 			showPleaseWait();
 			$.post(
-				'/customers/json/paymentdelete',
+				window.ROOT_WDIR + 'customers/json/paymentdelete',
 				{
 					payment_id: delete_customer_payment_id
 				},
@@ -2418,7 +2416,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 		
 		showPleaseWait();
 		$.post(
-			'/customers/json/saleload',
+			window.ROOT_WDIR + 'customers/json/saleload',
 			{
 				sale_id: sale_id
 			},
@@ -2492,7 +2490,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 					$newSaleLine.find('div.select').addClass('disabled');
 
 					$.post(
-						'/customers/json/customeraddresses',
+						window.ROOT_WDIR + 'customers/json/customeraddresses',
 						{
 							customer_id: sale_data.data.sale.customer.id
 						},
@@ -2568,7 +2566,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 										} else {
 											$('#customers-sales-create-status').append(',');
 										}
-										$('#customers-sales-create-status').append(' <a href="/customers/payments/'+sale_data.data.sale.payments[i].id+'">'+sale_data.data.sale.payments[i].date+'</a>');
+										$('#customers-sales-create-status').append(' <a href="' + window.ROOT_WDIR + 'customers/payments/'+sale_data.data.sale.payments[i].id+'">'+sale_data.data.sale.payments[i].date+'</a>');
 									}
 								} else {
 									$('#customers-sales-create-status').html('<span class="text-bold">'+sale_data.data.sale.status+'</span>');
@@ -2871,7 +2869,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 		$('#customers-sales-loadsales').show();
 		$('#customers-sales-loadsales').find('.spinme').spin();
 		$.post(
-			'/customers/json/salesloadmore',
+			window.ROOT_WDIR + 'customers/json/salesloadmore',
 			{
 				last_sale_id: last_sale_id,
 				last_sale_date: last_sale_date,
@@ -2925,7 +2923,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 		$('#customers-customers-loadcustomers').show();
 		$('#customers-customers-loadcustomers').find('.spinme').spin();
 		$.post(
-			'/customers/json/customersloadmore',
+			window.ROOT_WDIR + 'customers/json/customersloadmore',
 			{
 				last_customer_id: last_customer_id,
 				last_page: last_page,
@@ -3149,7 +3147,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 		}
 		showPleaseWait();
 		$.post(
-			'/customers/json/customersales',
+			window.ROOT_WDIR + 'customers/json/customersales',
 			{
 				search_terms: $('#customers-payments-create-actions-search').val(),
 				oldest_first: '1',
@@ -3200,7 +3198,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 		showPleaseWait();
 		$('#customers-payments-create').slideUp();
 		$.post(
-			'/customers/json/paymentload',
+			window.ROOT_WDIR + 'customers/json/paymentload',
 			{
 				payment_id: id
 			},
@@ -3309,7 +3307,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 		showPleaseWait();
 		$('#customers-payments-payments ul li:not(:first)').remove();
 		$.post(
-			'/customers/json/paymentsearch',
+			window.ROOT_WDIR + 'customers/json/paymentsearch',
 			{
 				search_terms: $('#customers-payments-payments-search').val(),
 				count: 5,
@@ -3338,14 +3336,14 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 
 	var popupWindow;
 	function printCustomerSale(id) {
-		popupWindow = popupWindowLoad('/print/customersale/'+id);
+		popupWindow = popupWindowLoad(window.ROOT_WDIR + 'print/customersale/'+id);
 		$(popupWindow.document).ready( function () {
 			setTimeout( function () { popupWindow.print(); } , 1000 );
 		});
 	}
 
 	function printCustomerPayment(id) {
-		popupWindow = popupWindowLoad('/print/customerpayment/'+id);
+		popupWindow = popupWindowLoad(window.ROOT_WDIR + 'print/customerpayment/'+id);
 		$(popupWindow.document).ready( function () {
 			setTimeout( function () { popupWindow.print(); } , 1000 );
 		});
@@ -3367,6 +3365,3 @@ if ( document.body.className.match(new RegExp('(\\s|^)customers(\\s|$)')) !== nu
 			return $1.toUpperCase();
 		});
 	}
-
-
-}

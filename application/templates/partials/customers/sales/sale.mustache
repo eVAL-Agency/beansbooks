@@ -20,10 +20,10 @@
 				{{/cancelled}}
 				<a href="#" class="print">Print</a> |
 				{{#invoiced}}
-					<a href="/customers/invoices/{{id}}" class="view-invoice">View</a>
+					<a href="{{root_wdir}}customers/invoices/{{id}}" class="view-invoice">View</a>
 				{{/invoiced}}
 				{{^invoiced}}
-					<a href="/customers/sales/{{id}}" class="view-sale">View</a>
+					<a href="{{root_wdir}}customers/sales/{{id}}" class="view-sale">View</a>
 				{{/invoiced}}
 			</span>
 	{{/invoice_view}}
@@ -39,7 +39,7 @@
 				<a href="#" class="cancel">Delete</a> |
 			{{/can_cancel}}
 			{{#invoiced}}
-				<a href="/customers/invoices/{{id}}">View Invoice</a> |
+				<a href="{{root_wdir}}customers/invoices/{{id}}">View Invoice</a> |
 			{{/invoiced}}
 			{{^invoiced}}
 				{{^cancelled}}
@@ -49,10 +49,10 @@
 			<a href="#" class="send">Send</a> |
 			<a href="#" class="print">Print</a> |
 			{{#invoiced}}
-				<a href="/customers/invoices/{{id}}" class="view-invoice">View</a>
+				<a href="{{root_wdir}}customers/invoices/{{id}}" class="view-invoice">View</a>
 			{{/invoiced}}
 			{{^invoiced}}
-				<a href="/customers/sales/{{id}}" class="view-sale">View</a>
+				<a href="{{root_wdir}}customers/sales/{{id}}" class="view-sale">View</a>
 			{{/invoiced}}
 		</span>
 	{{/invoice_view}}

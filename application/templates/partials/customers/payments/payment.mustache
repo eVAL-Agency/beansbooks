@@ -4,5 +4,5 @@
     <span class="customer-payment-reference text-center">{{reference}}</span>
 	<span class="customer-payment-amount text-right">{{amount_formatted}}</span>
 	<span class="customer-payment-account text-center">{{#deposit_account}}{{name}}{{/deposit_account}}</span>
-	<span class="customer-payment-actions text-right"><a href="#" class="print">Print Payment Report</a> | <a href="/customers/payments/{{id}}" rel="{{id}}" class="view">View</a></span>
+	<span class="customer-payment-actions text-right"><a href="#" class="print">Print Payment Report</a> | <a href="{{root_wdir}}customers/payments/{{id}}" rel="{{id}}" class="view">View</a></span>
 </li>

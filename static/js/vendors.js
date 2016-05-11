@@ -16,8 +16,6 @@ You should have received a copy of the BeansBooks Public License
 along with BeansBooks; if not, email info@beansbooks.com.
 */
 
-if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null ) {
-
 	var expenseDescriptionCache = {};
 	var expenseDescriptionParams = {
 		autoFocus: true,
@@ -44,7 +42,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 				return;
 			}
 			$.post(
-				'/vendors/json/expenselines',
+				window.ROOT_WDIR + 'vendors/json/expenselines',
 				{
 					search_term: search
 				},
@@ -93,7 +91,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 				return;
 			}
 			$.post(
-				'/vendors/json/purchaselines',
+				window.ROOT_WDIR + 'vendors/json/purchaselines',
 				{
 					search_term: search
 				},
@@ -190,7 +188,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 			showPleaseWait();
 			$expenseLine = $('#vendors-expenses-expenses .vendor-expense[rel="'+cancel_vendor_expense_id+'"]');
 			$.post(
-				'/vendors/json/expensecancel',
+				window.ROOT_WDIR + 'vendors/json/expensecancel',
 				{
 					expense_id: cancel_vendor_expense_id
 				},
@@ -352,7 +350,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 				});
 				createExpenseUpdateTotals();
 				$.post(
-					'/vendors/json/expenserefund',
+					window.ROOT_WDIR + 'vendors/json/expenserefund',
 					$('#vendors-expenses-create input,#vendors-expenses-create select').serialize(),
 					function(data) {
 						hidePleaseWait();
@@ -376,7 +374,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 				$('#vendors-expenses-create').attr('rel').length ) {
 				// UPDATE
 				$.post(
-					'/vendors/json/expenseupdate',
+					window.ROOT_WDIR + 'vendors/json/expenseupdate',
 					$('#vendors-expenses-create input,#vendors-expenses-create select').serialize()+'&expense_id='+$('#vendors-expenses-create').attr('rel'),
 					function(data) {
 						hidePleaseWait();
@@ -409,7 +407,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 			} else {
 				// NEW
 				$.post(
-					'/vendors/json/expensecreate',
+					window.ROOT_WDIR + 'vendors/json/expensecreate',
 					$('#vendors-expenses-create input,#vendors-expenses-create select').serialize(),
 					function(data) {
 						hidePleaseWait();
@@ -466,7 +464,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 		$('#vendors-expenses-create input[name="vendor"]').select2({
 			minimumInputLength: 1,
 			ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-				url: "/vendors/json/vendorsformsearch",
+				url: window.ROOT_WDIR + "vendors/json/vendorsformsearch",
 				type: "POST",
 				dataType: 'json',
 				data: function (term) {
@@ -534,7 +532,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 			}
 
 			$.post(
-				'/vendors/json/vendoraddresses',
+				window.ROOT_WDIR + 'vendors/json/vendoraddresses',
 				{
 					vendor_id: vendor[0]
 				},
@@ -593,7 +591,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 					$currentDialog = $(this);
 					showPleaseWait();
 					$.post(
-						'/vendors/json/vendorcreate',
+						window.ROOT_WDIR + 'vendors/json/vendorcreate',
 						$currentDialog.find('input,select').serialize(),
 						function(data) {
 							hidePleaseWait();
@@ -644,7 +642,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 					$currentDialog = $(this);
 					showPleaseWait();
 					$.post(
-						'/vendors/json/vendoraddresscreate',
+						window.ROOT_WDIR + 'vendors/json/vendoraddresscreate',
 						$currentDialog.find('input,select').serialize(),
 						function(data){
 							hidePleaseWait();
@@ -690,7 +688,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 					$currentDialog = $(this);
 					showPleaseWait();
 					$.post(
-						'/vendors/json/vendorcreate',
+						window.ROOT_WDIR + 'vendors/json/vendorcreate',
 						$currentDialog.find('input,select').serialize(),
 						function(data) {
 							hidePleaseWait();
@@ -742,7 +740,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 					$currentDialog = $(this);
 					showPleaseWait();
 					$.post(
-						'/vendors/json/vendoraddresscreate',
+						window.ROOT_WDIR + 'vendors/json/vendoraddresscreate',
 						$currentDialog.find('input,select').serialize(),
 						function(data){
 							hidePleaseWait();
@@ -787,7 +785,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 					$currentDialog = $(this);
 					showPleaseWait();
 					$.post(
-						'/vendors/json/shippingaddresscreate',
+						window.ROOT_WDIR + 'vendors/json/shippingaddresscreate',
 						$currentDialog.find('input,select').serialize(),
 						function(data){
 							hidePleaseWait();
@@ -876,7 +874,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 			showPleaseWait();
 			$purchaseLine = $('#vendors-purchases-purchases .vendor-purchase[rel="'+cancel_vendor_purchase_id+'"]');
 			$.post(
-				'/vendors/json/purchasecancel',
+				window.ROOT_WDIR + 'vendors/json/purchasecancel',
 				{
 					purchase_id: cancel_vendor_purchase_id
 				},
@@ -1001,7 +999,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 				print = true;
 			}
 			$.post(
-				'/vendors/json/purchasesend',
+				window.ROOT_WDIR + 'vendors/json/purchasesend',
 				$(this).closest('.vendor-purchase-send').find('input').serialize()+'&purchase_id='+$(this).closest('.vendor-purchase-send').attr('rel'),
 				function(data) {
 					hidePleaseWait();
@@ -1072,7 +1070,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 			if( $('#vendors-purchases-create-form-send').attr('rel') == "send" ) {
 				showPleaseWait();
 				$.post(
-					'/vendors/json/purchasesend',
+					window.ROOT_WDIR + 'vendors/json/purchasesend',
 					$('#vendors-purchases-create-form-send').find('input').serialize()+'&purchase_id='+$('#vendors-purchases-create').attr('rel'),
 					function(data) {
 						hidePleaseWait();
@@ -1090,7 +1088,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 									} else {
 										$('#vendors-purchases-create-status').append(',');
 									}
-									$('#vendors-purchases-create-status').append(' <a href="/vendors/payments/'+data.data.purchase.payments[i].id+'">'+data.data.purchase.payments[i].date+'</a>');
+									$('#vendors-purchases-create-status').append(' <a href="' + window.ROOT_WDIR + 'vendors/payments/'+data.data.purchase.payments[i].id+'">'+data.data.purchase.payments[i].date+'</a>');
 								}
 							} else {
 								$('#vendors-purchases-create-status').html('<span class="text-bold">'+data.data.purchase.status+'</span>');
@@ -1109,7 +1107,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 				createPurchaseIndexLines();
 				// Validate First
 				$.post(
-					'/vendors/json/purchasesendvalidate',
+					window.ROOT_WDIR + 'vendors/json/purchasesendvalidate',
 					$('#vendors-purchases-create-form-send').find('input').serialize()+'&purchase_id='+$('#vendors-purchases-create').attr('rel'),
 					function(datavalid) {
 						if( datavalid.success != 1 ) {
@@ -1126,7 +1124,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 								});
 								createPurchaseUpdateTotals();
 								$.post(
-									'/vendors/json/purchaserefund',
+									window.ROOT_WDIR + 'vendors/json/purchaserefund',
 									$('#vendors-purchases-create input,#vendors-purchases-create select').serialize(),
 									function(datacreate) {
 										if( datacreate.success != 1 ) {
@@ -1137,7 +1135,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 											$('#vendors-purchases-create').attr('rel',datacreate.data.purchase.id);
 
 											$.post(
-												'/vendors/json/purchasesend',
+												window.ROOT_WDIR + 'vendors/json/purchasesend',
 												$('#vendors-purchases-create-form-send').find('input').serialize()+'&purchase_id='+$('#vendors-purchases-create').attr('rel'),
 												function(data) {
 													hidePleaseWait();
@@ -1167,7 +1165,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 																} else {
 																	$('#vendors-purchases-create-status').append(',');
 																}
-																$('#vendors-purchases-create-status').append(' <a href="/vendors/payments/'+data.data.purchase.payments[i].id+'">'+data.data.purchase.payments[i].date+'</a>');
+																$('#vendors-purchases-create-status').append(' <a href="' + window.ROOT_WDIR + 'vendors/payments/'+data.data.purchase.payments[i].id+'">'+data.data.purchase.payments[i].date+'</a>');
 															}
 														} else {
 															$('#vendors-purchases-create-status').html('<span class="text-bold">'+data.data.purchase.status+'</span>');
@@ -1190,7 +1188,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 								$('#vendors-purchases-create').attr('rel').length ) {
 								// UPDATE
 								$.post(
-									'/vendors/json/purchaseupdate',
+									window.ROOT_WDIR + 'vendors/json/purchaseupdate',
 									$('#vendors-purchases-create input,#vendors-purchases-create select').serialize()+'&purchase_id='+$('#vendors-purchases-create').attr('rel'),
 									function(datacreate) {
 										hidePleaseWait();
@@ -1201,7 +1199,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 											$('#vendors-purchases-create').attr('rel',datacreate.data.purchase.id);
 
 											$.post(
-												'/vendors/json/purchasesend',
+												window.ROOT_WDIR + 'vendors/json/purchasesend',
 												$('#vendors-purchases-create-form-send').find('input').serialize()+'&purchase_id='+$('#vendors-purchases-create').attr('rel'),
 												function(data) {
 													hidePleaseWait();
@@ -1241,7 +1239,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 							} else {
 								// NEW
 								$.post(
-									'/vendors/json/purchasecreate',
+									window.ROOT_WDIR + 'vendors/json/purchasecreate',
 									$('#vendors-purchases-create input,#vendors-purchases-create select').serialize(),
 									function(datacreate) {
 										hidePleaseWait();
@@ -1251,7 +1249,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 											$('#vendors-purchases-create').attr('rel',datacreate.data.purchase.id);
 
 											$.post(
-												'/vendors/json/purchasesend',
+												window.ROOT_WDIR + 'vendors/json/purchasesend',
 												$('#vendors-purchases-create-form-send').find('input').serialize()+'&purchase_id='+$('#vendors-purchases-create').attr('rel'),
 												function(data) {
 													hidePleaseWait();
@@ -1441,7 +1439,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 				$('#vendors-purchases-create input[name="shipping_address_id"]').select2('enable');
 				createPurchaseUpdateTotals();
 				$.post(
-					'/vendors/json/purchaserefund',
+					window.ROOT_WDIR + 'vendors/json/purchaserefund',
 					$('#vendors-purchases-create input,#vendors-purchases-create select').serialize(),
 					function(data) {
 						hidePleaseWait();
@@ -1468,7 +1466,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 				$('#vendors-purchases-create').attr('rel').length ) {
 				// UPDATE
 				$.post(
-					'/vendors/json/purchaseupdate',
+					window.ROOT_WDIR + 'vendors/json/purchaseupdate',
 					$('#vendors-purchases-create input,#vendors-purchases-create select').serialize()+'&purchase_id='+$('#vendors-purchases-create').attr('rel'),
 					function(data) {
 						hidePleaseWait();
@@ -1501,7 +1499,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 			} else {
 				// NEW
 				$.post(
-					'/vendors/json/purchasecreate',
+					window.ROOT_WDIR + 'vendors/json/purchasecreate',
 					$('#vendors-purchases-create input,#vendors-purchases-create select').serialize(),
 					function(data) {
 						hidePleaseWait();
@@ -1555,7 +1553,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 		$('#vendors-purchases-create input[name="vendor"]').select2({
 			minimumInputLength: 1,
 			ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-				url: "/vendors/json/vendorsformsearch",
+				url: window.ROOT_WDIR + "vendors/json/vendorsformsearch",
 				type: "POST",
 				dataType: 'json',
 				data: function (term) {
@@ -1624,7 +1622,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 
 
 			$.post(
-				'/vendors/json/vendoraddresses',
+				window.ROOT_WDIR + 'vendors/json/vendoraddresses',
 				{
 					vendor_id: vendor[0]
 				},
@@ -1659,7 +1657,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 		$('#vendors-purchases-create input[name="shipping_address_id"]').select2({
 			minimumInputLength: 1,
 			ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-				url: "/vendors/json/shippingaddresssearch",
+				url: window.ROOT_WDIR + "vendors/json/shippingaddresssearch",
 				type: "POST",
 				dataType: 'json',
 				data: function (term) {
@@ -1874,7 +1872,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 			
 			showPleaseWait();
 			$.post(
-				'/vendors/json/vendorcreate',
+				window.ROOT_WDIR + 'vendors/json/vendorcreate',
 				$form.find('input,select').serialize(),
 				function(data) {
 					hidePleaseWait();
@@ -2010,7 +2008,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 			e.preventDefault();
 			showPleaseWait();
 			$.post(
-				'/vendors/json/vendorupdate',
+				window.ROOT_WDIR + 'vendors/json/vendorupdate',
 				$('#vendors-vendor-edit input,#vendors-vendor-edit select').serialize(),
 				function(data) {
 					if( data.success == 1 ) {
@@ -2112,7 +2110,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 				$form.attr('rel').length > 0 ) {
 				// Existing Address
 				$.post(
-					'/vendors/json/vendoraddressupdate',
+					window.ROOT_WDIR + 'vendors/json/vendoraddressupdate',
 					$form.find('input,select').serialize()+'&address_id='+$form.attr('rel'),
 					function(data) {
 						if( ! data.success ) {
@@ -2148,7 +2146,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 			} else {
 				// New Address
 				$.post(
-					'/vendors/json/vendoraddresscreate',
+					window.ROOT_WDIR + 'vendors/json/vendoraddresscreate',
 					$form.find('input,select').serialize(),
 					function(data){
 						if( ! data.success ) {
@@ -2267,7 +2265,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 		$('#vendors-payments-create input[name="vendor_id"]').select2({
 			minimumInputLength: 1,
 			ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-				url: "/vendors/json/vendorsformsearch",
+				url: window.ROOT_WDIR + "vendors/json/vendorsformsearch",
 				type: "POST",
 				dataType: 'json',
 				data: function (term) {
@@ -2392,7 +2390,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 								} else if ( $(this).find('select[name="address_id"]').val() == "new" ) {
 									showPleaseWait();
 									$.post(
-										'/vendors/json/vendoraddresscreate',
+										window.ROOT_WDIR + 'vendors/json/vendoraddresscreate',
 										$(this).find('input,select').serialize(),
 										function (data) {
 											hidePleaseWait();
@@ -2469,7 +2467,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 								} else if ( $(this).find('select[name="address_id"]').val() == "new" ) {
 									showPleaseWait();
 									$.post(
-										'/vendors/json/vendoraddresscreate',
+										window.ROOT_WDIR + 'vendors/json/vendoraddresscreate',
 										$(this).find('input,select').serialize(),
 										function (data) {
 											hidePleaseWait();
@@ -2528,7 +2526,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 				$('#vendors-payments-create').attr('rel').length ) {
 				// Update
 				$.post(
-					'/vendors/json/paymentupdate',
+					window.ROOT_WDIR + 'vendors/json/paymentupdate',
 					$('#vendors-payments-create input, #vendors-payments-create select').serialize()+'&payment_id='+$('#vendors-payments-create').attr('rel'),
 					function(data) {
 						// Don't let the value sit in there in case of error.
@@ -2578,7 +2576,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 			} else {
 				// Create New
 				$.post(
-					'/vendors/json/paymentcreate',
+					window.ROOT_WDIR + 'vendors/json/paymentcreate',
 					$('#vendors-payments-create input, #vendors-payments-create select').serialize(),
 					function(data) {
 						// Don't let the value sit in there in case of error.
@@ -2637,7 +2635,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 		function deleteVendorPayment() {
 			showPleaseWait();
 			$.post(
-				'/vendors/json/paymentdelete',
+				window.ROOT_WDIR + 'vendors/json/paymentdelete',
 				{
 					payment_id: delete_vendor_payment_id
 				},
@@ -2839,7 +2837,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 		$('#vendors-taxpayments-create input[name="tax_id"]').select2({
 			minimumInputLength: 1,
 			ajax: { 
-				url: "/vendors/json/taxsearch",
+				url: window.ROOT_WDIR + "vendors/json/taxsearch",
 				type: "POST",
 				dataType: 'json',
 				data: function (term) {
@@ -2877,7 +2875,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 			
 			if( $('#vendors-taxpayments-create').attr('rel') &&
 				$('#vendors-taxpayments-create').attr('rel').length ) {
-				popupWindow = popupWindowLoad('/print/taxpayment/'+$('#vendors-taxpayments-create').attr('rel'));
+				popupWindow = popupWindowLoad(window.ROOT_WDIR + 'print/taxpayment/'+$('#vendors-taxpayments-create').attr('rel'));
 				$(popupWindow.document).ready( function () {
 					setTimeout( function () { popupWindow.print(); } , 1000 );
 				});
@@ -2888,7 +2886,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 					var date_start = $('#vendors-taxpayments-create input[name="date_start"]').val();
 					var date_end = $('#vendors-taxpayments-create input[name="date_end"]').val();
 
-					popupWindow = popupWindowLoad('/print/taxprep/'+tax_id+'/'+date_start+'_'+date_end+'/');
+					popupWindow = popupWindowLoad(window.ROOT_WDIR + 'print/taxprep/'+tax_id+'/'+date_start+'_'+date_end+'/');
 					$(popupWindow.document).ready( function () {
 						setTimeout( function () { popupWindow.print(); } , 1000 );
 					});
@@ -2914,7 +2912,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 			}
 			showPleaseWait();
 			$.post(
-				'/vendors/json/taxpaymentprep',
+				window.ROOT_WDIR + 'vendors/json/taxpaymentprep',
 				{
 					tax_id: $tax_id.val(),
 					date_start: $date_start.val(),
@@ -2996,7 +2994,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 		function deleteTaxPayment() {
 			showPleaseWait();
 			$.post(
-				'/vendors/json/taxpaymentcancel',
+				window.ROOT_WDIR + 'vendors/json/taxpaymentcancel',
 				{
 					payment_id: delete_tax_payment_id
 				},
@@ -3042,7 +3040,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 				$('#vendors-taxpayments-create').attr('rel').length ) {
 				// Update
 				$.post(
-					'/vendors/json/taxpaymentupdate',
+					window.ROOT_WDIR + 'vendors/json/taxpaymentupdate',
 					$('#vendors-taxpayments-create input, #vendors-taxpayments-create select').serialize()+'&payment_id='+$('#vendors-taxpayments-create').attr('rel'),
 					function(data) {
 						// Don't let the value sit in there in case of error.
@@ -3089,7 +3087,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 				);
 			} else {
 				$.post(
-					'/vendors/json/taxpaymentcreate',
+					window.ROOT_WDIR + 'vendors/json/taxpaymentcreate',
 					$('#vendors-taxpayments-create input, #vendors-taxpayments-create select').serialize(),
 					function(data) {
 						// Don't let the value sit in there in case of error.
@@ -3226,7 +3224,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 			} else {
 				showPleaseWait();
 				$.post(
-					'/vendors/json/invoiceprocess',
+					window.ROOT_WDIR + 'vendors/json/invoiceprocess',
 					$('#vendors-invoices-receive input, #vendors-invoices-receive select').serialize(),
 					function(data) {
 						if( ! data.success ) {
@@ -3294,7 +3292,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 			e.preventDefault();
 			showPleaseWait();
 			$.post(
-				'/vendors/json/clearchecks',
+				window.ROOT_WDIR + 'vendors/json/clearchecks',
 				{},
 				function (data) {
 					if( ! data.success ) {
@@ -3325,7 +3323,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 			showPleaseWait();
 
 			$.post(
-				'/vendors/json/printchecks',
+				window.ROOT_WDIR + 'vendors/json/printchecks',
 				$form.find('input').serialize(),
 				function (data) {
 					if( ! data.success ) {
@@ -3382,7 +3380,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 
 			showPleaseWait();
 			$.post(
-				'/vendors/json/checkadd',
+				window.ROOT_WDIR + 'vendors/json/checkadd',
 				{
 					key: $(this).attr('rel')
 				},
@@ -3413,7 +3411,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 		showPleaseWait();
 		$('#vendors-printchecks-checks ul li:not(:first)').remove();
 		$.post(
-			'/vendors/json/checksearch',
+			window.ROOT_WDIR + 'vendors/json/checksearch',
 			{
 				search_terms: $('#vendors-printchecks-checks-search').val(),
 				count: 5,
@@ -3511,7 +3509,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 	function receiveInvoicesSearchPurchases() {
 		showPleaseWait();
 		$.post(
-			'/vendors/json/invoicepurchases',
+			window.ROOT_WDIR + 'vendors/json/invoicepurchases',
 			{
 				search_terms: $('#vendors-invoices-receive-search').val(),
 			},
@@ -3602,7 +3600,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 	function loadTaxPayment(id) {
 		showPleaseWait();
 		$.post(
-			'/vendors/json/taxpaymentload',
+			window.ROOT_WDIR + 'vendors/json/taxpaymentload',
 			{
 				payment_id: id
 			},
@@ -3667,7 +3665,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 	function taxPaymentsSearch() {
 		showPleaseWait();
 		$.post(
-			'/vendors/json/taxpaymentsearch',
+			window.ROOT_WDIR + 'vendors/json/taxpaymentsearch',
 			{
 				search_terms: $('#vendors-taxpayments-payments-search').val(),
 				count: 25
@@ -3836,7 +3834,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 		showPleaseWait();
 		$('#vendors-payments-payments ul li:not(:first)').remove();
 		$.post(
-			'/vendors/json/paymentsearch',
+			window.ROOT_WDIR + 'vendors/json/paymentsearch',
 			{
 				search_terms: $('#vendors-payments-payments-search').val(),
 				count: 5,
@@ -3874,7 +3872,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 		});
 
 		$.post(
-			'/vendors/json/vendorpaymentsearch',
+			window.ROOT_WDIR + 'vendors/json/vendorpaymentsearch',
 			{
 				search_terms: search_terms,
 				search_vendor_id: search_vendor_id
@@ -3934,7 +3932,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 		$('#vendors-payments-loadpayments').find('.spinme').spin();
 
 		$.post(
-			'/vendors/json/paymentsloadmore',
+			window.ROOT_WDIR + 'vendors/json/paymentsloadmore',
 			{
 				last_payment_id: last_payment_id,
 				last_payment_date: last_payment_date,
@@ -3986,7 +3984,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 		$('#vendors-vendors-loadvendors').find('.spinme').spin();
 
 		$.post(
-			'/vendors/json/vendorsloadmore',
+			window.ROOT_WDIR + 'vendors/json/vendorsloadmore',
 			{
 				last_vendor_id: last_vendor_id,
 				last_page: last_page,
@@ -4079,7 +4077,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 		$('#vendors-expenses-create').slideUp();
 		showPleaseWait();
 		$.post(
-			'/vendors/json/expenseload',
+			window.ROOT_WDIR + 'vendors/json/expenseload',
 			{
 				expense_id: expense_id
 			},
@@ -4116,7 +4114,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 					$newExpenseLine.find('input.line-description').autocomplete(expenseDescriptionParams);
 
 					$.post(
-						'/vendors/json/vendoraddresses',
+						window.ROOT_WDIR + 'vendors/json/vendoraddresses',
 						{
 							vendor_id: expense_data.data.expense.vendor.id
 						},
@@ -4318,7 +4316,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 		$('#vendors-expenses-loadexpenses').find('.spinme').spin();
 
 		$.post(
-			'/vendors/json/expensesloadmore',
+			window.ROOT_WDIR + 'vendors/json/expensesloadmore',
 			{
 				last_expense_id: last_expense_id,
 				last_expense_date: last_expense_date,
@@ -4423,7 +4421,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 		$('#vendors-purchases-create').slideUp();
 		showPleaseWait();
 		$.post(
-			'/vendors/json/purchaseload',
+			window.ROOT_WDIR + 'vendors/json/purchaseload',
 			{
 				purchase_id: purchase_id
 			},
@@ -4459,7 +4457,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 					$newPurchaseLine.find('input.line-description').autocomplete(purchaseDescriptionParams);
 
 					$.post(
-						'/vendors/json/vendoraddresses',
+						window.ROOT_WDIR + 'vendors/json/vendoraddresses',
 						{
 							vendor_id: purchase_data.data.purchase.vendor.id
 						},
@@ -4514,7 +4512,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 										} else {
 											$('#vendors-purchases-create-status').append(',');
 										}
-										$('#vendors-purchases-create-status').append(' <a href="/vendors/payments/'+purchase_data.data.purchase.payments[i].id+'">'+purchase_data.data.purchase.payments[i].date+'</a>');
+										$('#vendors-purchases-create-status').append(' <a href="' + window.ROOT_WDIR + 'vendors/payments/'+purchase_data.data.purchase.payments[i].id+'">'+purchase_data.data.purchase.payments[i].date+'</a>');
 									}
 								} else {
 									$('#vendors-purchases-create-status').html('<span class="text-bold">'+purchase_data.data.purchase.status+'</span>');
@@ -4726,7 +4724,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 		$('#vendors-purchases-loadpurchases').find('.spinme').spin();
 
 		$.post(
-			'/vendors/json/purchasesloadmore',
+			window.ROOT_WDIR + 'vendors/json/purchasesloadmore',
 			{
 				last_purchase_id: last_purchase_id,
 				last_purchase_date: last_purchase_date,
@@ -4758,7 +4756,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 		showPleaseWait();
 		$('#vendors-payments-create').slideUp();
 		$.post(
-			'/vendors/json/paymentload',
+			window.ROOT_WDIR + 'vendors/json/paymentload',
 			{
 				payment_id: id
 			},
@@ -5035,7 +5033,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 	function createVendorPaymentSearchPurchases() {
 		showPleaseWait();
 		$.post(
-			'/vendors/json/paymentpurchases',
+			window.ROOT_WDIR + 'vendors/json/paymentpurchases',
 			{
 				vendor_id: $('#vendors-payments-create input[name="vendor_id"]').val(),
 				search_terms: $('#vendors-payments-create-actions-search').val(),
@@ -5094,7 +5092,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 		delete createVendorPaymentAddresses;
 		createVendorPaymentAddresses = {};
 		$.post(
-			'/vendors/json/vendoraddresses',
+			window.ROOT_WDIR + 'vendors/json/vendoraddresses',
 			{
 				vendor_id: $('#vendors-payments-create input[name="vendor_id"]').val()
 			},
@@ -5169,24 +5167,22 @@ if ( document.body.className.match(new RegExp('(\\s|^)vendors(\\s|$)')) !== null
 
 	var popupWindow;
 	function printVendorExpense(id) {
-		popupWindow = popupWindowLoad('/print/vendorexpense/'+id);
+		popupWindow = popupWindowLoad(window.ROOT_WDIR + 'print/vendorexpense/'+id);
 		$(popupWindow.document).ready( function () {
 			setTimeout( function () { popupWindow.print(); } , 1000 );
 		});
 	}
 
 	function printVendorPurchase(id) {
-		popupWindow = popupWindowLoad('/print/vendorpurchase/'+id);
+		popupWindow = popupWindowLoad(window.ROOT_WDIR + 'print/vendorpurchase/'+id);
 		$(popupWindow.document).ready( function () {
 			setTimeout( function () { popupWindow.print(); } , 1000 );
 		});
 	}
 
 	function printVendorPayment(id) {
-		popupWindow = popupWindowLoad('/print/vendorpayment/'+id);
+		popupWindow = popupWindowLoad(window.ROOT_WDIR + 'print/vendorpayment/'+id);
 		$(popupWindow.document).ready( function () {
 			setTimeout( function () { popupWindow.print(); } , 1000 );
 		});
 	}
-
-}

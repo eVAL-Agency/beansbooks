@@ -17,19 +17,17 @@ along with BeansBooks; if not, email info@beansbooks.com.
 */
 
 $(function() {
+	var $loginButton = $('.auth-login-submit'),
+		$loginForm = $loginButton.closest('form');
 
-	$('.auth-login-submit').click(function(e) {
-		e.preventDefault();
+	// On submit of this form, throw up a loading splash div to preoccupy the user, but continue submitting otherwise.
+	$loginForm.submit(function() {
 		showPleaseWait();
-		$(this).closest('form').submit();
 	});
-
-	$('.login-form input').live('keyup',function(e) {
-		var code = (e.keyCode ? e.keyCode : e.which);
-		if(code == 13) {
-			e.preventDefault();
-			showPleaseWait();
-			$(this).closest('form').submit();
-		}
+	
+	// This button is so that it looks pretty, but is otherwise useless and simply calls submit on the parent form.
+	$loginButton.click(function(){
+		$loginForm.submit();
+		return false;
 	});
 });

@@ -10,7 +10,7 @@
 
 	<a href="#" id="accounts-view-add-transaction" class="button large float-left" disabled="disabled">Add Transaction</a>
 
-	<a href="/accounts/import/{{#account}}{{id}}{{/account}}" class="button large float-left">Import Transactions</a>
+	<a href="{{root_wdir}}accounts/import/{{#account}}{{id}}{{/account}}" class="button large float-left">Import Transactions</a>
 	
 	<a href="#" class="button large float-left" disabled="disabled">Reconcile Account</a>
 
@@ -34,7 +34,7 @@
 				<input type="file" name="transactionsfile">
 			</div>
 			<a href="#" id="accounts-import-upload-button" class="button float-right">Upload</a>
-			<a href="/accounts/view/{{#account}}{{id}}{{/account}}" class="button float-right">Cancel</a>
+			<a href="{{root_wdir}}accounts/view/{{#account}}{{id}}{{/account}}" class="button float-right">Cancel</a>
 			<div class="clear"></div>
 		</form>
 	</div>
@@ -91,7 +91,7 @@
 				<div class="clear"></div>
 			</div>
 			<a href="#" class="button float-right" id="accounts-import-classify-import">Import</a>
-			<a href="/accounts/import/{{#account}}{{id}}{{/account}}" class="button float-right">Cancel</a>
+			<a href="{{root_wdir}}accounts/import/{{#account}}{{id}}{{/account}}" class="button float-right">Cancel</a>
 			<div class="clear"></div>
 		</form>
 	</div>

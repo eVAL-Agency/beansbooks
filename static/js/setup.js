@@ -16,8 +16,6 @@ You should have received a copy of the BeansBooks Public License
 along with BeansBooks; if not, email info@beansbooks.com.
 */
 
-if ( document.body.className.match(new RegExp('(\\s|^)setup(\\s|$)')) !== null ) {
-
 	/**
 	 * Javascript for pages related to setup/
 	 */
@@ -72,7 +70,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)setup(\\s|$)')) !== null )
 			if( $('#setup-taxes-create').attr('rel') == "new" ) {
 				// New
 				$.post(
-					'/setup/json/taxcreate',
+					window.ROOT_WDIR + 'setup/json/taxcreate',
 					$('#setup-taxes-create input, #setup-taxes-create select').serialize(),
 					function(data) {
 						hidePleaseWait();
@@ -93,7 +91,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)setup(\\s|$)')) !== null )
 			} else {
 				// Update
 				$.post(
-					'/setup/json/taxupdate',
+					window.ROOT_WDIR + 'setup/json/taxupdate',
 					$('#setup-taxes-create input, #setup-taxes-create select').serialize()+'&tax_id='+$('#setup-taxes-create').attr('rel'),
 					function(data) {
 						hidePleaseWait();
@@ -152,7 +150,6 @@ if ( document.body.className.match(new RegExp('(\\s|^)setup(\\s|$)')) !== null )
 		}
 
 		$('.setup-users-users-user a.edit').live('click', function(e) {
-			e.preventDefault();
 			$user = $(this).closest('.setup-users-users-user');
 			$editUser = $('#setup-users-users-user-edit-template .setup-users-users-user').clone();
 			$editUser.addClass('hidden');
@@ -169,6 +166,8 @@ if ( document.body.className.match(new RegExp('(\\s|^)setup(\\s|$)')) !== null )
 					setupUserCreateColorRows();
 				});
 			});
+			
+			return false;
 		});
 
 		$('.setup-users-users-user a.delete').live('click', function(e) {
@@ -229,7 +228,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)setup(\\s|$)')) !== null )
 			$user = $('.setup-users-users-user:not(.delete, .edit)[rel="'+$deleteUser.attr('rel')+'"]');
 			showPleaseWait();
 			$.post(
-				'/setup/json/userdelete',
+				window.ROOT_WDIR + 'setup/json/userdelete',
 				{
 					user_id: $deleteUser.attr('rel')
 				},
@@ -256,7 +255,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)setup(\\s|$)')) !== null )
 			if( $editUser.attr('rel') == "new" ) {
 				$addUser = $('.setup-users-users-user.add');
 				$.post(
-					'/setup/json/usercreate',
+					window.ROOT_WDIR + 'setup/json/usercreate',
 					$editUser.find("input, select").serialize(),
 					function (data) {
 						hidePleaseWait();
@@ -279,7 +278,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)setup(\\s|$)')) !== null )
 			} else {
 				$user = $('.setup-users-users-user:not(.delete, .edit)[rel="'+$editUser.attr('rel')+'"]');
 				$.post(
-					'/setup/json/userupdate',
+					window.ROOT_WDIR + 'setup/json/userupdate',
 					$editUser.find("input, select").serialize()+'&user_id='+$editUser.attr('rel'),
 					function (data) {
 						hidePleaseWait();
@@ -308,7 +307,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)setup(\\s|$)')) !== null )
 			$generate = $(this).closest('.setup-users-api-row');
 			showPleaseWait();
 			$.post(
-				'/setup/json/apibuild',
+				window.ROOT_WDIR + 'setup/json/apibuild',
 				{},
 				function (data) {
 					hidePleaseWait();
@@ -334,7 +333,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)setup(\\s|$)')) !== null )
 				$apiInfo = $(this).closest('.setup-users-api-row');
 				showPleaseWait();
 				$.post(
-					'/setup/json/apiregen',
+					window.ROOT_WDIR + 'setup/json/apiregen',
 					{
 						auth_uid: $apiInfo.attr('rel')
 					},
@@ -405,7 +404,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)setup(\\s|$)')) !== null )
 	function taxesSearch(term) {
 		showPleaseWait();
 		$.post(
-			'/setup/json/taxsearch',
+			window.ROOT_WDIR + 'setup/json/taxsearch',
 			{
 				term: term
 			},
@@ -431,7 +430,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)setup(\\s|$)')) !== null )
 	function createTaxLoadTax(id) {
 		showPleaseWait();
 		$.post(
-			'/setup/json/taxload',
+			window.ROOT_WDIR + 'setup/json/taxload',
 			{
 				tax_id: id,
 			},
@@ -521,7 +520,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)setup(\\s|$)')) !== null )
 				setupCalibratePauseNext
 			);
 			$.post(
-				'/setup/json/calibratedate',
+				window.ROOT_WDIR + 'setup/json/calibratedate',
 				{
 					date: $('#setup-calibrate-date').val(),
 					manual: $('#setup-calibrate-manual').val()
@@ -562,7 +561,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)setup(\\s|$)')) !== null )
 			setupCalibratePauseNext
 		);
 		$.post(
-			'/setup/json/calibratestartdate',
+			window.ROOT_WDIR + 'setup/json/calibratestartdate',
 			{},
 			function (data) {
 				if( ! data.success ) {
@@ -582,5 +581,3 @@ if ( document.body.className.match(new RegExp('(\\s|^)setup(\\s|$)')) !== null )
 		showPleaseWait('Finishing Current Step...');
 		return false;
 	}
-
-}

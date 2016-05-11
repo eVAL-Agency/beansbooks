@@ -11,7 +11,7 @@
 	<span class="account-transaction-transfer text-left" rel="{{#transfer_account}}{{id}}{{/transfer_account}}">
 		{{#transfer_account}}{{name}}{{/transfer_account}}{{^transfer_account}}Split Transaction{{/transfer_account}}
 	</span>
-	<span class="account-transaction-jump text-center">{{#transfer_account}}<a href="/accounts/view/{{id}}">&nbsp;</a>{{/transfer_account}}{{^transfer_account}}&nbsp;{{/transfer_account}}</span>
+	<span class="account-transaction-jump text-center">{{#transfer_account}}<a href="{{root_wdir}}accounts/view/{{id}}">&nbsp;</a>{{/transfer_account}}{{^transfer_account}}&nbsp;{{/transfer_account}}</span>
 	<span class="account-transaction-split text-center">{{#transfer_account}}&nbsp;{{/transfer_account}}{{^transfer_account}}<a href="#">&nbsp;</a>{{/transfer_account}}</span>
 	<span class="account-transaction-reconcile text-center text-darkgray">{{#reconciled}}R{{/reconciled}}{{^reconciled}}&nbsp;{{/reconciled}}</span>
 	<span class="account-transaction-credit text-left">{{amount_credit}}{{^amount_credit}}&nbsp;{{/amount_credit}}</span>

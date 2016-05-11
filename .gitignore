@@ -5,11 +5,16 @@
 # Skip the htaccess file, this is server centric
 /.htaccess
 
-# Skip the configuration file, this is developer and server centric
+# Skip the configuration file(s), these are developer and server centric
 /application/classes/beans/config.php
 deployfile
 application/classes/controller/test.php
 dev/
+application/config/beans.php
+application/config/database.php
+application/config/email.php
+application/config/encrypt.php
+application/config/url.php
 
 # Skip some Apple directories, these is machine centric
 .DS_Store

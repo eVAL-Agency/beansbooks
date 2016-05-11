@@ -12,9 +12,9 @@
 
 	<a href="#" id="accounts-view-add-transaction" class="button large float-left" {{#account}}{{#top_level}}disabled="disabled"{{/top_level}}{{/account}}>Add Transaction</a>
 
-	<a href="/accounts/import/{{#account}}{{id}}{{/account}}" class="button large float-left">Import Transactions</a>
+	<a href="{{root_wdir}}accounts/import/{{#account}}{{id}}{{/account}}" class="button large float-left">Import Transactions</a>
 	
-	<a href="/accounts/reconcile/{{#account}}{{id}}{{/account}}" class="button large float-left" {{#account}}{{^reconcilable}}disabled="disabled"{{/reconcilable}}{{/account}}>Reconcile Account</a>
+	<a href="{{root_wdir}}accounts/reconcile/{{#account}}{{id}}{{/account}}" class="button large float-left" {{#account}}{{^reconcilable}}disabled="disabled"{{/reconcilable}}{{/account}}>Reconcile Account</a>
 
 	<div class="clear"></div>
 </div>

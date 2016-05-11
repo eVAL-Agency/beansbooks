@@ -23,41 +23,47 @@ $(function(){
 	 * Links - Don't react to disabled links.
 	 */
 	$('a').live('click',function(e) {
-		if( $(this).attr('disabled') &&
-			$(this).attr('disabled').length > 0 ) {
-			e.preventDefault();
-			e.stopImmediatePropagation();
-			e.stopPropagation();
+		var $this = $(this), disabled = $this.attr('disabled'), href = $this.attr('href');
+		
+		if( disabled && disabled.length > 0 ) {
 			return false;
 		}
-		return true;
-	});
-
-	/*
-	TODO - Add check for links going off of the current page ( i.e. lost form progress )? 
-	 */
-	$('a').live('click', function (e) {
-		if( $(this).attr('href') &&
-			$(this).attr('href').length > 0 &&
-			$(this).attr('href') != "#" &&
-			GLOBAL_EDIT_FORM_ACTIVE ) {
+		else if( href && href.length > 0 && href != "#" && GLOBAL_EDIT_FORM_ACTIVE ) {
 			if( ! confirm("Are you sure?  Your changes will be lost.") ) {
-				e.preventDefault();
-				e.stopImmediatePropagation();
-				e.stopPropagation();
 				return false;
 			}
 		}
-		return true;
-	});
-
-	/*
-	$('a.form-cancel, a.payment-cancel').live('click', function (e) {
-		if( ! confirm("Are you sure? You will lose all of the currently entered information.") ) {
-			e.preventDefault();
+		else{
+			// OK, allow this to go through.
+			return true;
 		}
 	});
-	*/
+
+	// Tab [x]
+	$('.tabs li a.remove').click(function() {
+		var tab = $(this).closest('li');
+		$.post(
+			window.ROOT_WDIR + 'interface/tab/remove',
+			{
+				url: $(this).closest('li').find('a.tab').attr('href'),
+			},
+			function(data) {
+				// We want to perform the transition even if there is an error. i.e. Vendor and Customer Detail
+				tab.fadeOut(function() {
+					if( tab.hasClass('current') ) {
+						if( tab.next().is('li') ) {
+							window.location.href = tab.next().find('a.tab').attr('href');
+						} else {
+							window.location.href = tab.prev().find('a.tab').attr('href');
+						}
+					} else {
+						tab.remove();
+					}
+				});
+			},
+			'json'
+		);
+	});
 
 	$('.green-select select').live('click',function(e) {
 		if( (

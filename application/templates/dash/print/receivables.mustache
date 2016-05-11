@@ -10,7 +10,7 @@
 						{{companyname}}
 					{{/companyname}}
 					{{^companyname}}
-						<span style="font-size: 14px;">No Company Name!<br><span style="font-size: 12px;">Please <a href="/setup" style="font-weight: bold;">click here</a> to setup your company.</span></span>
+						<span style="font-size: 14px;">No Company Name!<br><span style="font-size: 12px;">Please <a href="{{root_wdir}}setup" style="font-weight: bold;">click here</a> to setup your company.</span></span>
 					{{/companyname}}
 				{{/companylogo}}
 			</div>
@@ -91,7 +91,7 @@
 					{{date_billed}}
 				</td>
 				<td style="width: 60px; padding-left: 5px; font-size: 12px; color: black; text-align: left;">
-					<a class="dash-report-link-underline" href="/customers/sales/{{sale_id}}">{{sale_number}}</a>
+					<a class="dash-report-link-underline" href="{{root_wdir}}customers/sales/{{sale_id}}">{{sale_number}}</a>
 				</td>
 				<td style="width: 73px; font-size: 12px; color: black; text-align: center;">
 					{{date_due}}

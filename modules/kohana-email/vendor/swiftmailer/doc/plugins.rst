@@ -355,9 +355,9 @@ provide an implementation that does this. You need to create a small class.
           mysql_real_escape_string($address)
         );
     
-        $result = mysql_query($sql);
+        $result = mysqli_query($sql);
     
-        if ($row = mysql_fetch_assoc($result)) {
+        if ($row = mysqli_fetch_assoc($result)) {
           return array(
             '{username}'=>$row['username'],
             '{password}'=>$row['password']

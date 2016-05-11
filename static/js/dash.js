@@ -16,8 +16,6 @@ You should have received a copy of the BeansBooks Public License
 along with BeansBooks; if not, email info@beansbooks.com.
 */
 
-if ( document.body.className.match(new RegExp('(\\s|^)dash(\\s|$)')) !== null ) {
-
 	/**
 	 * Javascript for pages related to dash/
 	 */
@@ -99,7 +97,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)dash(\\s|$)')) !== null ) 
 
 				$message.find('input[name="include_account_ids"]').val(include_account_ids);
 				$.post(
-					'/dash/json/closebooks',
+					window.ROOT_WDIR + 'dash/json/closebooks',
 					$message.find('input, select').serialize(),
 					function (data) {
 						hidePleaseWait();
@@ -299,7 +297,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)dash(\\s|$)')) !== null ) 
 		$('input#report-payables-vendor').select2({
 			minimumInputLength: 1,
 			ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-				url: "/vendors/json/vendorsformsearch",
+				url: window.ROOT_WDIR + "vendors/json/vendorsformsearch",
 				type: "POST",
 				dataType: 'json',
 				data: function (term) {
@@ -351,7 +349,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)dash(\\s|$)')) !== null ) 
 		$('input#report-purchaseorders-vendor').select2({
 			minimumInputLength: 1,
 			ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-				url: "/vendors/json/vendorsformsearch",
+				url: window.ROOT_WDIR + "vendors/json/vendorsformsearch",
 				type: "POST",
 				dataType: 'json',
 				data: function (term) {
@@ -403,7 +401,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)dash(\\s|$)')) !== null ) 
 		$('input#report-receivables-customer').select2({
 			minimumInputLength: 1,
 			ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-				url: "/customers/json/customersloadmore",
+				url: window.ROOT_WDIR + "customers/json/customersloadmore",
 				type: "POST",
 				dataType: 'json',
 				data: function (term) {
@@ -454,7 +452,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)dash(\\s|$)')) !== null ) 
 		$('input#report-salesorders-customer').select2({
 			minimumInputLength: 1,
 			ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-				url: "/customers/json/customersloadmore",
+				url: window.ROOT_WDIR + "customers/json/customersloadmore",
 				type: "POST",
 				dataType: 'json',
 				data: function (term) {
@@ -531,7 +529,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)dash(\\s|$)')) !== null ) 
 		$('input#report-customer-customer').select2({
 			minimumInputLength: 1,
 			ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-				url: "/customers/json/customersloadmore",
+				url: window.ROOT_WDIR + "customers/json/customersloadmore",
 				type: "POST",
 				dataType: 'json',
 				data: function (term) {
@@ -611,7 +609,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)dash(\\s|$)')) !== null ) 
 		$('input#report-vendor-vendor').select2({
 			minimumInputLength: 1,
 			ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-				url: "/vendors/json/vendorsformsearch",
+				url: window.ROOT_WDIR + "vendors/json/vendorsformsearch",
 				type: "POST",
 				dataType: 'json',
 				data: function (term) {
@@ -688,7 +686,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)dash(\\s|$)')) !== null ) 
 			showPleaseWait();
 
 			$.post(
-				'/dash/json/loadtaxpayments',
+				window.ROOT_WDIR + 'dash/json/loadtaxpayments',
 				{
 					tax_id: $('input#report-taxes-tax').val()
 				},
@@ -723,7 +721,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)dash(\\s|$)')) !== null ) 
 		$('input#report-taxes-tax').select2({
 			minimumInputLength: 1,
 			ajax: { 
-				url: "/vendors/json/taxsearch",
+				url: window.ROOT_WDIR + "vendors/json/taxsearch",
 				type: "POST",
 				dataType: 'json',
 				data: function (term) {
@@ -787,7 +785,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)dash(\\s|$)')) !== null ) 
 		$('.dash-index-chart-incomeexpense-loading-spinner').spin();
 
 		$.post(
-			'/dash/json/incomeexpense',
+			window.ROOT_WDIR + 'dash/json/incomeexpense',
 			$('input.dash-index-chart-incomeexpense-date').serialize(),
 			function(data) {
 				$('.dash-index-chart-incomeexpense-loading').hide();
@@ -845,7 +843,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)dash(\\s|$)')) !== null ) 
 		$('.dash-index-chart-income-loading-spinner').spin();
 
 		$.post(
-			'/dash/json/incomedaterange',
+			window.ROOT_WDIR + 'dash/json/incomedaterange',
 			$('input.dash-index-chart-income-date').serialize(),
 			function(data) {
 				$('.dash-index-chart-income-loading').hide();
@@ -904,7 +902,7 @@ if ( document.body.className.match(new RegExp('(\\s|^)dash(\\s|$)')) !== null ) 
 		$('.dash-index-chart-expenses-loading-spinner').spin();
 
 		$.post(
-			'/dash/json/monthlyexpenses',
+			window.ROOT_WDIR + 'dash/json/monthlyexpenses',
 			$('.dash-index-chart-expenses-date select').serialize(),
 			function(data) {
 				$('.dash-index-chart-expenses-loading').hide();
@@ -960,5 +958,3 @@ if ( document.body.className.match(new RegExp('(\\s|^)dash(\\s|$)')) !== null ) 
 		
 		var expenseChart = new Chart($("#dash-index-chart-expenses-chart").get(0).getContext("2d")).Pie(expenseData,expenseChartOptions);
 	}
-
-}

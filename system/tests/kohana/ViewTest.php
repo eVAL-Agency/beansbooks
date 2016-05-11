@@ -22,7 +22,9 @@ class Kohana_ViewTest extends Unittest_TestCase
 	 *
 	 * @return null
 	 */
+	// @codingStandardsIgnoreStart
 	public static function setupBeforeClass()
+	// @codingStandardsIgnoreEnd
 	{
 		self::$old_modules = Kohana::modules();
 
@@ -37,7 +39,9 @@ class Kohana_ViewTest extends Unittest_TestCase
 	 *
 	 * @return null
 	 */
+	// @codingStandardsIgnoreStart
 	public static function teardownAfterClass()
+	// @codingStandardsIgnoreEnd
 	{
 		Kohana::modules(self::$old_modules);
 	}
@@ -57,8 +61,22 @@ class Kohana_ViewTest extends Unittest_TestCase
 	}
 
 	/**
+	 * Provider to test_set
+	 *
+	 * @return array
+	 */
+	public function provider_set()
+	{
+		return array(
+			array('foo', 'bar', 'foo', 'bar'),
+			array(array('foo' => 'bar'), NULL, 'foo', 'bar'),
+			array(new ArrayIterator(array('foo' => 'bar')), NULL, 'foo', 'bar'),
+		);
+	}
+
+	/**
 	 * Tests that we can instantiate a view file
-	 * 
+	 *
 	 * @test
 	 * @dataProvider provider_instantiate
 	 *
@@ -75,5 +93,34 @@ class Kohana_ViewTest extends Unittest_TestCase
 		{
 			$this->assertSame(TRUE, $expects_exception);
 		}
+	}
+
+	/**
+	 * Tests that we can set using string, array or Traversable object
+	 *
+	 * @test
+	 * @dataProvider provider_set
+	 *
+	 * @return null
+	 */
+	public function test_set($data_key, $value, $test_key, $expected)
+	{
+		$view = View::factory()->set($data_key, $value);
+		$this->assertSame($expected, $view->$test_key);
+	}
+
+	/**
+	 * Tests that we can set global using string, array or Traversable object
+	 *
+	 * @test
+	 * @dataProvider provider_set
+	 *
+	 * @return null
+	 */
+	public function test_set_global($data_key, $value, $test_key, $expected)
+	{
+		$view = View::factory();
+		$view::set_global($data_key, $value);
+		$this->assertSame($expected, $view->$test_key);
 	}
 }
