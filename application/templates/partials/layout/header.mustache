@@ -1,5 +1,12 @@
 <div class="header">
-	<a href="{{root_wdir}}"><img src="{{root_wdir}}static/images/logo.png" class="logo"></a>
+	<a href="{{root_wdir}}" title="{{companyname}}">
+		{{#companylogo}}
+			{{{companylogo}}}
+		{{/companylogo}}
+		{{^companylogo}}
+			<img src="{{root_wdir}}static/images/logo.png" class="logo">
+		{{/companylogo}}
+	</a>
 	
 	{{#logged_in}}
 		<div class="links">
