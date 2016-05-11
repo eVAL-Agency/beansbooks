@@ -30,16 +30,16 @@ class Model_Entity extends ORM {
 	);
 	protected $_belongs_to = array(
 		'default_shipping_address' => array(
-			'model' => 'entity_address',
+			'model' => 'Entity_Address',
 		),
 		'default_billing_address' => array(
-			'model' => 'entity_address',
+			'model' => 'Entity_Address',
 		),
 		'default_remit_address' => array(
-			'model' => 'entity_address',
+			'model' => 'Entity_Address',
 		),
 		'default_account' => array(
-			'model' => 'account',
+			'model' => 'Account',
 		),
 	);
 

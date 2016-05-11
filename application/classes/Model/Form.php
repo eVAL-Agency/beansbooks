@@ -24,27 +24,27 @@ class Model_Form extends ORM {
 		'entity' => array(),
 		'account' => array(),
 		'shipping_address' => array(
-			'model' => 'entity_address'
+			'model' => 'Entity_Address'
 		),
 		'billing_address' => array(
-			'model' => 'entity_address'
+			'model' => 'Entity_Address'
 		),
 		'remit_address' => array(
-			'model' => 'entity_address'
+			'model' => 'Entity_Address'
 		),
 		'create_transaction' => array(
-			'model' => 'transaction',
+			'model' => 'Transaction',
 		),
 		'invoice_transaction' => array(
-			'model' => 'transaction',
+			'model' => 'Transaction',
 		),
 		'cancel_transaction' => array(
-			'model' => 'transaction',
+			'model' => 'Transaction',
 		),
 		// Refund Form is a reflexive relationship ( i.e. 1 to 1 unique )
 		// that defines if a (later) invoice is a refund for the previous.
 		'refund_form' => array(
-			'model' => 'form'
+			'model' => 'Form'
 		),
 	);
 	protected $_has_many = array(

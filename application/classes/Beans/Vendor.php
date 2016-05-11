@@ -136,7 +136,7 @@ class Beans_Vendor extends Beans {
 
 	protected function _default_vendor()
 	{
-		$vendor = ORM::Factory("entity_vendor");
+		$vendor = ORM::Factory("Entity_Vendor");
 
 		$vendor->default_remit_address_id = NULL;
 		$vendor->first_name = NULL;

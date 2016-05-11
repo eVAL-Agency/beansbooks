@@ -34,15 +34,15 @@ class Model_Transaction extends ORMEncrypted {
 
 	protected $_has_one = array(
 		'create_form' => array(
-			'model' => 'form',
+			'model' => 'Form',
 			'foreign_key' => 'create_transaction_id',
 		),
 		'invoice_form' => array(
-			'model' => 'form',
+			'model' => 'Form',
 			'foreign_key' => 'invoice_transaction_id',
 		),
 		'cancel_form' => array(
-			'model' => 'form',
+			'model' => 'Form',
 			'foreign_key' => 'cancel_transaction_id',
 		),
 		'tax_payment' => array(),

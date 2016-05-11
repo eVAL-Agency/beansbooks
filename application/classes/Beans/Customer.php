@@ -175,7 +175,7 @@ class Beans_Customer extends Beans {
 
 	protected function _default_customer()
 	{
-		$customer = ORM::Factory("entity_customer");
+		$customer = ORM::Factory("Entity_Customer");
 
 		$customer->default_shipping_address_id = NULL;
 		$customer->default_billing_address_id = NULL;

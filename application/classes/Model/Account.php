@@ -31,13 +31,13 @@ class Model_Account extends ORMEncrypted {
 	protected $_belongs_to = array(
 		'account_type' => array(),
 		'parent_account' => array(
-			'model' => 'account',
+			'model' => 'Account',
 		),
 	);
 
 	protected $_has_many = array(
 		'child_accounts' => array(
-			'model' => 'account',
+			'model' => 'Account',
 			'foreign_key' => 'parent_account_id',
 		),
 		'account_transactions' => array(),
