@@ -208,7 +208,11 @@ class View_Template extends Kostache_Layout {
 		$currentURI = ROOT_WDIR . $this->request->uri();
 		
 		foreach( $masthead_links as $index => $masthead_link ){
-			$masthead_links[$index]['current'] = ( strpos($masthead_link['url'], $currentURI) === 0 );
+			$thisURI = $masthead_link['url'];
+			// Trim the trailing '/' off the end of the URL; it just ends to throw off as the current url usually doesn't have them.
+			$thisURI = rtrim($thisURI, '/');
+			
+			$masthead_links[$index]['current'] = ( strpos($currentURI, $thisURI) === 0 );
 		}
 		
 		return $masthead_links;
@@ -230,19 +234,27 @@ class View_Template extends Kostache_Layout {
 	public function tab_links()
 	{
 		$tab_links = Session::instance()->get('tab_links');
-		if( ! $tab_links )
+		if( ! $tab_links ){
 			$tab_links = array();
+		}
+
+		$currentURI = ROOT_WDIR . $this->request->uri();
 		
-		foreach( $tab_links as $index => $tab_link )
-		{
-			$tab_links[$index]['current'] = ( '/'.$this->request->uri() == $tab_link['url'] OR 
-												(
-												 	isset($this->force_current_uri) AND
-												  	$this->force_current_uri == $tab_link['url']
-												)
-											)
-										  ? TRUE
-										  : FALSE;
+		foreach( $tab_links as $index => $tab_link ) {
+			$thisURI = $tab_link['url'];
+			
+			// Trim the trailing '/' off the end of the URL; it just ends to throw off as the current url usually doesn't have them.
+			$thisURI = rtrim($thisURI, '/');
+			
+			// Allow the override to be used as well.
+			// This will be a relative link, so switch it to the fully resolved version.
+			$overrideURI = (isset($this->force_current_uri) ? $this->force_current_uri : null);
+			if($overrideURI){
+				$overrideURI = ROOT_WDIR . substr($overrideURI, 1);
+			}
+			
+			$tab_links[$index]['current'] = ($currentURI == $thisURI); 
+			
 			$tab_links[$index]['text_short'] = ( ! isset($tab_link['text_short']) OR 
 												 ! strlen($tab_link['text_short']) )
 											 ? substr($tab_link['text'],0,3)
