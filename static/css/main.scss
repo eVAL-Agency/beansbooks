@@ -144,4 +144,9 @@ div.footer {
 
 
 // THEMES!
-@import "themes/default";
+body.theme-default {
+	@import "themes/default";	
+}
+body.theme-green {
+	@import "themes/green";
+}

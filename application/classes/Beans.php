@@ -177,9 +177,20 @@ class Beans {
 
 	}
 
-	public function get_version()
-	{
+	public function get_version() {
 		return $this->_BEANS_VERSION;
+	}
+
+	/**
+	 * Get the setting value as per saved in the database.
+	 * 
+	 * If the key does not exist, null is returned instead.
+	 * 
+	 * @param string $key
+	 * @return null|string
+	 */
+	public function getSetting($key){
+		return $this->_beans_setting_get($key, null);
 	}
 
 	// Override in each action.

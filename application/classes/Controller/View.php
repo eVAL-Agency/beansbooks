@@ -69,7 +69,7 @@ class Controller_View extends Controller {
 	public function after() {
 		// Make sure we've queried the default data.
 		$this->_beans_default_calls();
-
+		
 		$this->_view->layout_scripts = $this->_scripts;
 
 		if( $this->_action_tab_name AND 
@@ -191,11 +191,23 @@ class Controller_View extends Controller {
 	/**
 	 * Adds a few Beans_ calls to each view ( such as company settings ).
 	 */
-	protected function _beans_default_calls()
-	{
+	protected function _beans_default_calls() {
 		// Get Version
 		$b = new Beans();
 		$this->_view->beansbooks_version = $b->get_version();
+		
+		$t = $b->getSetting('theme');
+		if($t === null || $t === ''){
+			$t = 'theme-default';
+		}
+		else{
+			// Sanity check.
+			$t = preg_replace('/[^a-z]*/', '', $t);
+			$t = 'theme-' . $t;
+		}
+		
+		// This will get appended onto the body's class list.
+		$this->_view->body_classes .= ' ' . $t;
 
 		// Only if logged in.
 		if( ! strlen(Session::instance()->get('auth_uid')) OR 

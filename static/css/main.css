@@ -1906,7 +1906,7 @@ body.customers-customer #customers-customers-customers li {
       margin-right: 0; }
 body.customers-customers #customers-sales-sales li,
 body.customers-customer #customers-sales-sales li {
-  max-width: 10;
+  max-width: 9;
   margin-left: auto;
   margin-right: auto; }
   body.customers-customers #customers-sales-sales li::after,
@@ -2003,93 +2003,144 @@ div.footer {
   border-top-width: 1px;
   border-top-style: solid; }
 
-.text-red {
+body.theme-default .text-red {
   color: #9a0000; }
-
-a {
+body.theme-default a {
   color: #11519a; }
-
-a:hover {
+body.theme-default a:hover {
   color: #092a51; }
-
-button, input[type="button"], input[type="reset"], input[type="submit"], a.button, button.ui-button.ui-state-default {
+body.theme-default button, body.theme-default input[type="button"], body.theme-default input[type="reset"], body.theme-default input[type="submit"], body.theme-default a.button, body.theme-default button.ui-button.ui-state-default {
   background-color: #11519a;
   color: white;
   background-image: none; }
-
-button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, a.button:hover, button.ui-button.ui-state-default:hover {
+body.theme-default button:hover, body.theme-default input[type="button"]:hover, body.theme-default input[type="reset"]:hover, body.theme-default input[type="submit"]:hover, body.theme-default a.button:hover, body.theme-default button.ui-button.ui-state-default:hover {
   background-color: #092a51;
   color: white;
   background-image: none; }
-
-a.button[disabled=disabled] {
+body.theme-default a.button[disabled=disabled] {
   cursor: not-allowed;
   opacity: 0.5; }
-  a.button[disabled=disabled]:hover {
+  body.theme-default a.button[disabled=disabled]:hover {
     background-color: #11519a; }
-
-#masthead {
+body.theme-default #masthead {
   background-color: #11519a;
   color: white; }
-  #masthead li.current {
+  body.theme-default #masthead li.current {
     font-weight: bold; }
-  #masthead a {
+  body.theme-default #masthead a {
     color: white; }
-    #masthead a:hover {
+    body.theme-default #masthead a:hover {
       background-color: white;
       color: #11519a; }
-
-.tabs li.current {
+body.theme-default .tabs li.current {
   border-bottom-color: white;
   font-weight: bold; }
-
-.dash-index-message {
+body.theme-default .dash-index-message {
   background-color: #f0eb8b; }
-
-.color-me-even {
+body.theme-default .color-me-even {
   background-color: #e1eefc; }
-
-.color-force-green {
+body.theme-default .color-force-green {
   background-color: #b3d3f7; }
-
-div.form {
+body.theme-default div.form {
   border-width: 1px;
   border-style: solid;
   padding: 0.25em;
   margin-bottom: 0.5em;
   background-color: #e1eefc; }
-  div.form .form-element {
+  body.theme-default div.form .form-element {
     height: 5.25em; }
-
-.select2-container {
+body.theme-default .select2-container {
   width: 100%; }
-
-.select2-container-active .select2-choice, .select2-container-active .select2-choices {
+body.theme-default .select2-container-active .select2-choice, body.theme-default .select2-container-active .select2-choices {
   border: 1px solid #11519a; }
-
-.select2-drop {
+body.theme-default .select2-drop {
   border: 1px solid #11519a; }
-
-.select2-results .select2-highlighted {
+body.theme-default .select2-results .select2-highlighted {
   background: #11519a;
   color: white; }
-
-.ui-widget-content {
+body.theme-default .ui-widget-content {
   background: #e1eefc; }
-
-.ui-dialog .ui-dialog-titlebar {
+body.theme-default .ui-dialog .ui-dialog-titlebar {
   background: #11519a; }
-
-.ui-dialog .ui-dialog-titlebar-close {
+body.theme-default .ui-dialog .ui-dialog-titlebar-close {
   background: #11519a; }
-
-.ui-state-hover,
-.ui-widget-content .ui-state-hover,
-.ui-widget-header .ui-state-hover,
-.ui-state-focus,
-.ui-widget-content .ui-state-focus,
-.ui-widget-header .ui-state-focus {
+body.theme-default .ui-state-hover,
+body.theme-default .ui-widget-content .ui-state-hover,
+body.theme-default .ui-widget-header .ui-state-hover,
+body.theme-default .ui-state-focus,
+body.theme-default .ui-widget-content .ui-state-focus,
+body.theme-default .ui-widget-header .ui-state-focus {
   background: none #11519a;
+  color: white; }
+
+body.theme-green .text-red {
+  color: #9a0000; }
+body.theme-green a {
+  color: #146f1b; }
+body.theme-green a:hover {
+  color: #082a0a; }
+body.theme-green button, body.theme-green input[type="button"], body.theme-green input[type="reset"], body.theme-green input[type="submit"], body.theme-green a.button, body.theme-green button.ui-button.ui-state-default {
+  background-color: #146f1b;
+  color: white;
+  background-image: none; }
+body.theme-green button:hover, body.theme-green input[type="button"]:hover, body.theme-green input[type="reset"]:hover, body.theme-green input[type="submit"]:hover, body.theme-green a.button:hover, body.theme-green button.ui-button.ui-state-default:hover {
+  background-color: #082a0a;
+  color: white;
+  background-image: none; }
+body.theme-green a.button[disabled=disabled] {
+  cursor: not-allowed;
+  opacity: 0.5; }
+  body.theme-green a.button[disabled=disabled]:hover {
+    background-color: #146f1b; }
+body.theme-green #masthead {
+  background-color: #146f1b;
+  color: white; }
+  body.theme-green #masthead li.current {
+    font-weight: bold; }
+  body.theme-green #masthead a {
+    color: white; }
+    body.theme-green #masthead a:hover {
+      background-color: white;
+      color: #146f1b; }
+body.theme-green .tabs li.current {
+  border-bottom-color: white;
+  font-weight: bold; }
+body.theme-green .dash-index-message {
+  background-color: #f0eb8b; }
+body.theme-green .color-me-even {
+  background-color: #c1f4c5; }
+body.theme-green .color-force-green {
+  background-color: #96ec9d; }
+body.theme-green div.form {
+  border-width: 1px;
+  border-style: solid;
+  padding: 0.25em;
+  margin-bottom: 0.5em;
+  background-color: #c1f4c5; }
+  body.theme-green div.form .form-element {
+    height: 5.25em; }
+body.theme-green .select2-container {
+  width: 100%; }
+body.theme-green .select2-container-active .select2-choice, body.theme-green .select2-container-active .select2-choices {
+  border: 1px solid #146f1b; }
+body.theme-green .select2-drop {
+  border: 1px solid #146f1b; }
+body.theme-green .select2-results .select2-highlighted {
+  background: #146f1b;
+  color: white; }
+body.theme-green .ui-widget-content {
+  background: #c1f4c5; }
+body.theme-green .ui-dialog .ui-dialog-titlebar {
+  background: #146f1b; }
+body.theme-green .ui-dialog .ui-dialog-titlebar-close {
+  background: #146f1b; }
+body.theme-green .ui-state-hover,
+body.theme-green .ui-widget-content .ui-state-hover,
+body.theme-green .ui-widget-header .ui-state-hover,
+body.theme-green .ui-state-focus,
+body.theme-green .ui-widget-content .ui-state-focus,
+body.theme-green .ui-widget-header .ui-state-focus {
+  background: none #146f1b;
   color: white; }
 
 /*# sourceMappingURL=main.css.map */

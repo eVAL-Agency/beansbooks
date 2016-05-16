@@ -50,6 +50,38 @@ class View_Setup_Settings extends View_Template {
 		return $countries;
 	}
 
+	/**
+	 * Get the list of themes available on the system and which one is currently selected.
+	 * 
+	 * At present, there are only two themes, but more will be added as soon as the initial port is completed!
+	 * 
+	 * @return array
+	 */
+	public function themes(){
+		if(isset($this->beans_company_update_result->data->settings->theme)){
+			$current = $this->beans_company_update_result->data->settings->theme;	
+		}
+		else{
+			$current = '';
+		}
+		
+		
+		$themes = [
+			[
+				'key' => '',
+				'title' => 'Default (Blue)',
+				'selected' => ($current == ''),
+			],
+			[
+				'key' => 'green',
+				'title' => 'Green',
+				'selected' => ($current == 'green'),
+			],
+		];
+		
+		return $themes;
+	}
+
 	public function company_logo_src()
 	{
 		if( ! isset($this->beans_company_update_result->data->settings->company_logo_data) OR 

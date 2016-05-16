@@ -39,6 +39,15 @@
 				recommended<br>
 			</div>
 		</div>
+		
+		<div class="form-element form-element-theme">
+			<label>Site Theme</label>
+			<select name="theme">
+				{{#themes}}
+					<option value="{{key}}" {{#selected}}selected="selected"{{/selected}}>{{title}}</option>
+				{{/themes}}
+			</select>
+		</div>
 
 		<div class="row column-6 labels setup-settings-grid-company-cutoff">
 			<span class="oppa-gangnam-style">Address Line 2</span>
