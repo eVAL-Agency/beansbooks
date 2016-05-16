@@ -141,7 +141,7 @@ class Controller_Customers extends Controller_View {
 		{
 			$this->_view->customer_lookup_result = $customer_lookup_result;
 			$this->_action_tab_name = $customer_lookup_result->data->customer->display_name;
-			$this->_action_tab_uri = '/'.$this->request->uri();
+			$this->_action_tab_uri = ROOT_WDIR . $this->request->uri();
 
 			$customer_address_search = new Beans_Customer_Address_Search($this->_beans_data_auth((object)array(
 				'search_customer_id' => $customer_id,
