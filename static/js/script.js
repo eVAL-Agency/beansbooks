@@ -336,7 +336,7 @@ function showPleaseWait(message,buttonText,buttonAction) {
 	$('#please-wait-dialog').modaldialog({
 		buttons: [],
 		width: 300,
-		height: ( $button ? 140 : 100 )
+		height: ( $button ? 240 : 200 )
 	});
 	$('#please-wait-dialog .spinme').spin();
 }

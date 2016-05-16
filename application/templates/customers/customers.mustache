@@ -3,83 +3,107 @@
 
 	<div class="form bump-down-more">
 		<div id="customers-customers-create-form">
-			<div class="row column-4 labels">
-				<span class="oop-oop">First Name</span>
-				<span class="oop-oop">Last Name</span>
-				<span class="oppa-gangnam-style">Email Address</span>
+
+			<div class="form-element form-element-first-name">
+				<label>First Name</label>
+				<input type="text" tabindex="1" class="required customer first_name" name="first_name">
 			</div>
 
-			<div class="row column-4">
-				<span class="oop-oop"><input type="text" tabindex="1" class="required customer first_name" name="first_name"></span>
-				<span class="oop-oop"><input type="text" tabindex="2" class="required customer last_name" name="last_name"></span>
-				<span class="oppa-gangnam-style"><input type="text" tabindex="3" class="customer email" name="email"></span>
+			<div class="form-element form-element-last-name">
+				<label>Last Name</label>
+				<input type="text" tabindex="2" class="required customer last_name" name="last_name">
 			</div>
 
-			<div class="row column-4 labels">
-				<span class="oop-oop">Company Name</span>
-				<span class="oop-oop">Phone Number</span>
-				<span class="oop-oop">Fax Number</span>
-				<span class="oop-oop">Terms/Receivable Account</span>
+			<div class="form-element form-element-email">
+				<label>Email Address</label>
+				<input type="text" tabindex="3" class="customer email" name="email">
 			</div>
 
-			<div class="row column-4">
-				<span class="oop-oop"><input type="text" tabindex="4" class="customer company_name" name="company_name"></span>
-				<span class="oop-oop"><input type="text" tabindex="5" class="customer phone_number" name="phone_number"></span>
-				<span class="oop-oop"><input type="text" tabindex="6" class="customer fax_number" name="fax_number"></span>
-				<span class="oop-oop"><select tabindex="7" class="account-dropdown" class="customer default_account_id" name="default_account_id" {{#customer_receivable_account_default}}rel="{{id}}"{{/customer_receivable_account_default}}>
+			<div class="form-element form-element-company-name">
+				<label>Company Name</label>
+				<input type="text" tabindex="4" class="customer company_name" name="company_name">
+			</div>
+
+			<div class="form-element form-element-phone-number">
+				<label>Phone Number</label>
+				<input type="text" tabindex="5" class="customer phone_number" name="phone_number">
+			</div>
+
+			<div class="form-element form-element-fax-number">
+				<label>Fax Number</label>
+				<input type="text" tabindex="6" class="customer fax_number" name="fax_number">
+			</div>
+
+			<div class="form-element form-element-default-account-id">
+				<label>Terms/Receivable Account</label>
+				<select tabindex="7" class="account-dropdown" class="customer default_account_id" name="default_account_id" {{#customer_receivable_account_default}}rel="{{id}}"{{/customer_receivable_account_default}}>
 					<option value="">&nbsp;</option>
 					{{#customer_receivable_accounts}}
 						{{^reserved}}
 							<option value="{{id}}" {{^receivable}}disabled="disabled"{{/receivable}} {{#selected}}selected="selected"{{/selected}}>{{{name_print}}}</option>
 						{{/reserved}}
 					{{/customer_receivable_accounts}}
-				</select></span>
+				</select>
 			</div>
 
-			<div class="row text-bold bump-down-most">
+			<div class="row text-bold bump-down-most customer-addresses-label">
 				Customer Addresses
 			</div>
 
-			<div class="row column-4 labels">
-				<span class="oop-oop-oop">Address Line 1</span>
-				<span class="oop-oop">State/Province</span>
-				<span class="oop-oop-oop"><div class="checkbox medium"><input type="checkbox" value="1" checked="checked" class="address" rel="default-billing"></div> Default Billing Address</span>
+			<div class="form-element form-element-address1">
+				<label>Address Line 1</label>
+				<input type="text" class="address required" tabindex="8" rel="address1">
 			</div>
 
-			<div class="row column-4">
-				<span class="oop-oop-oop"><input type="text" class="address required" tabindex="8" rel="address1"></span>
-				<span class="oop-oop"><input type="text" class="address" tabindex="11" rel="state"></span>
-				<span class="oop-oop-oop"><div class="checkbox medium"><input type="checkbox" value="1" checked="checked" class="address" rel="default-shipping"></div> Default Shipping Address</span>
+			<div class="form-element form-element-state">
+				<label>State/Province</label>
+				<input type="text" class="address" tabindex="11" rel="state">
 			</div>
 
-			<div class="row column-4 labels">
-				<span class="oop-oop-oop">Address Line 2</span>
-				<span class="oop-oop">Zip</span>
-				<span class="oop-oop-oop">&nbsp;</span>
+			<div class="form-element form-element-default-options">
+				<label>
+					<input type="checkbox" value="1" checked="checked" class="address" rel="default-billing">
+					Default Billing Address
+				</label>
+				<label>
+					<input type="checkbox" value="1" checked="checked" class="address" rel="default-shipping">
+					Default Shipping Address
+				</label>
 			</div>
 
-			<div class="row column-4">
-				<span class="oop-oop-oop"><input type="text" class="address" tabindex="9" rel="address2"></span>
-				<span class="oop-oop"><input type="text" class="address required" tabindex="12" rel="zip"></span>
-				<span class="oop-oop-oop">&nbsp;</span>
+			<div class="form-element form-element-address2">
+				<label>Address Line 2</label>
+				<input type="text" class="address" tabindex="9" rel="address2">
 			</div>
 
-			<div class="row column-4 labels">
-				<span class="oop-oop-oop">City</span>
-				<span class="oop-oop">Country</span>
-				<span class="oop-oop-oop">&nbsp;</span>
+			<div class="form-element form-element-zip">
+				<label>Zip</label>
+				<input type="text" class="address required" tabindex="12" rel="zip">
+			</div>
+			
+			<div class="form-element form-element-spacer-after-zip"></div>
+
+
+			<div class="form-element form-element-city">
+				<label>City</label>
+				<input type="text" class="address required" tabindex="10" rel="city">
 			</div>
 
-			<div class="row column-4">
-				<span class="oop-oop-oop"><input type="text" class="address required" tabindex="10" rel="city"></span>
-				<span class="oop-oop"><div class="select"><select class="address required" tabindex="13" rel="country">
-					<option value="">&nbsp;</option>
-					{{#countries}}
-						<option value="{{code}}" {{#default}}rel="default" selected="selected"{{/default}}>{{name}}</option>
-					{{/countries}}
-				</select></div></span>
-				<span class="oop-oop"><a href="#" class="button" id="customers-customers-create-form-address-save" tabindex="14">Save This Address</a></span>
-				<span class="oop"><a href="#" class="button" id="customers-customers-create-form-address-canceledit" disabled="disabled" tabindex="15">Cancel Edit</a></span>
+			<div class="form-element form-element-country">
+				<label>Country</label>
+				<div class="select">
+					<select class="address required" tabindex="13" rel="country">
+						<option value="">&nbsp;</option>
+						{{#countries}}
+							<option value="{{code}}" {{#default}}rel="default" selected="selected"{{/default}}>{{name}}</option>
+						{{/countries}}
+					</select>
+				</div>
+			</div>
+
+			<div class="form-element form-element-actions">
+				<a href="#" class="button" id="customers-customers-create-form-address-save" tabindex="14">Save This Address</a>
+				<a href="#" class="button" id="customers-customers-create-form-address-canceledit" disabled="disabled" tabindex="15">Cancel Edit</a>
 			</div>
 
 			<div id="customers-customers-create-form-addresses" class="bump-down-more">
@@ -104,7 +128,6 @@
 	<ul>
 		<li class="customer-customer" rel="{{id}}">
 			<span class="customer-customer-name text-bold text-left">Customer</span>
-            <span class="customer-company text-bold text-left">Company</span>
 			<span class="customer-customer-phone text-bold text-center">Phone</span>
 			<span class="customer-customer-email text-bold text-center">Email</span>
 			<span class="customer-customer-balance_current text-bold text-right">Account Balance</span>

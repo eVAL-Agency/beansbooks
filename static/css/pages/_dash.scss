@@ -1,0 +1,50 @@
+.dash-index-column {
+	@include span-columns(6);
+	@include omega(2n);
+}
+
+@include media(max-width $large-screen) {
+	.dash-index-column {
+		@include span-columns(12);	
+	}
+}
+
+.dash-index-chart, .dash-index-message {
+	border-width: 1px;
+	border-style: solid;
+	padding: 0.5em;
+	margin: 0.5em 0;
+	
+	input[type=text] {
+		display: inline-block;
+		width: 20%;
+		
+		&:first-child {
+			margin-left: 2em;
+		}
+	}
+}
+
+.dash-index-chart-cash {
+	.name {
+		display: inline-block;
+		width: 50%;
+	}
+	
+	.total {
+		float: right;
+		text-align: right;
+		width: 20%;
+	}
+	
+	.amount {
+		float: right;
+		text-align: right;
+		width: 20%;
+	}
+	
+	.divider {
+		border-top-width: 1px;
+		border-top-style: solid;
+	}
+}

@@ -33,72 +33,86 @@
 	<div class="text-medium text-bold bump-down-more">Record Payment Received</div>
 
 	<div class="form bump-down">
-		<div class="row labels column-10">
-			<span class="oop-oop">Date</span>
-			<span class="oppa-gangnam-style">Deposit Account</span>
-            <span class="oop-oop-oop">Payment Type</span>
-            <span class="oop-oop">Reference #</span>
-			<span class="oop-oop">Invoice Total</span>
-			<span class="oop-oop">Write-Off Total</span>
-			<span class="oop-oop">Adjustment</span>
-			<span class="oop">&nbsp;</span>
-			<!-- <span class="ehhh-sexy-lady">&nbsp;</span> -->
+
+		<div class="form-element form-element-date">
+			<label>Date</label>
+			<input type="text" name="date" class="datepicker" value="{{dateYYYYMMDD}}">
 		</div>
-		
-		<div class="row column-10">
-			<span class="oop-oop"><input type="text" name="date" class="datepicker" value="{{dateYYYYMMDD}}"></span>
-			<span class="oppa-gangnam-style"><select class="account-dropdown" name="deposit_account_id" {{#payment_deposit_account_default}}rel="{{id}}"{{/payment_deposit_account_default}}>
+
+		<div class="form-element form-element-deposit-account-id">
+			<label>Deposit Account</label>
+			<select class="account-dropdown" name="deposit_account_id" {{#payment_deposit_account_default}}rel="{{id}}"{{/payment_deposit_account_default}}>
 				<option value="">&nbsp;</option>
 				{{#payment_deposit_accounts}}
 					{{^reserved}}
 						<option value="{{id}}" {{^deposit}}disabled="disabled"{{/deposit}} {{#selected}}selected="selected"{{/selected}}>{{{name_print}}}</option>
 					{{/reserved}}
 				{{/payment_deposit_accounts}}
-			</select></span>
-            <span class="oop-oop-oop">
-                <select class="account-dropdown" name="type">
-                    <option value="">&nbsp;</option>
-                    <option value="cash">Cash</option>
-                    <option value="check">Check</option>
-                    <option value="credit card">Credit Card</option>
-                    <option value="transfer">Transfer</option>
-                    <option value="other">Other</option>
-                </select>
-            </span>
-            <span class="oop-oop"><input type="text" name="reference"></span>
-			<span class="oop-oop"><input type="text" readonly="readonly" name="sale_total"></span>
-			<span class="oop-oop"><input type="text" readonly="readonly" name="writeoff_amount"></span>
-			<span class="oop-oop"><input type="text" name="adjustment_amount"></span>
-			<span class="oop">&nbsp;</span>
-
-			<!-- <span class="ehhh-sexy-lady">&nbsp;</span> -->
-		</div>
-		
-		<div class="row column-10 labels">
-			<span class="oop-oop">Payment Amount</span>
-			<span class="ehhh-sexy-lady">Write Off Account</span>
-			<span class="ehhh-sexy-lady">Adjustment Account</span>
-			<span class="ehhh-sexy-lady">&nbsp;</span>
+			</select>
 		</div>
 
-		<div class="row column-10">
-			<span class="oop-oop"><input type="text" readonly="readonly" name="amount"></span>
-			<span class="ehhh-sexy-lady"><select class="account-dropdown" name="writeoff_account_id">
+		<div class="form-element form-element-type">
+			<label>Payment Type</label>
+			<select class="account-dropdown" name="type">
+				<option value="">&nbsp;</option>
+				<option value="cash">Cash</option>
+				<option value="check">Check</option>
+				<option value="credit card">Credit Card</option>
+				<option value="transfer">Transfer</option>
+				<option value="other">Other</option>
+			</select>
+		</div>
+
+		<div class="form-element form-element-reference">
+			<label>Reference #</label>
+			<input type="text" name="reference">
+		</div>
+
+		<div class="form-element form-element-sale-total">
+			<label>Invoice Total</label>
+			<input type="text" readonly="readonly" name="sale_total">
+		</div>
+
+		<div class="form-element form-element-writeoff-account">
+			<label>Write-Off Total</label>
+			<input type="text" readonly="readonly" name="writeoff_amount">
+		</div>
+
+		<div class="form-element form-element-adjustment-amount">
+			<label>Adjustment</label>
+			<input type="text" name="adjustment_amount">
+		</div>
+
+		<div class="form-element form-element-amount">
+			<label>Payment Amount</label>
+			<input type="text" readonly="readonly" name="amount">
+		</div>
+
+		<div class="form-element form-element-writeoff-account-id">
+			<label>Write Off Account</label>
+			<select class="account-dropdown" name="writeoff_account_id">
 				<option value="">No Write Off</option>
 				{{#all_accounts_chart_flat}}
 					{{^reserved}}
 						<option value="{{id}}" {{^writeoff}}disabled="disabled"{{/writeoff}}>{{{name_print}}}</option>
 					{{/reserved}}
 				{{/all_accounts_chart_flat}}
-			</select></span>
-			<span class="ehhh-sexy-lady"><select class="account-dropdown" name="adjustment_account_id">
+			</select>
+		</div>
+
+		<div class="form-element form-element-adjustment-account-id">
+			<label>Adjustment Account</label>
+			<select class="account-dropdown" name="adjustment_account_id">
 				<option value="">No Adjustment</option>
 				{{#all_accounts_chart_flat}}
 					{{^reserved}}
 						<option value="{{id}}" {{#deposit}}disabled="disabled"{{/deposit}}>{{{name_print}}}</option>
 					{{/reserved}}
 				{{/all_accounts_chart_flat}}
-			</select></span>
+			</select>
+		</div>
+		
+		<div class="form-element-actions">
 			<span class="oop-oop customers-payments-create-actions-deleteplaceholder">&nbsp;</span>
 			<span class="oop-oop customers-payments-create-actions-delete" style="display:none;"><a href="#" class="button" id="customers-payments-create-delete">Delete</a></span>
 			<span class="oop-oop"><a href="#" class="button" id="customers-payments-create-cancel">Cancel</a></span>
@@ -120,7 +134,7 @@
 		<ul>
 			<li class="customer-batchpayment text-bold">
 				<span class="customer-batchpayment-customer text-left">Invoices</span>
-				<span class="customer-batchpayment-sale text-center">Invoice Number</span>
+				<span class="customer-batchpayment-sale text-center">Invoice #</span>
 				<span class="customer-batchpayment-numeric balance text-center">Balance Due</span>
 				<span class="customer-batchpayment-numeric amount text-center">Amount Paid</span>
 				<span class="customer-batchpayment-balancewriteoff text-center">Write-Off Balance</span>

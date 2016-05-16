@@ -1,0 +1,217 @@
+.customers-sales-create-title {
+	float: left;
+}
+
+.customers-sales-create-status {
+	float: right;
+}
+
+div.form {
+	@include outer-container(16);
+	
+	.form-element-date {
+		@include span-columns(4 of 16);
+	}
+	.form-element-customer {
+		@include span-columns(4 of 16);
+	}
+	.form-element-billing-address {
+		@include span-columns(4 of 16);
+		select {
+			width: 100%;
+		}
+	}
+	.form-element-shipping-address {
+		@include span-columns(4 of 16);
+		@include omega();
+		select {
+			width: 100%;
+		}
+	}
+	.form-element-account {
+		@include span-columns(4 of 16);
+	}
+	.form-element-sale-number {
+		@include span-columns(2 of 16);
+	}
+	.form-element-quote-number {
+		@include span-columns(2 of 16);
+	}
+	.form-element-date-due {
+		@include span-columns(2 of 16);
+	}
+	.form-element-po-number {
+		@include span-columns(2 of 16);
+	}
+	.form-element-tax {
+		@include span-columns(3 of 16);
+		@include omega();
+		
+		.dropdown {
+			display: none;
+		}
+	}
+	.line-items {
+		@include span-columns(16 of 16);
+		@include omega();
+		
+		table {
+			table-layout: auto;
+			width: 100%;
+			
+			th {
+				padding: 0.1em 0.5em;
+			}
+
+			td {
+				padding: 0.1em 0.5em;
+				border: 0 none;
+				
+				// Shrink up form elements a bit inside this form.
+				input {
+					margin-bottom: 0.15em;
+				}
+			}
+			
+			th.description {
+				min-width: 18em;
+			}
+			th.account {
+				min-width: 14em;
+			}
+			th.quantity {
+				width: 5em;
+			}
+			th.price {
+				width: 5em;
+			}
+			th.total {
+				width: 5em;
+			}
+		}
+	}
+	
+	.totals-container {
+		@include span-columns(2 of 16);
+	}
+	
+	.form-action-buttons {
+		@include span-columns(8 of 16);
+		@include omega();
+		text-align: right;
+	}
+}
+
+// The section below the create/edit sale; used for quick search.
+.customers-sales-actions {
+	#customers-sales-sales-search {
+		float: right;
+		width: 25%;
+	}	
+}
+
+#customers-sales-sales {
+	li {
+		@include outer-container(20);
+		
+		span {
+			
+			// Standard lines
+			&.customer-sale-customer {
+				@include span-columns(5 of 20);
+			}
+			
+			&.customer-sale-sale {
+				@include span-columns(2 of 20);
+			}
+			
+			&.customer-sale-date {
+				@include span-columns(2 of 20);
+			}
+			
+			&.customer-sale-status {
+				@include span-columns(3 of 20);
+			}
+			
+			&.customer-sale-total {
+				@include span-columns(2 of 20);
+			}
+			
+			&.customer-sale-actions {
+				@include span-columns(6 of 20);
+				@include omega();
+			}
+			
+			// Send Via Email option
+			&.customer-sale-send-email {
+				@include span-columns(4 of 10);
+				
+				div.checkbox {
+					display: inline-block;
+				}
+				
+				input[type=text] {
+					display: inline-block;
+					margin-bottom: 0;
+					width: 60%;
+				}
+			}
+			&.customer-sale-send-mail {
+				@include span-columns(2 of 10);
+
+				div.checkbox {
+					display: inline-block;
+				}
+			}
+			&.customer-sale-send-done {
+				@include span-columns(2 of 10);
+
+				div.checkbox {
+					display: inline-block;
+				}
+			}
+			&.customer-sale-send-actions {
+				@include span-columns(2 of 10);
+				@include omega();
+			}
+		}
+	}
+}
+
+// Send Via Email option for invoices, (it's not contained in the inline table here).
+#customers-sales-create-form-send,
+#customers-sales-create-form-invoice {
+	@include outer-container(10);
+	
+	span.customer-sale-send-email {
+		@include span-columns(4 of 10);
+
+		div.checkbox {
+			display: inline-block;
+		}
+
+		input[type=text] {
+			display: inline-block;
+			margin-bottom: 0;
+			width: 60%;
+		}
+	}
+	span.customer-sale-send-mail {
+		@include span-columns(2 of 10);
+
+		div.checkbox {
+			display: inline-block;
+		}
+	}
+	span.customer-sale-send-done {
+		@include span-columns(2 of 10);
+
+		div.checkbox {
+			display: inline-block;
+		}
+	}
+	span.customer-sale-send-actions {
+		@include span-columns(2 of 10);
+		@include omega();
+	}	
+}

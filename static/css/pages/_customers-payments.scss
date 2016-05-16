@@ -1,0 +1,130 @@
+#customers-payments-payments-search {
+	float: right;
+	width: 25%;
+}
+
+// Top payment listing section at the top of the page
+#customers-payments-payments {
+	li {
+		@include outer-container(12);
+
+		.customer-payment-date {
+			@include span-columns(2 of 12);
+		}
+
+		.customer-payment-type {
+			@include span-columns(2 of 12);
+		}
+
+		.customer-payment-reference {
+			@include span-columns(2 of 12);
+		}
+
+		.customer-payment-amount {
+			@include span-columns(2 of 12);
+		}
+
+		.customer-payment-account {
+			@include span-columns(2 of 12);
+		}
+
+		.customer-payment-actions {
+			@include span-columns(2 of 12);
+			@include omega();
+		}
+	}
+}
+
+div.form {
+	@include outer-container(20);
+
+	.form-element-date {
+		@include span-columns(2 of 20);
+	}
+
+	.form-element-deposit-account-id {
+		@include span-columns(5 of 20);
+	}
+
+	.form-element-type {
+		@include span-columns(3 of 20);
+	}
+
+	.form-element-reference {
+		@include span-columns(3 of 20);
+	}
+
+	.form-element-sale-total {
+		@include span-columns(3 of 20);
+	}
+
+	.form-element-writeoff-account {
+		@include span-columns(3 of 20);
+		@include omega();
+	}
+
+	.form-element-adjustment-amount {
+		@include span-columns(3 of 20);
+	}
+
+	.form-element-amount {
+		@include span-columns(3 of 20);
+	}
+
+	.form-element-writeoff-account-id {
+		@include span-columns(5 of 20);
+	}
+
+	.form-element-adjustment-account-id {
+		@include span-columns(5 of 20);
+	}
+
+	.form-element-actions {
+		@include span-columns(4 of 20);
+		@include omega();
+	}
+}
+
+// The list of sales below the form
+#customers-payments-create-sales {
+	li {
+		@include outer-container(20);
+		
+		.customer-batchpayment-customer {
+			@include span-columns(5 of 20);
+		}
+		
+		.customer-batchpayment-sale {
+			@include span-columns(2 of 20);
+		}
+
+		.balance {
+			@include span-columns(3 of 20);
+		}
+
+		.amount {
+			@include span-columns(3 of 20);
+		}
+
+		.customer-batchpayment-balancewriteoff {
+			@include span-columns(3 of 20);
+
+			div.checkbox {
+				display: inline-block;
+			}
+		}
+
+		.balancenew {
+			@include span-columns(2 of 20);
+		}
+		
+		.customer-batchpayment-add {
+			@include span-columns(2 of 20);
+			@include omega();
+			
+			div.checkbox {
+				display: inline-block;
+			}
+		}
+	}
+}

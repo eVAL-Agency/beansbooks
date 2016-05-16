@@ -1,0 +1,158 @@
+div.form {
+	@include outer-container(8);
+	
+	.form-element-first-name {
+		@include span-columns(2 of 8);
+	}
+	.form-element-last-name {
+		@include span-columns(2 of 8);
+	}
+	.form-element-email {
+		@include span-columns(4 of 8);
+		@include omega();
+	}
+	
+	.form-element-company-name {
+		@include span-columns(2 of 8);
+	}
+	.form-element-phone-number {
+		@include span-columns(2 of 8);
+	}
+	.form-element-fax-number {
+		@include span-columns(2 of 8);
+	}
+	.form-element-default-account-id {
+		@include span-columns(2 of 8);
+		@include omega();
+	}
+	
+	.customer-addresses-label {
+		@include span-columns(1 of 1);
+		@include omega();
+	}
+
+	.form-element-address1 {
+		@include span-columns(3 of 8);
+	}
+	.form-element-state {
+		@include span-columns(2 of 8);
+	}
+	.form-element-default-options {
+		@include span-columns(3 of 8);
+		@include omega();
+	}
+
+	.form-element-address2 {
+		@include span-columns(3 of 8);
+	}
+	.form-element-zip {
+		@include span-columns(2 of 8);
+	}
+	.form-element-spacer-after-zip {
+		@include span-columns(3 of 8);
+		@include omega();
+	}
+
+	.form-element-city {
+		@include span-columns(3 of 8);
+	}
+	.form-element-country {
+		@include span-columns(2 of 8);
+	}
+	.form-element-actions {
+		@include span-columns(3 of 8);
+		@include omega();
+	}
+	
+	// When viewing a specific customer, the list of current addresses appear inside the addresses container div.
+	#customers-customer-addresses {
+		@include span-columns(1 of 1);
+		@include omega();
+		
+		.customer-address {
+			max-width: 24%;
+			float: left;
+		}
+	}
+	
+	// Also specific customers will have some totals at the bottom of the form.
+	.totals-container {
+		@include span-columns(2 of 8);
+		
+		label {
+			display: inline-block;
+		}
+
+		input[type=text] {
+			display: inline-block;
+			width: 50%;
+		}
+		
+		&.totals-container-balance-pastdue {
+			@include omega();
+		}
+	}
+}
+
+// The table below the form to list all the current customers on the system.
+#customers-customers-customers {
+	li {
+		@include outer-container(20);
+		
+		span {
+			
+			// Standard lines
+			&.customer-customer-name {
+				@include span-columns(4 of 20);
+			}
+			
+			&.customer-customer-phone {
+				@include span-columns(4 of 20);
+			}
+			
+			&.customer-customer-email {
+				@include span-columns(4 of 20);
+			}
+			
+			&.customer-customer-balance_current {
+				@include span-columns(3 of 20);
+			}
+			
+			&.customer-customer-balance_pastdue {
+				@include span-columns(3 of 20);
+			}
+			
+			&.customer-customer-actions {
+				@include span-columns(2 of 20);
+				@include omega();
+			}
+		}
+	}
+}
+
+// Specific customer view will have a slightly different listing table.
+#customers-sales-sales {
+	li {
+		@include outer-container(9);
+
+		.customer-sale-customer {
+			@include span-columns(2 of 9);
+		}
+		.customer-sale-sale {
+			@include span-columns(1 of 9);
+		}
+		.customer-sale-date {
+			@include span-columns(1 of 9);
+		}
+		.customer-sale-status {
+			@include span-columns(1 of 9);
+		}
+		.customer-sale-total {
+			@include span-columns(1 of 9);
+		}
+		.customer-sale-actions {
+			@include span-columns(3 of 9);
+			@include omega();
+		}
+	}
+}

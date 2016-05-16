@@ -5,112 +5,142 @@
 <input type="hidden" id="customers-sales-search-invoiced" value="1">
 
 <div id="customers-sales-create" class="notsohidden">
-	<div class="text-bold text-medium bump-down float-left" id="customers-sales-create-title" rel="Create Invoice">Create Customer Invoice</div>
-	<div class="bump-down text-medium float-right" id="customers-sales-create-status" rel="Invoice Not Saved"><span class="text-bold">Invoice Not Saved</span></div>
+	<div class="text-bold text-medium bump-down float-left customers-sales-create-title" id="customers-sales-create-title" rel="Create Invoice">Create Customer Invoice</div>
+	<div class="bump-down text-medium float-right customers-sales-create-status" id="customers-sales-create-status" rel="Invoice Not Saved"><span class="text-bold">Invoice Not Saved</span></div>
 	<div class="clear"></div>
 
 	<input type="hidden" name="refund_sale_id" value="">
 	<input type="hidden" name="invoice_view" value="1">
 	
 	<div class="form bump-down-more">
-		
-		<div class="row column-4 labels">
-			<span class="oop-oop">Invoice Date</span>
-			<span class="oop-oop">
+
+		<div class="form-element form-element-date">
+			<label>Invoice Date</label>
+			<input type="text" class="datepicker" name="date_billed" value="{{dateYYYYMMDD}}">
+		</div>
+
+		<div class="form-element form-element-customer">
+			<label>
 				Customer
 				<span class="text-small">( <a href="#" id="customers-sales-dialog-customer-create-link">new</a> )</span>
-			</span>
-			<span class="oop-oop">
+			</label>
+			<input type="hidden" name="customer">
+		</div>
+
+		<div class="form-element form-element-billing-address">
+			<label>
 				Billing Address
 				<span class="text-small">( <a href="#" id="customers-sales-dialog-address-create-link-billing">new</a> )</span>
-			</span>
-			<span class="oop-oop">
+			</label>
+			<div class="select">
+				<select name="billing_address_id">
+					<option value="">&nbsp;</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-element form-element-shipping-address">
+			<label>
 				Shipping Address
 				<span class="text-small">( <a href="#" id="customers-sales-dialog-address-create-link-shipping">new</a> )</span>
-			</span>
+			</label>
+			<div class="select">
+				<select name="shipping_address_id">
+					<option value="">&nbsp;</option>
+				</select>
+			</div>
 		</div>
 
-		<div class="row column-4">
-			<span class="oop-oop"><input type="text" class="datepicker" name="date_billed" value="{{dateYYYYMMDD}}"></span>
-			<span class="oop-oop"><input type="hidden" name="customer"></span>
-			<span class="oop-oop"><div class="select"><select name="billing_address_id">
-				<option value="">&nbsp;</option>
-			</select></div></span>
-			<span class="oop-oop"><div class="select"><select name="shipping_address_id">
-				<option value="">&nbsp;</option>
-			</select></div></span>
-		</div>
-
-		<div class="row column-6 labels">
-			<span class="oop-oop-oop">Terms/Receivable Account</span>
-			<span class="oop-oop">Due Date</span>
-			<span class="oop-oop">Invoice Number</span>
-			<span class="oop-oop">Quote Number</span>
-			<span class="oop-oop">Customer PO #</span>
-			<span class="oop">Sales Tax</span>
-		</div>
-
-		<div class="row column-6">
-			<span class="oop-oop-oop"><select class="account-dropdown" name="account" {{#sale_receivable_account_default}}rel="{{id}}#{{terms}}"{{/sale_receivable_account_default}}>
+		<div class="form-element form-element-account">
+			<label>Terms/Receivable Account</label>
+			<select class="account-dropdown" name="account" {{#sale_receivable_account_default}}rel="{{id}}#{{terms}}"{{/sale_receivable_account_default}}>
 				<option value="">&nbsp;</option>
 				{{#sale_receivable_accounts}}
 					{{^reserved}}
 						<option value="{{id}}#{{terms}}" {{^receivable}}disabled="disabled"{{/receivable}} {{#selected}}selected="selected"{{/selected}}>{{{name_print}}}</option>
 					{{/reserved}}
 				{{/sale_receivable_accounts}}
-			</select></span>
-			<span class="oop-oop"><input type="text" name="date_due" placeholder="Auto Generate"></span>
-			<span class="oop-oop"><input type="text" name="sale_number" placeholder="Auto Generate"></span>
-			<span class="oop-oop"><input type="text" name="quote_number" placeholder="Optional"></span>
-			<span class="oop-oop"><input type="text" name="po_number" placeholder="Optional" maxlength="16"></span>
-			<span class="oop">
-				<div class="select-checkbox form-taxes">
+			</select>
+		</div>
+
+		<div class="form-element form-element-date-due">
+			<label>Due Date</label>
+			<input type="text" name="date_due" placeholder="Auto Generate">
+		</div>
+
+		<div class="form-element form-element-sale-number">
+			<label>Invoice Number</label>
+			<input type="text" name="sale_number" placeholder="Auto Generate">
+		</div>
+
+		<div class="form-element form-element-quote-number">
+			<label>Quote Number</label>
+			<input type="text" name="quote_number" placeholder="Optional">
+		</div>
+
+		<div class="form-element form-element-po-number">
+			<label>Customer PO #</label>
+			<input type="text" name="po_number" placeholder="Optional" maxlength="32">
+		</div>
+
+		<div class="form-element form-element-tax">
+			<label>Sales Tax</label>
+			<div class="select-checkbox form-taxes">
 				<div class="value" title="Taxes"></div>
-					<div class="dropdown">
-						<div class="option" style="margin-bottom: 2px; padding-bottom: 2px;"><input type="checkbox" class="form-tax-exempt" name="form_tax_exempt" value="1" title="Tax Exempt"><span class="label"> This Sale is Tax Exempt</span></div>
-						<div class="option tax-exempt-reason" style="display: none;">
-							<input type="text" name="form_tax_exempt_reason" value="" placeholder="Reason for Exemption" />
-						</div>
-						<div style="border-bottom: 1px solid #ccc; height: 1px; padding:0; margin: 2px 0px;">&nbsp;</div>
-						{{#taxes}}
-							<div class="option {{#visible}}visible-tax{{/visible}}{{^visible}}hidden-tax{{/visible}}" {{^visible}}style="display: none;"{{/visible}}><input type="checkbox" class="form-tax" value="{{id}}" data-tax-percent="{{percent}}" title="{{name}}"><span class="label"> {{name}}</span></div>
-						{{/taxes}}
-						<div class="option no-tax" style="display: none; text-indent: 5px;">No Configured Taxes - <a href="{{root_wdir}}setup/taxes" target="_blank">Click Here to Setup</a>.</div>
+				<div class="dropdown">
+					<div class="option" style="margin-bottom: 2px; padding-bottom: 2px;"><input type="checkbox" class="form-tax-exempt" name="form_tax_exempt" value="1" title="Tax Exempt"><span class="label"> This Sale is Tax Exempt</span></div>
+					<div class="option tax-exempt-reason" style="display: none;">
+						<input type="text" name="form_tax_exempt_reason" value="" placeholder="Reason for Exemption" />
 					</div>
+					<div style="border-bottom: 1px solid #ccc; height: 1px; padding:0; margin: 2px 0px;">&nbsp;</div>
+					{{#taxes}}
+						<div class="option {{#visible}}visible-tax{{/visible}}{{^visible}}hidden-tax{{/visible}}" {{^visible}}style="display: none;"{{/visible}}><input type="checkbox" class="form-tax" value="{{id}}" data-tax-percent="{{percent}}" title="{{name}}"><span class="label"> {{name}}</span></div>
+					{{/taxes}}
+					<div class="option no-tax" style="display: none; text-indent: 5px;">No Configured Taxes - <a href="{{root_wdir}}setup/taxes" target="_blank">Click Here to Setup</a>.</div>
 				</div>
-			</span>
+			</div>
 			<input type="hidden" class="form-tax_ids" name="form-tax_ids" value="">
 		</div>
 
-		
-		<div class="row column-6 labels">
-			<span class="ehhh-sexy-lady">Description</span>
-			<span class="oop-oop-oop">Income Account</span>
-			<span class="oop">Quantity</span>
-			<span class="oop-oop">
-				Price
-				<span style="float: right;">Tax Exempt</span>
-			</span>
-			<span class="oop">Total</span>
-		</div>
-		
-		<div id="customers-sales-create-form-lines">
-			
+		<div class="line-items">
+			<table class="listing">
+				<thead>
+				<tr>
+					<th class="description">Description</th>
+					<th class="account">Income Account</th>
+					<th class="quantity">Quantity</th>
+					<th class="price">Price</th>
+					<th class="tax-exempt">Tax Exempt</th>
+					<th class="total">Total</th>
+				</tr>
+				</thead>
+				<tbody id="customers-sales-create-form-lines">
+
+				</tbody>
+			</table>
 		</div>
 
-		<div class="row column-6">
-			<span class="sauna-cuddle wrapper text-small">
-				<span class="customers-sales-create-form-subtotal-label text-bold">Sub:</span>
-				<span class="customers-sales-create-form-subtotal-value" id="customers-sales-create-form-subtotal">$0.00</span>
-				<span class="customers-sales-create-form-taxes-label text-bold">Tax:</span>
-				<span class="customers-sales-create-form-taxes-value" id="customers-sales-create-form-taxes">$0.00</span>
-				<span class="customers-sales-create-form-total-label text-bold">Total:</span>
-				<span class="customers-sales-create-form-total-value" id="customers-sales-create-form-total">$0.00</span>
-				<span class="customers-sales-create-form-balance-label text-bold">Balance:</span>
-				<span class="customers-sales-create-form-balance-value" id="customers-sales-create-form-balance">$0.00</span>
-			</span>
+		<div class="totals-container totals-container-subtotal">
+			<span class="customers-sales-create-form-subtotal-label text-bold">Sub:</span>
+			<span class="customers-sales-create-form-subtotal-value" id="customers-sales-create-form-subtotal">{{currency_symbol}}0.00</span>
+		</div>
 
-			<span class="oop-oop customer-sales-create-new-buttons">&nbsp;</span>
+		<div class="totals-container totals-container-tax">
+			<span class="customers-sales-create-form-taxes-label text-bold">Tax:</span>
+			<span class="customers-sales-create-form-taxes-value" id="customers-sales-create-form-taxes">{{currency_symbol}}0.00</span>
+		</div>
+
+		<div class="totals-container totals-container-total">
+			<span class="customers-sales-create-form-total-label text-bold">Total:</span>
+			<span class="customers-sales-create-form-total-value" id="customers-sales-create-form-total">{{currency_symbol}}0.00</span>
+		</div>
+
+		<div class="totals-container totals-container-balance">
+			<span class="customers-sales-create-form-balance-label text-bold">Balance:</span>
+			<span class="customers-sales-create-form-balance-value" id="customers-sales-create-form-balance">{{currency_symbol}}0.00</span>
+		</div>
+
+		<div class="form-action-buttons">
 			<span class="oop customer-sales-create-new-buttons">
 				<a href="#" id="customers-sales-create-form-cancel" class="button">Cancel</a>
 			</span>
@@ -171,22 +201,29 @@
 
 	</div>
 
-	<div id="customers-sales-create-form-send" class="form bump-down color-force-green hidden" rel="save"><!-- Toggle "save" / "send" -->
-		<div class="row single column-6">
-			<span class="oop inline-label text-center">
-				<div class="checkbox manual"><input type="checkbox" class="send-form" name="send-email" value="1"></div> Email
-			</span>
-			<span class="oop-oop-oop">
+	<div id="customers-sales-create-form-send" class="form bump-down color-force-green" rel="save" style="display:none;"><!-- Toggle "save" / "send" -->
+		<div class="record customer-sale-send">
+			<span class="customer-sale-send-email">
+				<div class="checkbox manual">
+					<input type="checkbox" class="send-form" name="send-email" value="1">
+				</div>
+				Email
 				<input type="text" name="email" class="send-form" value="">
 			</span>
-			<span class="oop-oop-oop inline-label text-center">
-				<div class="checkbox manual"><input type="checkbox" class="send-form" name="send-mail" value="1"></div> Print and Send by Mail
+			<span class="customer-sale-send-mail">
+				<div class="checkbox manual">
+					<input type="checkbox" class="send-form" name="send-mail" value="1"></div>
+				Print and Send by Mail
 			</span>
-			<span class="oop-oop-oop inline-label text-center">
-				<div class="checkbox manual"><input type="checkbox" class="send-form" name="send-done" value="1"></div> Already Sent to Customer
+			<span class="customer-sale-send-done">
+				<div class="checkbox manual">
+					<input type="checkbox" class="send-form" name="send-done" value="1"></div>
+				Already Sent to Customer
 			</span>
-			<span class="oop"><a href="#" class="button" id="customers-sales-create-form-send-cancel">Cancel</a></span>
-			<span class="oop"><a href="#" class="button" id="customers-sales-create-form-send-submit">Submit</a></span>
+			<span class="customer-sale-send-actions">
+				<a href="#" id="customers-sales-create-form-send-cancel">Cancel</a> |
+				<a href="#" id="customers-sales-create-form-send-submit">Submit</a>
+			</span>
 		</div>
 	</div>
 	
@@ -237,26 +274,42 @@
 	<br>
 </div>
 
-<div id="customers-sales-create-form-lines-line-template" class="hidden">
-	<div class="customers-sales-create-form-lines-line row column-6">
-		<span class="ehhh-sexy-lady"><input type="text" class="line-description" name="line-description"></span>
-		<span class="oop-oop-oop"><select name="line-account_id" class="account_id">
-			<option value="">&nbsp;</option>
-			{{#sale_income_accounts}}
-				{{^reserved}}
-					<option value="{{id}}" {{^type_income}}disabled="disabled"{{/type_income}} {{#selected}}selected="selected"{{/selected}}>{{{name_print}}}</option>
-				{{/reserved}}
-			{{/sale_income_accounts}}
-		</select></span>
-		<span class="oop"><input type="text" class="line-quantity" name="line-quantity" val="0.00"></span>
-		<span class="oop"><input type="text" class="line-price" name="line-price" val="0.00"></span>
-		<span class="oop" style="font-size: 12px; padding-top: 5px;">
-			<div class="checkbox manual line-tax-exempt" style="margin-right: 3px;"><input type="checkbox" class="tax-exempt" name="line-tax-exempt" val="1"></div> Exempt
-		</span>
-		<span class="oop"><input type="text" class="line-total" name="line-total" readonly="readonly" value="0.00"></span>
-		<input type="hidden" name="sale-line-key" value="SALELINEKEY">
-	</div>
-</div>
+
+<table class="hidden">
+	<tbody id="customers-sales-create-form-lines-line-template">
+		<tr class="customers-sales-create-form-lines-line">
+			<td>
+				<input type="text" class="line-description" name="line-description">
+			</td>
+			<td>
+				<select name="line-account_id" class="account_id">
+					<option value="">&nbsp;</option>
+					{{#sale_income_accounts}}
+						{{^reserved}}
+							<option value="{{id}}" {{^type_income}}disabled="disabled"{{/type_income}} {{#selected}}selected="selected"{{/selected}}>{{{name_print}}}</option>
+						{{/reserved}}
+					{{/sale_income_accounts}}
+				</select>
+			</td>
+			<td>
+				<input type="text" class="line-quantity" name="line-quantity" value="0.00">
+			</td>
+			<td>
+				<input type="text" class="line-price" name="line-price" value="0.00">
+			</td>
+			<td>
+				<label>
+					<input type="checkbox" class="tax-exempt" name="line-tax-exempt" value="1">
+					Exempt
+				</label>
+			</td>
+			<td>
+				<span class="oop"><input type="text" class="line-total" name="line-total" readonly="readonly" value="0.00"></span>
+				<input type="hidden" name="sale-line-key" value="SALELINEKEY">
+			</td>
+		</tr>
+	</tbody>
+</table>
 
 <div id="customers-sales-send-template" class="hidden">
 	<li class="customer-sale customer-sale-send color-force-green">
@@ -302,45 +355,49 @@
 <div class="modal-dialog" id="customers-sales-dialog-customer-create">
 	<div class="text-bold text-medium">Create New Customer</div>
 	<div class="form bump-down">
-		<div class="row column-4 labels">
-			<span class="oop-oop">First Name</span>
-			<span class="oop-oop">Last Name</span>
+		<div class="form-element form-element-first-name">
+			<label>First Name</label>
+			<input type="text" name="first_name">
 		</div>
-		<div class="row column-4">
-			<span class="oop-oop"><input type="text" name="first_name"></span>
-			<span class="oop-oop"><input type="text" name="last_name"></span>
+
+		<div class="form-element form-element-last-name">
+			<label>Last Name</label>
+			<input type="text" name="last_name">
 		</div>
-		<div class="row column-4 labels">
-			<span class="oppa-gangnam-style">Email Address</span>
+
+		<div class="form-element form-element-company-name">
+			<label>Company Name</label>
+			<input type="text" name="company_name">
 		</div>
-		<div class="row column-4">
-			<span class="oppa-gangnam-style"><input type="text" name="email"></span>
+
+		<div class="form-element form-element-email">
+			<label>Email Address</label>
+			<input type="text" name="email">
 		</div>
-		<div class="row column-4 labels">
-			<span class="oop-oop">Phone Number</span>
-			<span class="oop-oop">Fax Number</span>
+
+		<div class="form-element form-element-phone-number">
+			<label>Phone Number</label>
+			<input type="text" name="phone_number">
 		</div>
-		<div class="row column-4">
-			
-			<span class="oop-oop"><input type="text" name="phone_number"></span>
-			<span class="oop-oop"><input type="text" name="fax_number"></span>
+
+		<div class="form-element form-element-fax-number">
+			<label>Fax Number</label>
+			<input type="text" name="fax_number">
 		</div>
-		<div class="row column-4 labels">
-			<span class="oop-oop">Company Name</span>
-			<span class="oop-oop">Terms/Receivable Account</span>
+
+		<div class="form-element form-element-fax-number">
+			<label>Terms/Receivable Account</label>
+			<div class="select">
+				<select name="default_account_id" {{#customer_receivable_account_default}}data-default="{{id}}"{{/customer_receivable_account_default}}>
+					<option value="">&nbsp;</option>
+					{{#customer_receivable_accounts}}
+						{{^reserved}}
+							<option value="{{id}}" {{^receivable}}disabled="disabled"{{/receivable}} {{#selected}}selected="selected"{{/selected}}>{{{name_print}}}</option>
+						{{/reserved}}
+					{{/customer_receivable_accounts}}
+				</select>
+			</div>
 		</div>
-		<div class="row column-4">
-			<span class="oop-oop"><input type="text" name="company_name"></span>
-			<span class="oop-oop"><div class="select"><select name="default_account_id" {{#customer_receivable_account_default}}data-default="{{id}}"{{/customer_receivable_account_default}}>
-				<option value="">&nbsp;</option>
-				{{#customer_receivable_accounts}}
-					{{^reserved}}
-						<option value="{{id}}" {{^receivable}}disabled="disabled"{{/receivable}} {{#selected}}selected="selected"{{/selected}}>{{{name_print}}}</option>
-					{{/reserved}}
-				{{/customer_receivable_accounts}}
-			</select></div></span>
-		</div>
-		<!-- Email Phone Fax Account -->
 	</div>
 </div>
 
@@ -348,55 +405,41 @@
 	<input type="hidden" name="customer_id" value="">
 	<div class="text-bold text-medium">Create New Address</div>
 	<div class="form bump-down">
-		<div class="row column-4 labels">
-			<span class="oppa-gangnam-style">Address Line 1</span>
+		<div class="form-element form-element-address1">
+			<label>Address 1</label>
+			<input type="text" name="address1">
 		</div>
-		<div class="row column-4">
-			<span class="oppa-gangnam-style"><input type="text" name="address1"></span>
+
+		<div class="form-element form-element-address2">
+			<label>Address 2</label>
+			<input type="text" name="address2">
 		</div>
-		<div class="row column-4 labels">
-			<span class="oppa-gangnam-style">Address Line 2</span>
+
+		<div class="form-element form-element-city">
+			<label>City</label>
+			<input type="text" name="city">
 		</div>
-		<div class="row column-4">
-			<span class="oppa-gangnam-style"><input type="text" name="address2"></span>
+
+		<div class="form-element form-element-state">
+			<label>State</label>
+			<input type="text" name="state">
 		</div>
-		<div class="row column-4 labels">
-			<span class="oop-oop">City</span>
-			<span class="oop-oop">State</span>
+
+		<div class="form-element form-element-zip">
+			<label>Postal</label>
+			<input type="text" name="zip">
 		</div>
-		<div class="row column-4">
-			<span class="oop-oop"><input type="text" name="city"></span>
-			<span class="oop-oop"><input type="text" name="state"></span>
-		</div>
-		<div class="row column-4 labels">
-			<span class="oop-oop">Zip</span>
-			<span class="oop-oop">Country</span>
-		</div>
-		<div class="row column-4">
-			<span class="oop-oop"><input type="text" name="zip"></span>
-			<span class="oop-oop"><div class="select"><select tabindex="13" name="country" tabindex="15" {{#default_country}}data-default="{{code}}"{{/default_country}}>
-				<option value="">&nbsp;</option>
-				{{#countries}}
-					<option value="{{code}}" {{#default}}selected="selected"{{/default}}>{{name}}</option>
-				{{/countries}}
-			</select></div></span>
+
+		<div class="form-element form-element-country">
+			<label>Country</label>
+			<div class="select">
+				<select tabindex="13" name="country" tabindex="15" {{#default_country}}data-default="{{code}}"{{/default_country}}>
+					<option value="">&nbsp;</option>
+					{{#countries}}
+						<option value="{{code}}" {{#default}}selected="selected"{{/default}}>{{name}}</option>
+					{{/countries}}
+				</select>
+			</div>
 		</div>
 	</div>
 </div>
-
-<!--
-$('#customers-sales-dialog-customer-create').modaldialog({
-	width: 500,
-	buttons: { 
-		"Cancel": function() { $(this).dialog("close"); },
-		"Save Customer": function() { $(this).dialog("close"); }
-	}
-});
-$('#customers-sales-dialog-address-create').modaldialog({
-	width: 500,
-	buttons: { 
-		"Cancel": function() { $(this).dialog("close"); },
-		"Save Address": function() { $(this).dialog("close"); }
-	}
-});
--->

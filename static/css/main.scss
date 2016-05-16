@@ -1,0 +1,147 @@
+/**
+ * BeansBooks
+ * Copyright (C) System76, Inc.
+ * 
+ * This file is part of BeansBooks.
+ * 
+ * BeansBooks is free software; you can redistribute it and/or modify
+ * it under the terms of the BeansBooks Public License.
+ * 
+ * BeansBooks is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * See the BeansBooks Public License for more details.
+ * 
+ * You should have received a copy of the BeansBooks Public License
+ * along with BeansBooks; if not, email info@beansbooks.com.
+ *
+ * Original Author: David Overcash <david@system76.com>,<funnylookinhat@gmail.com> 
+ */
+
+@import "bourbon/bourbon";
+@import "ubuntu-webfont";
+@import "reset";
+@import "bitters/base";
+@import "neat/neat";
+
+
+// The main wrapper will be the primary outer container that's set to at most 1200px.
+.wrapper {
+	@include outer-container(1050px);
+	padding: 0 1em;
+}
+
+// Top-page header includes the logo and utility links
+div.header {
+	.links {
+		float: right;
+		
+		li {
+			display: inline-block;
+			margin: 0 1em;
+		}
+	}
+}
+
+
+// "Masthead", the primary navigation across the top.
+.masthead {
+	font-size: 110%;
+	li {
+		display: inline-block;
+		
+		a {
+			display: inline-block;
+			line-height: 2em;
+			padding: 0 1em;
+		}
+	}
+}
+
+.tabs {
+	margin-top: 1em;
+	
+	ul {
+		border-collapse: collapse;
+		border-bottom-width: 1px;
+		border-bottom-style: solid;
+	}
+	
+	li {
+		float: left;
+		border-width: 1px;
+		border-style: solid;
+		z-index: 2;
+		position: relative;
+		top: 1px;
+
+		a {
+			display: inline-block;
+			line-height: 2em;
+			padding: 0 1em;
+		}
+		
+		&:last-child {
+			float: none;
+			display: inline-block;
+		}
+	}
+}
+
+body.dash {
+	@import "pages/dash";
+}
+
+body.customers-sales,
+body.customers-invoices {
+	// These two pages share styles for some reason.
+	@import "pages/customers-sales";
+}
+
+body.customers-payments {
+	@import "pages/customers-payments";
+}
+
+body.customers-customers,
+body.customers-customer {
+	@import "pages/customers-customers";
+}
+
+body.auth {
+	@import "pages/auth";
+}
+
+#please-wait-dialog {
+	// This gets displayed with javascript.
+	display: none;
+	overflow: hidden;
+}
+
+.ui-button-text-only .ui-button-text {
+	// These get styling as buttons, so the internal text doesn't need their own padding as well.
+	padding: 0;
+}
+
+// Evil utility classes, but used because they're in the original system.
+.text-bold {
+	font-weight: bold;
+}
+.text-right {
+	text-align: right;
+}
+.text-left {
+	text-align: left;
+}
+.text-center {
+	text-align: center;
+}
+
+div.footer {
+	margin-top: 2em;
+	border-top-width: 1px;
+	border-top-style: solid;
+}
+
+
+// THEMES!
+@import "themes/default";

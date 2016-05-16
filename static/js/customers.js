@@ -198,7 +198,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 				});
 			} else {
 				$sendSale = $($('#customers-sales-send-template').html());
-				$sendSale.addClass('hidden');
+				//$sendSale.addClass('hidden');
 				$sendSale.attr('rel',$sale.attr('rel'));
 				$sendSale.find('input[name="email"]').val($sale.find('input.email').val());
 				$sale.after($sendSale);
@@ -214,53 +214,61 @@ along with BeansBooks; if not, email info@beansbooks.com.
 			}
 		});
 
-		$('#customers-sales-sales .customer-sale-send .customer-sale-send-email .checkbox').live('click',function(e) {
-			e.preventDefault();
-			$checkbox = $(this).find('input[type="checkbox"]');
-			if( $checkbox.is(':checked') ) {
-				$checkbox.attr('checked',false);
-				checkboxUpdate($checkbox);
-			} else {
-				$checkbox.attr('checked','checked');
-				checkboxUpdate($checkbox);
-				$doneCheckbox = $(this).closest('.customer-sale-send').find('input[name="send-done"]');
-				$doneCheckbox.attr('checked',false);
-				checkboxUpdate($doneCheckbox);
-			}
-		});
+		/**
+		 * Function to untoggle appropriate checkboxes when one or the other is selected.
+		 * 
+		 * For example, the 'DONE' checkbox will deactivate the other two,
+		 * while the other two will deactivate the done checkbox.
+		 */
+		$('.customer-sale-send input[type=checkbox], .customer-sale-invoice input[type=checkbox]')
+			.live('change',function(e) {
+				var $this = $(this), name = $this.attr('name'),
+					$rec = $this.closest('.record'),
+					$email = $rec.find('input[name=send-email]'),
+					$mail = $rec.find('input[name=send-mail]'),
+					$done = $rec.find('input[name=send-done]'),
+					isChecked = $this.is(':checked');
+				
+				// First thing, issue the parent updater to ensure that class names match.
+				checkboxUpdate($this);
+				
+				if(name == 'send-done' && isChecked){
+					// Ensure that the other two are unchecked.
+					$email.attr('checked', false);
+					checkboxUpdate($email);
+					$mail.attr('checked', false);
+					checkboxUpdate($mail);
+				}
+				else if(name != 'send-done'){
+					$done.attr('checked', false);
+					checkboxUpdate($done);
+				}
+			});
 
-		$('#customers-sales-sales .customer-sale-send .customer-sale-send-mail .checkbox').live('click',function(e) {
-			e.preventDefault();
-			$checkbox = $(this).find('input[type="checkbox"]');
-			if( $checkbox.is(':checked') ) {
-				$checkbox.attr('checked',false);
-				checkboxUpdate($checkbox);
-			} else {
-				$checkbox.attr('checked','checked');
-				checkboxUpdate($checkbox);
-				$doneCheckbox = $(this).closest('.customer-sale-send').find('input[name="send-done"]');
-				$doneCheckbox.attr('checked',false);
-				checkboxUpdate($doneCheckbox);
-			}
-		});
-
-		$('#customers-sales-sales .customer-sale-send .customer-sale-send-done .checkbox').live('click',function(e) {
-			e.preventDefault();
-			$checkbox = $(this).find('input[type="checkbox"]');
-			if( $checkbox.is(':checked') ) {
-				$checkbox.attr('checked',false);
-				checkboxUpdate($checkbox);
-			} else {
-				$checkbox.attr('checked','checked');
-				checkboxUpdate($checkbox);
-				$emailCheckbox = $(this).closest('.customer-sale-send').find('input[name="send-email"]');
-				$mailCheckbox = $(this).closest('.customer-sale-send').find('input[name="send-mail"]');
-				$emailCheckbox.attr('checked',false);
-				$mailCheckbox.attr('checked',false);
-				checkboxUpdate($emailCheckbox);
-				checkboxUpdate($mailCheckbox);
-			}
-		});
+		/**
+		 * Helper method along with the above change to ensure that the email is checked when the user starts typing something in.
+		 */
+		$('.customer-sale-send input[name=email], .customer-sale-invoice input[name=email]')
+			.live('keyup',function(e) {
+				var $this = $(this), val = $this.val(),
+					$rec = $this.closest('.record'),
+					$email = $rec.find('input[name=send-email]'),
+					$done = $rec.find('input[name=send-done]');
+				
+				if(val){
+					// There is a value typed in!
+					$email.attr('checked', 'checked');
+					checkboxUpdate($email);
+	
+					$done.attr('checked', false);
+					checkboxUpdate($done);
+				}
+				else{
+					// No value, simply uncheck it.
+					$email.attr('checked', false);
+					checkboxUpdate($email);
+				}
+			});
 
 		$('#customers-sales-sales .customer-sale-send .send-cancel').live('click',function(e) {
 			e.preventDefault();
@@ -288,7 +296,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 						$oldSale = $('#customers-sales-sales .customer-sale:not(.customer-sale-send)[rel="'+data.data.sale.id+'"]');
 						$sendSale = $('#customers-sales-sales .customer-sale.customer-sale-send[rel="'+data.data.sale.id+'"]');
 						$newSale = $(data.data.sale.html)
-						$newSale.addClass('hidden');
+						//$newSale.addClass('hidden');
 						$oldSale.after($newSale);
 						$sendSale.slideUp();
 						$oldSale.slideUp(function() {
@@ -326,7 +334,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 				});
 			} else {
 				$sendSale = $($('#customers-sales-invoice-template').html());
-				$sendSale.addClass('hidden');
+				//$sendSale.addClass('hidden');
 				$sendSale.attr('rel',$sale.attr('rel'));
 				$sendSale.find('input[name="email"]').val($sale.find('input.email').val());
 				$sale.after($sendSale);
@@ -338,84 +346,6 @@ along with BeansBooks; if not, email info@beansbooks.com.
 				} else {
 					$sendSale.slideDown();
 				}
-			}
-		});
-
-		$('#customers-sales-sales .customer-sale-invoice .customer-sale-send-email .checkbox').live('click',function(e) {
-			e.preventDefault();
-			$checkbox = $(this).find('input[type="checkbox"]');
-			if( $checkbox.is(':checked') ) {
-				$checkbox.attr('checked',false);
-				checkboxUpdate($checkbox);
-			} else {
-				$checkbox.attr('checked','checked');
-				checkboxUpdate($checkbox);
-				$doneCheckbox = $(this).closest('.customer-sale-invoice').find('input[name="send-done"]');
-				$doneCheckbox.attr('checked',false);
-				checkboxUpdate($doneCheckbox);
-				$noneCheckbox = $(this).closest('.customer-sale-invoice').find('input[name="send-none"]');
-				$noneCheckbox.attr('checked',false);
-				checkboxUpdate($noneCheckbox);
-			}
-		});
-
-		$('#customers-sales-sales .customer-sale-invoice .customer-sale-send-mail .checkbox').live('click',function(e) {
-			e.preventDefault();
-			$checkbox = $(this).find('input[type="checkbox"]');
-			if( $checkbox.is(':checked') ) {
-				$checkbox.attr('checked',false);
-				checkboxUpdate($checkbox);
-			} else {
-				$checkbox.attr('checked','checked');
-				checkboxUpdate($checkbox);
-				$doneCheckbox = $(this).closest('.customer-sale-invoice').find('input[name="send-done"]');
-				$doneCheckbox.attr('checked',false);
-				checkboxUpdate($doneCheckbox);
-				$noneCheckbox = $(this).closest('.customer-sale-invoice').find('input[name="send-none"]');
-				$noneCheckbox.attr('checked',false);
-				checkboxUpdate($noneCheckbox);
-			}
-		});
-
-		$('#customers-sales-sales .customer-sale-invoice .customer-sale-send-done .checkbox').live('click',function(e) {
-			e.preventDefault();
-			$checkbox = $(this).find('input[type="checkbox"]');
-			if( $checkbox.is(':checked') ) {
-				$checkbox.attr('checked',false);
-				checkboxUpdate($checkbox);
-			} else {
-				$checkbox.attr('checked','checked');
-				checkboxUpdate($checkbox);
-				$emailCheckbox = $(this).closest('.customer-sale-invoice').find('input[name="send-email"]');
-				$emailCheckbox.attr('checked',false);
-				checkboxUpdate($emailCheckbox);
-				$mailCheckbox = $(this).closest('.customer-sale-invoice').find('input[name="send-mail"]');
-				$mailCheckbox.attr('checked',false);
-				checkboxUpdate($mailCheckbox);
-				$noneCheckbox = $(this).closest('.customer-sale-invoice').find('input[name="send-none"]');
-				$noneCheckbox.attr('checked',false);
-				checkboxUpdate($noneCheckbox);
-			}
-		});
-
-		$('#customers-sales-sales .customer-sale-invoice .customer-sale-send-none .checkbox').live('click',function(e) {
-			e.preventDefault();
-			$checkbox = $(this).find('input[type="checkbox"]');
-			if( $checkbox.is(':checked') ) {
-				$checkbox.attr('checked',false);
-				checkboxUpdate($checkbox);
-			} else {
-				$checkbox.attr('checked','checked');
-				checkboxUpdate($checkbox);
-				$emailCheckbox = $(this).closest('.customer-sale-invoice').find('input[name="send-email"]');
-				$emailCheckbox.attr('checked',false);
-				checkboxUpdate($emailCheckbox);
-				$mailCheckbox = $(this).closest('.customer-sale-invoice').find('input[name="send-mail"]');
-				$mailCheckbox.attr('checked',false);
-				checkboxUpdate($mailCheckbox);
-				$doneCheckbox = $(this).closest('.customer-sale-invoice').find('input[name="send-done"]');
-				$doneCheckbox.attr('checked',false);
-				checkboxUpdate($doneCheckbox);
 			}
 		});
 
@@ -455,7 +385,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 									$oldSale = $('#customers-sales-sales .customer-sale:not(.customer-sale-invoice)[rel="'+data.data.sale.id+'"]');
 									$sendSale = $('#customers-sales-sales .customer-sale.customer-sale-invoice[rel="'+data.data.sale.id+'"]');
 									$newSale = $(data.data.sale.html)
-									$newSale.addClass('hidden');
+									//$newSale.addClass('hidden');
 									$oldSale.after($newSale);
 									$sendSale.slideUp();
 									$oldSale.slideUp(function() {
@@ -478,54 +408,6 @@ along with BeansBooks; if not, email info@beansbooks.com.
 				},
 				'json'
 			);
-		});
-
-		$('#customers-sales-create-form-invoice .checkbox').live('click', function (e) {
-			e.preventDefault();
-			$checkbox = $(this).find('input[type="checkbox"]');
-			if( $checkbox.is(':checked') ) {
-				$checkbox.attr('checked',false);
-				checkboxUpdate($checkbox);
-			} else {
-				$checkbox.attr('checked','checked');
-				checkboxUpdate($checkbox);
-				if( $checkbox.attr('name') == "send-done" ) {
-					$emailCheckbox = $('#customers-sales-create-form-invoice input[name="send-email"]');
-					$mailCheckbox = $('#customers-sales-create-form-invoice input[name="send-mail"]');
-					$emailCheckbox.attr('checked',false);
-					$mailCheckbox.attr('checked',false);
-					checkboxUpdate($emailCheckbox);
-					checkboxUpdate($mailCheckbox);
-				} else {
-					$doneCheckbox = $('#customers-sales-create-form-invoice input[name="send-done"]');
-					$doneCheckbox.attr('checked',false);
-					checkboxUpdate($doneCheckbox);
-				}
-			}
-		});
-
-		$('#customers-sales-create-form-send .checkbox').live('click', function (e) {
-			e.preventDefault();
-			$checkbox = $(this).find('input[type="checkbox"]');
-			if( $checkbox.is(':checked') ) {
-				$checkbox.attr('checked',false);
-				checkboxUpdate($checkbox);
-			} else {
-				$checkbox.attr('checked','checked');
-				checkboxUpdate($checkbox);
-				if( $checkbox.attr('name') == "send-done" ) {
-					$emailCheckbox = $('#customers-sales-create-form-send input[name="send-email"]');
-					$mailCheckbox = $('#customers-sales-create-form-send input[name="send-mail"]');
-					$emailCheckbox.attr('checked',false);
-					$mailCheckbox.attr('checked',false);
-					checkboxUpdate($emailCheckbox);
-					checkboxUpdate($mailCheckbox);
-				} else {
-					$doneCheckbox = $('#customers-sales-create-form-send input[name="send-done"]');
-					$doneCheckbox.attr('checked',false);
-					checkboxUpdate($doneCheckbox);
-				}
-			}
 		});
 
 		$('#customers-sales-create-form-refund').live('click', function (e) {
@@ -615,7 +497,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 														$oldSale = $('#customers-sales-sales .customer-sale[rel="'+$('#customers-sales-create input[name="refund_sale_id"]').val()+'"]:first-child');
 														createSaleClearForm();
 														$newSale = $(data.data.sale.html);
-														$newSale.addClass('hidden');
+														//$newSale.addClass('hidden');
 														$oldSale.find('a.refund').remove();
 														$('#customers-sales-sales .customer-sale:first').after($newSale);
 														$newSale.slideDown(function() {
@@ -677,7 +559,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 														createSaleClearForm();
 											
 														$newSale = $(data.data.sale.html);
-														$newSale.addClass('hidden');
+														//$newSale.addClass('hidden');
 
 														if( $('#customers-sales-sales .customer-sale[rel="'+data.data.sale.id+'"]').length > 0 ) {
 															$oldSale = $('#customers-sales-sales .customer-sale[rel="'+data.data.sale.id+'"]:first');
@@ -725,7 +607,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 														$('#customers-sales-create-form-send').slideUp();
 														createSaleClearForm();
 														$newSale = $(data.data.sale.html);
-														$newSale.addClass('hidden');
+														//$newSale.addClass('hidden');
 														$('#customers-sales-sales .customer-sale:first').after($newSale);
 														$newSale.slideDown(function() {
 															$noSales = $('#customers-sales-sales .customer-sale:last');
@@ -771,7 +653,6 @@ along with BeansBooks; if not, email info@beansbooks.com.
 		});
 
 		$('#customers-sales-create-form-onlysend').live('click', function (e) {
-			e.preventDefault();
 			if( $('#customers-sales-create-form-send').is(':visible') ) {
 				$('#customers-sales-create-form-send').slideUp();
 			} else if ( $('#customers-sales-create-form-invoice').is(':visible') ) {
@@ -783,6 +664,8 @@ along with BeansBooks; if not, email info@beansbooks.com.
 				$('#customers-sales-create-form-send').attr('rel','send');
 				$('#customers-sales-create-form-send').slideDown();
 			}
+			
+			return false;
 		});
 
 		// DELETE
@@ -817,12 +700,13 @@ along with BeansBooks; if not, email info@beansbooks.com.
 		});
 
 		$('#customers-sales-create-form-print').live('click', function (e) {
-			e.preventDefault();
 			printCustomerSale($('#customers-sales-create').attr('rel'));
+			return false;
 		});
 
 		$('#customers-sales-create-form-invoice-cancel').live('click', function (e) {
 			$('#customers-sales-create-form-invoice').slideUp();
+			return false;
 		});
 
 		$('#customers-sales-create-form-invoice-submit').live('click', function (e) {
@@ -852,7 +736,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 									$oldSale = $('#customers-sales-sales .customer-sale:not(.customer-sale-invoice)[rel="'+data.data.sale.id+'"]');
 									$sendSale = $('#customers-sales-sales .customer-sale.customer-sale-invoice[rel="'+data.data.sale.id+'"]');
 									$newSale = $(data.data.sale.html)
-									$newSale.addClass('hidden');
+									//$newSale.addClass('hidden');
 									$oldSale.after($newSale);
 									$sendSale.slideUp();
 									$oldSale.slideUp(function() {
@@ -1131,7 +1015,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 							$oldSale = $('#customers-sales-sales .customer-sale[rel="'+$('#customers-sales-create input[name="refund_sale_id"]').val()+'"]:first-child');
 							createSaleClearForm();
 							$newSale = $(data.data.sale.html);
-							$newSale.addClass('hidden');
+							//$newSale.addClass('hidden');
 							$oldSale.find('a.refund').remove();
 							$('#customers-sales-sales .customer-sale:first').after($newSale);
 							$newSale.slideDown(function() {
@@ -1157,7 +1041,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 							createSaleClearForm();
 							
 							$newSale = $(data.data.sale.html);
-							$newSale.addClass('hidden');
+							//$newSale.addClass('hidden');
 
 							if( $('#customers-sales-sales .customer-sale[rel="'+data.data.sale.id+'"]').length > 0 ) {
 								$oldSale = $('#customers-sales-sales .customer-sale[rel="'+data.data.sale.id+'"]:first');
@@ -1187,7 +1071,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 						} else {
 							createSaleClearForm();
 							$newSale = $(data.data.sale.html);
-							$newSale.addClass('hidden');
+							//$newSale.addClass('hidden');
 							$('#customers-sales-sales .customer-sale:first').after($newSale);
 							$newSale.slideDown(function() {
 								$noSales = $('#customers-sales-sales .customer-sale:last');
@@ -1211,7 +1095,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 		// Add one option.
 		if( $('#customers-sales-create-form-lines').length ) {
 			$newSaleLine = $($('#customers-sales-create-form-lines-line-template').html());
-			$newSaleLine.addClass('hidden');
+			//$newSaleLine.addClass('hidden');
 			$('#customers-sales-create-form-lines').append($newSaleLine);
 			$newSaleLine.find('input.line-description').autocomplete(saleDescriptionParams);
 			$newSaleLine.slideDown(function () {
@@ -1226,7 +1110,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 				$(this).closest('.customers-sales-create-form-lines-line').is(':last-child') &&
 				$(this).closest('.customers-sales-create-form-lines-line').find('select.account_id').val().length > 0 ) {
 				$newSaleLine = $($('#customers-sales-create-form-lines-line-template').html());
-				$newSaleLine.addClass('hidden');
+				//$newSaleLine.addClass('hidden');
 
 				if( $('#customers-sales-create input[name="refund_sale_id"]').val().length > 0 &&
 					$('#customers-sales-refund-default_account_id').val().length > 0 ) {
@@ -1571,7 +1455,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 						
 						// Add Customer to top.
 						$customer = $(data.data.customer.html);
-						$customer.addClass('hidden');
+						//$customer.addClass('hidden');
 						$('#customers-customers-customers li:first').after($customer);
 						$customer.slideDown();
 						
@@ -1850,7 +1734,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 							}
 							$oldAddress = $('#customers-customer-addresses-container .customer-address[rel="'+$form.attr('rel')+'"]');
 							$newAddress = $(data.data.address.html);
-							$newAddress.addClass('hidden');
+							//$newAddress.addClass('hidden');
 							$oldAddress.after($newAddress);
 							hidePleaseWait();
 							$form.slideUp(function() {
@@ -1886,7 +1770,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 								$('#customers-customer-addresses-container .customer-address div.default-billing').hide();
 							}
 							$newAddress = $(data.data.address.html);
-							$newAddress.addClass('hidden');
+							//$newAddress.addClass('hidden');
 							if( $('#customers-customer-addresses-container div.clear:last').length > 0 ) {
 								$('#customers-customer-addresses-container div.clear:last').before($newAddress);
 							} else {
@@ -1987,7 +1871,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 						} else {
 							$oldPayment = $('#customers-payments-payments .customer-payment[rel="'+$('#customers-payments-create').attr('rel')+'"]');
 							$newPayment = $(data.data.payment.html);
-							$newPayment.addClass('hidden');
+							//$newPayment.addClass('hidden');
 							$oldPayment.after($newPayment);
 							$oldPayment.slideUp(function() {
 								$(this).remove();
@@ -2034,7 +1918,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 							}
 						} else {
 							$newPayment = $(data.data.payment.html);
-							$newPayment.addClass('hidden');
+							//$newPayment.addClass('hidden');
 							if( $('#customers-payments-payments .customer-payment:not(:first-child)').length < 5 &&
 								$('#customers-payments-payments .customer-payment:last-child').find('.customer-payment-date').length > 0 ) {
 								$('#customers-payments-payments .customer-payment:first-child').after($newPayment)
@@ -3161,7 +3045,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 					for( index in data.data.sales ) {
 						if( $('#customers-payments-create-sales .customer-batchpayment[rel="'+data.data.sales[index].id+'"]').length == 0 ) {
 							$newSaleFormLine = $(data.data.sales[index].html);
-							$newSaleFormLine.addClass('hidden');
+							//$newSaleFormLine.addClass('hidden');
 							$('#customers-payments-create-sales .customer-batchpayment:last').after($newSaleFormLine);
 							// $newSaleFormLine.slideDown();
 						}
@@ -3320,7 +3204,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 				} else {
 					for( index in data.data.payments ) {
 						$payment = $(data.data.payments[index].html);
-						$payment.addClass('hidden');
+						//$payment.addClass('hidden');
 						$('#customers-payments-payments .customer-payment:last').after($payment);
 					}
 					generateSearchPaging($('#customers-payments-payments-paging'), data.data, 5);
