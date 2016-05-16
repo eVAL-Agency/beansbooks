@@ -30,8 +30,9 @@ class View_Customers_customers extends View_Template {
 			return $this->_customers;
 
 		$this->_customers = array();
-		foreach( $this->customer_search_result->data->customers as $customer )
+		foreach( $this->customer_search_result->data->customers as $customer ){
 			$this->_customers[] = $this->_customer_array($customer);
+		}
 
 		return $this->_customers;
 	}
