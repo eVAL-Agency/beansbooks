@@ -59,8 +59,8 @@ class Beans_Vendor_Expense_Update_Check extends Beans_Vendor_Expense {
 			throw new Exception("Expense check number cannot be changed after it has been reconciled.");
 
 		if( isset($this->_data->check_number) AND 
-			strlen($this->_data->check_number) > 16 )
-			throw new Exception("Invalid expense check number: can be no more than 16 characters.");
+			strlen($this->_data->check_number) > 32 )
+			throw new Exception("Invalid expense check number: can be no more than 32 characters.");
 
 		if( isset($this->_data->check_number) )
 			$this->_expense->create_transaction->reference = $this->_data->check_number;

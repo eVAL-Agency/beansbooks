@@ -160,8 +160,8 @@ class Beans_Tax extends Beans {
 			! strlen($tax->code) )
 			throw new Exception("Invalid tax code: none provided.");
 
-		if( strlen($tax->code) > 16 )
-			throw new Exception("Invalid tax code: maximum length of 16 characters.");
+		if( strlen($tax->code) > 32 )
+			throw new Exception("Invalid tax code: maximum length of 32 characters.");
 
 		if( ! $tax->name OR 
 			! strlen($tax->name) )

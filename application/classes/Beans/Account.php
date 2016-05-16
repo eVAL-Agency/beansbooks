@@ -631,8 +631,8 @@ class Beans_Account extends Beans {
 			! strlen($account->code) )
 			throw new Exception("Invalid account code: none provided.");
 
-		if( strlen($account->code) > 16 )
-			throw new Exception("Invalid account code: maximum of 16 characters.");
+		if( strlen($account->code) > 32 )
+			throw new Exception("Invalid account code: maximum of 32 characters.");
 
 	}
 

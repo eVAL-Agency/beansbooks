@@ -826,8 +826,8 @@ class Beans_Customer extends Beans {
 			throw new Exception("Invalid payment date: that financial year is already closed.");
 
 		if( $payment->code AND 
-			strlen($payment->code) > 16 )
-			throw new Exception("Invalid payment number: maximum length of 16 characters.");
+			strlen($payment->code) > 32 )
+			throw new Exception("Invalid payment number: maximum length of 32 characters.");
 
 		if( $payment->description AND 
 			strlen($payment->description) > 128 )
@@ -1039,29 +1039,29 @@ class Beans_Customer extends Beans {
 			! strlen($sale->code) )
 			throw new Exception("Invalid sale number: none provided.");
 
-		if( strlen($sale->code) > 16 )
-			throw new Exception("Invalid sale number: maximum of 16 characters.");
+		if( strlen($sale->code) > 32 )
+			throw new Exception("Invalid sale number: maximum of 32 characters.");
 
 		if( (
 				$sale->reference OR
 				strlen($sale->reference)
 			) AND 
-			strlen($sale->reference) > 16 )
-			throw new Exception("Invalid sale order number: maximum of 16 characters.");
+			strlen($sale->reference) > 32 )
+			throw new Exception("Invalid sale order number: maximum of 32 characters.");
 
 		if( (
 				$sale->alt_reference OR
 				strlen($sale->alt_reference)
 			) AND 
-			strlen($sale->alt_reference) > 16 )
-			throw new Exception("Invalid sale purchase order number: maximum of 16 characters.");
+			strlen($sale->alt_reference) > 32 )
+			throw new Exception("Invalid sale purchase order number: maximum of 32 characters.");
 
 		if( (
 				$sale->aux_reference OR
 				strlen($sale->aux_reference)
 			) AND 
-			strlen($sale->aux_reference) > 16 )
-			throw new Exception("Invalid sale quote number: maximum of 16 characters.");
+			strlen($sale->aux_reference) > 32 )
+			throw new Exception("Invalid sale quote number: maximum of 32 characters.");
 
 		if( $sale->sent AND
 			! (

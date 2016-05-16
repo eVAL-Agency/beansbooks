@@ -820,29 +820,29 @@ class Beans_Vendor extends Beans {
 			! strlen($purchase->code) )
 			throw new Exception("Invalid purchase invoice number: none provided.");
 
-		if( strlen($purchase->code) > 16 )
-			throw new Exception("Invalid purchase invoice number: maximum of 16 characters.");
+		if( strlen($purchase->code) > 32 )
+			throw new Exception("Invalid purchase invoice number: maximum of 32 characters.");
 
 		if( (
 				$purchase->reference OR
 				strlen($purchase->reference)
 			) AND 
-			strlen($purchase->reference) > 16 )
-			throw new Exception("Invalid purchase quote number: maximum of 16 characters.");
+			strlen($purchase->reference) > 32 )
+			throw new Exception("Invalid purchase quote number: maximum of 32 characters.");
 
 		if( (
 				$purchase->alt_reference OR
 				strlen($purchase->alt_reference)
 			) AND 
-			strlen($purchase->alt_reference) > 16 )
-			throw new Exception("Invalid purchase SO number: maximum of 16 characters.");
+			strlen($purchase->alt_reference) > 32 )
+			throw new Exception("Invalid purchase SO number: maximum of 32 characters.");
 
 		if( (
 				$purchase->aux_reference OR
 				strlen($purchase->aux_reference) 
 			) AND
-			strlen($purchase->aux_reference) > 16 )
-			throw new Exception("Invalid purchase vendor invoice number: maximum of 16 characters.");
+			strlen($purchase->aux_reference) > 32 )
+			throw new Exception("Invalid purchase vendor invoice number: maximum of 32 characters.");
 
 		if( ! $purchase->date_created OR 
 			! strlen($purchase->date_created) )
@@ -1011,12 +1011,12 @@ class Beans_Vendor extends Beans {
 			throw new Exception("Invalid payment date: that financial year is already closed.");
 
 		if( $payment->code AND 
-			strlen($payment->code) > 16 )
-			throw new Exception("Invalid payment number: maximum length of 16 characters.");
+			strlen($payment->code) > 32 )
+			throw new Exception("Invalid payment number: maximum length of 32 characters.");
 
 		if( $payment->reference AND 
-			strlen($payment->code) > 16 )
-			throw new Exception("Invalid check number: maximum length of 16 characters.");
+			strlen($payment->code) > 32 )
+			throw new Exception("Invalid check number: maximum length of 32 characters.");
 
 		if( $payment->description AND 
 			strlen($payment->description) > 128 )

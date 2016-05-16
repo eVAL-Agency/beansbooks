@@ -52,8 +52,8 @@ class Beans_Vendor_Purchase_Update_Invoice extends Beans_Vendor_Purchase {
 		$requires_calibration = FALSE;
 
 		if( $this->_data->invoice_number AND 
-			strlen($this->_data->invoice_number) > 16 )
-			throw new Exception("Invalid invoice number: maximum of 16 characters.");
+			strlen($this->_data->invoice_number) > 32 )
+			throw new Exception("Invalid invoice number: maximum of 32 characters.");
 
 		if( $this->_data->invoice_number )
 			$purchase->aux_reference = $this->_data->invoice_number;

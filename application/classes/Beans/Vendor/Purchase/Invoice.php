@@ -120,12 +120,12 @@ class Beans_Vendor_Purchase_Invoice extends Beans_Vendor_Purchase {
 			throw new Exception("Invalid invoice date: must be on or after the creation date of ".$this->_purchase->date_created.".");
 
 		if( $this->_invoice_number AND 
-			strlen($this->_invoice_number) > 16 )
-			throw new Exception("Invalid invoice number: maximum of 16 characters.");
+			strlen($this->_invoice_number) > 32 )
+			throw new Exception("Invalid invoice number: maximum of 32 characters.");
 
 		if( $this->_so_number AND 
-			strlen($this->_so_number) > 16 )
-			throw new Exception("Invalid SO number: maximum of 16 characters.");
+			strlen($this->_so_number) > 32 )
+			throw new Exception("Invalid SO number: maximum of 32 characters.");
 
 		// Figure out if we need to create an adjusting entry.
 		if( $this->_invoice_amount AND 
