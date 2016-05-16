@@ -13,11 +13,6 @@
 		<link rel="apple-touch-icon" href="{{root_wdir}}static/images/favicon-144.png" />
 		<link rel="icon" type="image/png" href="{{root_wdir}}static/images/favicon.png">
 		<!--[if IE]><link rel="SHORTCUT ICON" href="{{root_wdir}}static/images/favicon.ico"/><![endif]-->
-
-		<!-- Google Web Font - Ubuntu -->
-		<!-- <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,400italic" rel="stylesheet" type="text/css"> -->
-		<!-- Locally hosted Web Font - Ubuntu -->
-		<link href="{{root_wdir}}static/css/ubuntu-webfont/ubuntu-webfont.css" rel="stylesheet" type="text/css" charset="utf-8">
 		
 		<!-- Custom jQuery UI Theme -->
 		<link href="{{root_wdir}}static/css/jqueryui/jquery-ui-1.8.22.custom.css" rel="stylesheet" type="text/css">
@@ -26,14 +21,7 @@
 		<link href="{{root_wdir}}static/css/select2/select2.3.2.2.css" rel="stylesheet" type="text/css">
 
 		<!-- Good resets -->
-		<link href="{{root_wdir}}static/css/h5bp.css" type="text/css" rel="stylesheet" charset="utf-8">
 		<link href="{{root_wdir}}static/css/main.css?v={{beansbooks_version}}" type="text/css" rel="stylesheet" charset="utf-8">
-		<link href="{{root_wdir}}static/css/form.css?v={{beansbooks_version}}" type="text/css" rel="stylesheet" charset="utf-8">
-		<link href="{{root_wdir}}static/css/dash.css?v={{beansbooks_version}}" type="text/css" rel="stylesheet" charset="utf-8">
-		<link href="{{root_wdir}}static/css/accounts.css?v={{beansbooks_version}}" type="text/css" rel="stylesheet" charset="utf-8">
-		<link href="{{root_wdir}}static/css/customers.css?v={{beansbooks_version}}" type="text/css" rel="stylesheet" charset="utf-8">
-		<link href="{{root_wdir}}static/css/vendors.css?v={{beansbooks_version}}" type="text/css" rel="stylesheet" charset="utf-8">
-		<link href="{{root_wdir}}static/css/setup.css?v={{beansbooks_version}}" type="text/css" rel="stylesheet" charset="utf-8">
 		
 		<!-- use the html5shiv for older IE versions -->
 		<!--[if lt IE 9]>
@@ -47,7 +35,7 @@
             window.ROOT_WDIR = "{{root_wdir}}";
         </script>
 	</head>
-	<body class="{{site_section}}">
+	<body class="{{site_section}} {{body_classes}}">
 
 		<div class="wrapper">
 

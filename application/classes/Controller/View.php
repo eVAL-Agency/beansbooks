@@ -57,7 +57,13 @@ class Controller_View extends Controller {
 		// Assign some basic variables that are used by the template class.
 		$this->_view->request = $this->request;
 		
+		// Tack on the root web directory of this site
 		$this->_view->root_wdir = ROOT_WDIR;
+		
+		// Tack on the class+method of this current page for direct targeting from CSS.
+		$c = strtolower($this->request->controller());
+		$m = strtolower($this->request->action());
+		$this->_view->body_classes = $c . '-' . $m;
 	}
 
 	public function after() {
