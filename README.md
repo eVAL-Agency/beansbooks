@@ -23,11 +23,23 @@ support for php-mysqli allows use for MariaDB and MySQL 10.1 without problem.
 
 The site logo now displays on every page to provide better and more consistent branding for your business.
 
+### Site Themes/Colours!
+
+No longer are you stuck with just one color for the site.  You can pick between TWO colors now!
+(More to come shortly, I just needed to get something out the door to get back on schedule.)
+
 ### Relative Path Fixes
 
 The entire Beans codebase has been updated to allow installation in a subdirectory instead of just the root path!
 This means that it can be installed along-side other applications much easier.
 This addresses the upstream bug https://github.com/system76/beansbooks/issues/238.
+
+### Increased Length on Code/Aux/Alt/Ref
+
+All code, aux, alt, and ref fields have been increased from 16 characters to 32 characters.
+This is useful for PO numbers, transaction numbers, etc.
+
+Since we import data directly from Amazon, the 16 character was simply too limiting.
 
 
 ## Getting Started
