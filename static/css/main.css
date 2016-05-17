@@ -1003,6 +1003,35 @@ div.header .links {
       float: none;
       display: inline-block; }
 
+div.system-message {
+  text-align: center;
+  padding: 0.5em 1em;
+  font-size: 1.25em; }
+
+#please-wait-dialog {
+  display: none;
+  overflow: hidden; }
+
+.ui-button-text-only .ui-button-text {
+  padding: 0; }
+
+.text-bold {
+  font-weight: bold; }
+
+.text-right {
+  text-align: right; }
+
+.text-left {
+  text-align: left; }
+
+.text-center {
+  text-align: center; }
+
+div.footer {
+  margin-top: 2em;
+  border-top-width: 1px;
+  border-top-style: solid; }
+
 body.dash .dash-index-column {
   float: left;
   display: block;
@@ -1970,38 +1999,15 @@ body.customers-customer #customers-sales-sales li {
     body.customers-customer #customers-sales-sales li .customer-sale-actions:last-child {
       margin-right: 0; }
 
-body.auth form {
+body.auth-index form {
   padding-bottom: 2em;
   margin-bottom: 1em;
   border-bottom-width: 1px;
   border-bottom-style: solid; }
-body.auth .content {
+body.auth-index div.form.login-form {
   max-width: 40em;
-  margin: 0 auto; }
-
-#please-wait-dialog {
-  display: none;
-  overflow: hidden; }
-
-.ui-button-text-only .ui-button-text {
-  padding: 0; }
-
-.text-bold {
-  font-weight: bold; }
-
-.text-right {
-  text-align: right; }
-
-.text-left {
-  text-align: left; }
-
-.text-center {
-  text-align: center; }
-
-div.footer {
-  margin-top: 2em;
-  border-top-width: 1px;
-  border-top-style: solid; }
+  margin: 0 auto;
+  border-width: 0; }
 
 body.theme-default .text-red {
   color: #9a0000; }
@@ -2072,6 +2078,9 @@ body.theme-default .ui-widget-content .ui-state-focus,
 body.theme-default .ui-widget-header .ui-state-focus {
   background: none #11519a;
   color: white; }
+body.theme-default div.system-message.error {
+  background-color: #ffecec;
+  color: black; }
 
 body.theme-green .text-red {
   color: #9a0000; }

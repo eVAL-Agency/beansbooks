@@ -22,6 +22,33 @@ along with BeansBooks; if not, email info@beansbooks.com.
 
 	$(function() {
 
+		/**
+		 * On changing a theme, automatically switch the body classes so the user can see the change immediately.
+		 * 
+		 * (See, this is what's called a comment!  It explains what's going on in the contained code....... </sarcasm>)
+		 */
+		$('.form-element-theme select').change(function() {
+			var $this = $(this),
+				val = $this.val(),
+				$body = $('body'),
+				classlist = $body.attr('class').split(' '), i, c;
+			
+			for(i in classlist){
+				c = classlist[i];
+				if(c.indexOf('theme-') === 0){
+					// Remove any current theme from the body.
+					$body.removeClass(c);
+				}
+			}
+			
+			// Then lastly, add the new class name.
+			if(val == ''){
+				// Default theme isn't default, it's just "".
+				val = 'default';
+			}
+			$body.addClass('theme-' + val);
+		});
+
 		$('.setup-settings-save').click(function(e) {
 			e.preventDefault();
 			showPleaseWait();

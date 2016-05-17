@@ -118,3 +118,10 @@ div.form {
 	background: none $siteactive;
 	color: $sitebg;
 }
+
+div.system-message {
+	&.error {
+		background-color: lighten($red, 66%);
+		color: darken($red, 33%);
+	}
+}
