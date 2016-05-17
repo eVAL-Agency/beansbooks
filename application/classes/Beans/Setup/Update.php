@@ -26,51 +26,70 @@ class Beans_Setup_Update extends Beans_Setup {
 		parent::__construct($data);
 	}
 
-	protected function _get_next_update($current_version)
-	{
-		$updates = $this->_find_all_updates(Kohana::list_files('classes/beans/setup/update/v'));
+	/**
+	 * Get the next version string to upgrade to based on the filenames
+	 * 
+	 * If the next file doesn't exist, false is returned instead.
+	 * 
+	 * @param string $current_version
+	 * @return bool|string
+	 */
+	protected function _get_next_update($current_version) {
+		$updates = $this->_find_all_updates(Kohana::list_files('classes/Beans/Setup/Update/V'));
 
-		if( ! in_array($current_version, $updates) )
+		if( ! in_array($current_version, $updates) ){
 			$updates[] = $current_version;
-
-		// PHP 5.4+ Required for this...  using an ugly hack instead.
-		// sort($updates,'SORT_NATURAL');
-		natsort($updates);
-
-		$new_updates = array();
-		foreach( $updates as $update )
-				$new_updates[] = $update;
-
-		$updates = $new_updates;
-
-		$i = 0;
-		$target_version = FALSE;
-		while( ! $target_version && 
-			   $i < count($updates) )
-		{
-			if( $updates[$i] == $current_version &&
-				isset($updates[$i+1]) )
-				$target_version = $updates[$i+1];
-
-			$i++;
 		}
-
-		return $target_version;
+		
+		// 'Naturally' sort these entries so the versions all line up in order.
+		sort($updates, SORT_NATURAL);
+		
+		// Find the current version in the list of versions.
+		$pos = array_search($current_version, $updates);
+		if($pos === false){
+			// No match found :(
+			return false;
+		}
+		
+		// The next is actually what I want.
+		$pos++;
+		if(!isset($updates[$pos])){
+			// No future upgrade available!
+			return false;
+		}
+		
+		return $updates[$pos];
 	}
 
-	protected function _find_all_updates($files)
-	{
+	/**
+	 * Sanitize the filenames out from the upgrade files to return only the raw version string itself.
+	 * 
+	 * @param array $files
+	 * @return array
+	 */
+	protected function _find_all_updates($files) {
 		$return_array = array();
 
-		foreach( $files as $file )
-		{
-			if( is_array($file) )
-			{
+		foreach( $files as $file ) {
+			if( is_array($file) ) {
 				$return_array = array_merge($return_array,$this->_find_all_updates($file));
 			}
-			else
-			{
-				$return_array[] = str_replace('.php','',str_replace('/','.',substr($file,strpos($file,'/beans/setup/update/v/')+strlen('/beans/setup/update/v/'))));
+			else {
+				// Kohana returns an array of filenames; the calling script expects them to only contain the version string itself.
+				// As such, trim off the prefix and extension from the files.
+				if(preg_match('/.*\.php$/', $file)){
+					// Extension
+					$file = substr($file, 0, -4);
+				}
+				
+				if(($pos = strpos($file, 'Update/V/')) !== false){
+					// Path and directory
+					$file = substr($file, $pos+9);
+				}
+				
+				// lastly, convert slashes to dots.
+				$file = str_replace('/', '.', $file);
+				$return_array[] = $file;
 			}
 		}
 

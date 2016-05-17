@@ -38,22 +38,28 @@ class Beans_Setup_Update_Run extends Beans_Setup_Update {
 		if( ! $target_version )
 			throw new Exception("The currently installed version is ".$current_version." and the upgrade path target is ".$this->_BEANS_VERSION.", however there is no next version upgrade to complete.");
 		
-		if( ! isset($this->_data->target_version) ||
+		if(
+			! isset($this->_data->target_version) ||
 			! $this->_data->target_version ||
-			$this->_data->target_version != $target_version )
+			$this->_data->target_version != $target_version
+		){
 			throw new Exception("Invalid update target provided. Expected: ".$target_version);
+		}
 
 		// Check if update script exists.
-		$update_script = 'Beans_Setup_Update_V_'.implode('_',explode('.',$target_version));
+		$update_script = 'Beans_Setup_Update_V_' . str_replace('.', '_', $target_version);
 
-		if( ! class_exists($update_script) )
+		if( ! class_exists($update_script) ){
 			throw new Exception("Fatal error: update script not found.  Looking for: ".$update_script);
+		}
+			
 		
 		$update = new $update_script($this->_beans_data_auth());
 		$update_result = $update->execute();
 
-		if( ! $update_result->success )
+		if( ! $update_result->success ){
 			throw new Exception("Error running update: ".$update_result->error.$update_result->auth_error.$update_result->config_error);
+		}
 
 		// Update beans current version.
 		$this->_beans_setting_set('BEANS_VERSION',$target_version);
@@ -62,9 +68,9 @@ class Beans_Setup_Update_Run extends Beans_Setup_Update {
 
 		$new_target_version = $this->_get_next_update($target_version);
 		
-		if( ! $new_target_version &&
-			$this->_beans_setting_get('BEANS_VERSION') == $this->_BEANS_VERSION )
+		if( ! $new_target_version && $this->_beans_setting_get('BEANS_VERSION') == $this->_BEANS_VERSION ){
 			$new_target_version = $this->_BEANS_VERSION;
+		}
 
 		return (object)array(
 			'current_version' => $this->_beans_setting_get('BEANS_VERSION'),

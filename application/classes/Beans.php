@@ -19,7 +19,9 @@ along with BeansBooks; if not, email info@beansbooks.com.
 
 class Beans {
 
-	protected $_BEANS_VERSION = '1.5.2';
+	// BB uses a VERY janky upgrade system which doesn't seem to support proper version strings,
+	// so use another '.' instead of a fork annotation '~'.
+	protected $_BEANS_VERSION = '1.5.2.eVAL1'; 
 
 	private $_beans_settings;
 	private $_beans_config;
