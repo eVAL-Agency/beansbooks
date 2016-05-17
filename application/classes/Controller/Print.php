@@ -46,6 +46,8 @@ class Controller_Print extends Controller {
 		$customers_print_sale = new View_Customers_Print_Sale();
 		$customers_print_sale->sale = $customer_sale_lookup_result->data->sale;
 		$customers_print_sale->setup_company_list_result = $this->_setup_company_list_result;
+		
+		$this->_setupView($customers_print_sale);
 
 		die($customers_print_sale->render());
 	}
@@ -69,6 +71,8 @@ class Controller_Print extends Controller {
 		$customers_print_payment = new View_Customers_Print_Payment();
 		$customers_print_payment->payment = $customer_payment_lookup_result->data->payment;
 		$customers_print_payment->setup_company_list_result = $this->_setup_company_list_result;
+
+		$this->_setupView($customers_print_payment);
 		
 		die($customers_print_payment->render());
 	}
@@ -92,6 +96,8 @@ class Controller_Print extends Controller {
 		$vendors_print_expense = new View_Vendors_Print_Expense();
 		$vendors_print_expense->expense = $vendor_expense_lookup_result->data->expense;
 		$vendors_print_expense->setup_company_list_result = $this->_setup_company_list_result;
+
+		$this->_setupView($vendors_print_expense);
 		
 		die($vendors_print_expense->render());
 	}
@@ -115,6 +121,8 @@ class Controller_Print extends Controller {
 		$vendors_print_purchase = new View_Vendors_Print_Purchase();
 		$vendors_print_purchase->purchase = $vendor_purchase_lookup_result->data->purchase;
 		$vendors_print_purchase->setup_company_list_result = $this->_setup_company_list_result;
+
+		$this->_setupView($vendors_print_purchase);
 		
 		die($vendors_print_purchase->render());
 	}
@@ -160,6 +168,8 @@ class Controller_Print extends Controller {
 		$vendors_print_payment->vendor_address = $default_address;
 		$vendors_print_payment->payment = $vendor_payment_lookup_result->data->payment;
 		$vendors_print_payment->setup_company_list_result = $this->_setup_company_list_result;
+
+		$this->_setupView($vendors_print_payment);
 		
 		die($vendors_print_payment->render());
 	}
@@ -182,6 +192,8 @@ class Controller_Print extends Controller {
 		$vendors_print_taxpayment = new View_Vendors_Print_Taxpayment();
 		$vendors_print_taxpayment->setup_company_list_result = $this->_setup_company_list_result;
 		$vendors_print_taxpayment->payment = $tax_payment_lookup_result->data->payment;
+
+		$this->_setupView($vendors_print_taxpayment);
 
 		die($vendors_print_taxpayment->render());
 	}
@@ -235,6 +247,8 @@ class Controller_Print extends Controller {
 			'writeoff_amount' => NULL,
 		);
 
+		$this->_setupView($vendors_print_taxpayment);
+
 		die($vendors_print_taxpayment->render());
 	}
 
@@ -251,6 +265,34 @@ class Controller_Print extends Controller {
 		
 		$setup_company_list = new Beans_Setup_Company_List($this->_beans_data_auth());
 		$this->_setup_company_list_result = $setup_company_list->execute();
+	}
+
+	/**
+	 * Setup a view with useful variables that SHOULD be set, if this system called Controller_View like the rest of the system does :/
+	 * 
+	 * @param $view
+	 */
+	private function _setupView($view){
+		$b = new Beans();
+		// Tack on the root web directory of this site
+		$view->root_wdir = ROOT_WDIR;
+
+		$cl = ['print'];
+		
+		// Tack on the class+method of this current page for direct targeting from CSS.
+		$c = strtolower($this->request->controller());
+		$m = strtolower($this->request->action());
+		$cl[] = $c . '-' . $m;
+		
+		// And the site theme
+		$t = $b->getSetting('theme');
+		$cl[] = 'theme-' . ($t == '' ? 'default' : $t);
+		
+		$view->body_classes = implode(' ', $cl);
+		
+		$view->payment_remittance_info = $b->getSetting('remittance_info');
+		
+		$view->beansbooks_version = $b->get_version();
 	}
 
 }

@@ -47,6 +47,8 @@ div.header {
 // "Masthead", the primary navigation across the top.
 .masthead {
 	font-size: 110%;
+	margin-top: 1em;
+	
 	li {
 		display: inline-block;
 		
@@ -149,6 +151,14 @@ body.customers-customer {
 
 body.auth-index {
 	@import "pages/auth";
+}
+
+body.setup-settings {
+	@import "pages/setup-settings";
+}
+
+body.print {
+	@import "pages/print";
 }
 
 

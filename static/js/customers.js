@@ -3194,7 +3194,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 			window.ROOT_WDIR + 'customers/json/paymentsearch',
 			{
 				search_terms: $('#customers-payments-payments-search').val(),
-				count: 5,
+				count: 20,
 				page: $('#customers-payments-payments-search').attr('rel')
 			},
 			function(data) {

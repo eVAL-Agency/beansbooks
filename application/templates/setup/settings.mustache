@@ -1,45 +1,71 @@
 <form action="" method="POST" enctype="multipart/form-data">
 	<input type="hidden" name="MAX_FILE_SIZE" value="10000000">
 	<div id="setup-settings-company" class="form bump-down">
-		
-		<div class="row column-4 labels">
-			<span class="oop-oop">Company Name</span>
-			<span class="oop-oop">Email</span>
-			<span class="oop-oop">Phone</span>
-			<span class="oop-oop">Fax</span>
+
+		<div class="form-element form-element-company-name">
+			<label>Company Name</label>
+			<input type="text" name="company_name" value="{{#settings}}{{company_name}}{{/settings}}">
 		</div>
 
-		<div class="row column-4">
-			<span class="oop-oop"><input type="text" name="company_name" value="{{#settings}}{{company_name}}{{/settings}}" tabindex="1"></span>
-			<span class="oop-oop"><input type="text" name="company_email" value="{{#settings}}{{company_email}}{{/settings}}" tabindex="2"></span>
-			<span class="oop-oop"><input type="text" name="company_phone" value="{{#settings}}{{company_phone}}{{/settings}}" tabindex="3"></span>
-			<span class="oop-oop"><input type="text" name="company_fax" value="{{#settings}}{{company_fax}}{{/settings}}" tabindex="4"></span>
+		<div class="form-element form-element-company-email">
+			<label>Company Email</label>
+			<input type="text" name="company_email" value="{{#settings}}{{company_email}}{{/settings}}">
 		</div>
 
-		<div class="row column-6 labels setup-settings-grid-company-cutoff">
-			<span class="oppa-gangnam-style">Address Line 1</span>
-			<span class="oop-oop-oop">State / Province</span>
+		<div class="form-element form-element-company-phone">
+			<label>Company Phone</label>
+			<input type="text" name="company_phone" value="{{#settings}}{{company_phone}}{{/settings}}">
 		</div>
 
-		<div class="row column-6 setup-settings-grid-company-cutoff">
-			<span class="oppa-gangnam-style"><input type="text" name="company_address_address1" value="{{#settings}}{{company_address_address1}}{{/settings}}" tabindex="6"></span>
-			<span class="oop-oop-oop"><input type="text" name="company_address_state" value="{{#settings}}{{company_address_state}}{{/settings}}" tabindex="9"></span>
+		<div class="form-element form-element-company-fax">
+			<label>Company Fax</label>
+			<input type="text" name="company_fax" value="{{#settings}}{{company_fax}}{{/settings}}">
 		</div>
 
-		<div class="row column-6 setup-settings-grid-company-logo">
+		<div class="form-element form-element-company-address-address1">
+			<label>Address Line 1</label>
+			<input type="text" name="company_address_address1" value="{{#settings}}{{company_address_address1}}{{/settings}}">
+		</div>
+
+		<div class="form-element form-element-company-address-address2">
+			<label>Address Line 2</label>
+			<input type="text" name="company_address_address2" value="{{#settings}}{{company_address_address2}}{{/settings}}">
+		</div>
+
+		<div class="form-element form-element-company-address-city">
+			<label>City</label>
+			<input type="text" name="company_address_city" value="{{#settings}}{{company_address_city}}{{/settings}}">
+		</div>
+
+		<div class="form-element form-element-company-address-state">
+			<label>State / Province</label>
+			<input type="text" name="company_address_state" value="{{#settings}}{{company_address_state}}{{/settings}}">
+		</div>
+
+		<div class="form-element form-element-company-address-zip">
+			<label>Zip / Postal</label>
+			<input type="text" name="company_address_zip" value="{{#settings}}{{company_address_zip}}{{/settings}}">
+		</div>
+
+		<div class="form-element form-element-company-address-country">
+			<label>Country</label>
+			<div class="select"><select name="company_address_country" value="{{#settings}}{{company_address_country}}{{/settings}}">
+				<option value="">&nbsp;</option>
+				{{#countries}}
+					<option value="{{code}}" {{#selected}}selected="selected"{{/selected}}>{{name}}</option>
+				{{/countries}}
+			</select></div>
+		</div>
+
+		<div class="form-element form-element-company-logo-src">
+			<label>Site Logo</label>
 			<div class="setup-settings-grid-company-logo-wrapper">
 				<a href="#" id="setup-settings-grid-company-logo-link">{{^company_logo_src}}Click to Upload{{/company_logo_src}}{{#company_logo_src}}<img src="data:{{type}};base64,{{data}}">{{/company_logo_src}}</a>
 				<span id="setup-settings-grid-company-logo-pending" class="text-small hidden">Please click &quot;Save&quot; to upload.</span>
 				<input type="file" style="display:none;" name="logo">
 			</div>
-			<div class="setup-settings-grid-company-logo-text text-center text-medium bump-down">
-				<span class="text-bold">Company Logo</span><br>
-				Displayed on Invoices, PO's<br>
-				and Reports. 150 px by 50 px<br>
-				recommended<br>
-			</div>
 		</div>
-		
+
 		<div class="form-element form-element-theme">
 			<label>Site Theme</label>
 			<select name="theme">
@@ -47,54 +73,26 @@
 					<option value="{{key}}" {{#selected}}selected="selected"{{/selected}}>{{title}}</option>
 				{{/themes}}
 			</select>
-			<p class="form-description">Don't forget to save the page to keep this theme selection!</p>
 		</div>
-
-		<div class="row column-6 labels setup-settings-grid-company-cutoff">
-			<span class="oppa-gangnam-style">Address Line 2</span>
-			<span class="oop-oop-oop">Zip / Postal</span>
+		
+		<div class="form-element form-element-company-fye">
+			<label>Fiscal Year End</label>
+			<input type="text" name="company_fye" value="{{#settings}}{{company_fye}}{{/settings}}">
 		</div>
-
-		<div class="row column-6 setup-settings-grid-company-cutoff">
-			<span class="oppa-gangnam-style"><input type="text" name="company_address_address2" value="{{#settings}}{{company_address_address2}}{{/settings}}" tabindex="7"></span>
-			<span class="oop-oop-oop"><input type="text" name="company_address_zip" value="{{#settings}}{{company_address_zip}}{{/settings}}" tabindex="10"></span>
-		</div>
-
-		<div class="row column-6 labels setup-settings-grid-company-cutoff">
-			<span class="oppa-gangnam-style">City</span>
-			<span class="oop-oop-oop">Country</span>
-		</div>
-
-		<div class="row column-6 setup-settings-grid-company-cutoff">
-			<span class="oppa-gangnam-style"><input type="text" name="company_address_city" value="{{#settings}}{{company_address_city}}{{/settings}}" tabindex="8"></span>
-			<span class="oop-oop-oop"><div class="select"><select name="company_address_country" value="{{#settings}}{{company_address_country}}{{/settings}}" tabindex="11">
-				<option value="">&nbsp;</option>
-				{{#countries}}
-					<option value="{{code}}" {{#selected}}selected="selected"{{/selected}}>{{name}}</option>
-				{{/countries}}
-			</select></div></span>
-		</div>
-
-		<div class="clear"></div>
-
-		<div class="row column-6 labels">
-			<span class="oop-oop">Fiscal Year End</span>
-			<span class="oop">Currency</span>
-		</div>
-
-		<div class="row column-6">
-			<span class="oop-oop"><input type="text" name="company_fye" value="{{#settings}}{{company_fye}}{{/settings}}" tabindex="12"></span>
-			<span class="oop-oop"><div class="select"><select name="company_currency" {{#settings}}{{#company_currency}}data-default="{{company_currency}}"{{/company_currency}}{{/settings}}>
+		
+		<div class="form-element form-element-company-currency">
+			<label>Currency</label>
+			<div class="select"><select name="company_currency" {{#settings}}{{#company_currency}}data-default="{{company_currency}}"{{/company_currency}}{{/settings}}>
 				{{#currencies}}
 					<option value="{{symbol}}" {{#default}}selected="selected"{{/default}}>{{symbol}} - {{name}}</option>
 				{{/currencies}}
-			</select></div></span>
-			<span class="oppa-gangnam-style">&nbsp;</span>
-			<span class="oop-oop">&nbsp;</span>
-			<span class="oop"><a href="#" class="button setup-settings-cancel" tabindex="14">Cancel</a></span>
-			<span class="oop"><a href="#" class="button setup-settings-save" tabindex="15">Save</a></span>
+			</select></div>
 		</div>
-
+		
+		<div class="form-element form-element-remittance-info">
+			<label>Payment Remittance Info</label>
+			<textarea name="remittance_info">{{#settings}}{{remittance_info}}{{/settings}}</textarea>
+		</div>
 	</div>
 
 	<div class="bump-down-more">

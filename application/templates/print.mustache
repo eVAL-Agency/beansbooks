@@ -1,10 +1,13 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
-<html>
-	<body style="font-family: {{#monofont}}Courier, Courier New{{/monofont}}{{^monofont}}Helvetica, Verdana, Arial, sans-serif{{/monofont}};">
+<!DOCTYPE html>
+<html lang='en' style="margin:0;padding:0;">
+	<head>
+		<link href="{{root_wdir}}static/css/main.css?v={{beansbooks_version}}" type="text/css" rel="stylesheet" charset="utf-8">
+	</head>
+	<body class="{{body_classes}}" style="margin:0;padding:0;">
 		{{^noheader}}
-			{{{tableopen}}}
+			<table class="page-heading">
 				<tr>
-					<td style="padding-left: 3px; width: 50%; text-align: left; min-height: 50px; padding-bottom: 5px; font-size: 24px; vertical-align: bottom;">
+					<td class="page-heading-logo">
 						{{#companylogo}}
 							{{{companylogo}}}
 						{{/companylogo}}
@@ -12,7 +15,7 @@
 							{{companyname}}
 						{{/companylogo}}
 					</td>
-					<td style="padding-right: 2px; width: 50%; {{fontsizenormal}} text-align: right; min-height: 50px; padding-bottom: 5px;">
+					<td class="page-heading-info">
 						{{#companyinfo}}
 							{{address1}} {{address2}}<br>
 							{{city}}, {{state}} {{zip}}<br>
@@ -20,21 +23,10 @@
 						{{/companyinfo}}
 					</td>
 				</tr>
-				<tr>
-					<td style="width:100%; border: 1px solid {{borderdarkgreen}}; height: 0px; line-height: 0px; font-size: 0px;" colspan="2">&nbsp;</td>
-				</tr>
-				<tr>
-					<td style="width:100%; padding-top: 10px;  height: 0px; line-height: 0px; font-size: 0px;" colspan="2">&nbsp;</td>
-				</tr>
-			{{{tableclose}}}
+			</table>
 		{{/noheader}}
-		{{>content}}
-		<style>
-			html, body {
-				margin: 0;
-				padding: 0;
-				border: 0;
-			}
-		</style>
+		<div class="content">
+			{{>content}}	
+		</div>
 	</body>
 </html>

@@ -1,0 +1,58 @@
+div.form {
+	@include outer-container(8);
+	
+	.form-element-company-name {
+		@include span-columns(2 of 8);
+	}
+	.form-element-company-email {
+		@include span-columns(2 of 8);
+	}
+	.form-element-company-phone {
+		@include span-columns(2 of 8);
+	}
+	.form-element-company-fax {
+		@include span-columns(2 of 8);
+		@include omega();
+	}
+	
+	.form-element-company-address-address1 {
+		@include span-columns(4 of 8);
+	}
+	.form-element-company-address-address2 {
+		@include span-columns(4 of 8);
+		@include omega();
+	}
+	
+	.form-element-company-address-city {
+		@include span-columns(2 of 8);
+	}
+	.form-element-company-address-state {
+		@include span-columns(2 of 8);
+	}
+	.form-element-company-address-zip {
+		@include span-columns(2 of 8);
+	}
+	.form-element-company-address-country {
+		@include span-columns(2 of 8);
+		@include omega();
+	}
+	
+	.form-element-company-logo-src {
+		@include span-columns(2 of 8);
+	}
+	.form-element-theme {
+		@include span-columns(2 of 8);
+	}
+	.form-element-company-fye {
+		@include span-columns(2 of 8);
+	}
+	.form-element-company-currency {
+		@include span-columns(2 of 8);
+		@include omega();
+	}
+	
+	.form-element-remittance-info {
+		@include span-columns(8 of 8);
+		@include omega();
+	}
+}

@@ -136,6 +136,7 @@ class Controller_Setup extends Controller_View {
 				$data->settings->account_default_costofgoods = $this->request->post('account_default_costofgoods');
 				$data->settings->account_default_payable = $this->request->post('account_default_payable');
 				$data->settings->theme = $this->request->post('theme');
+				$data->settings->remittance_info = $this->request->post('remittance_info');
 
 				if( isset($_FILES['logo']) AND 
 					$_FILES['logo']['error'] == UPLOAD_ERR_OK )

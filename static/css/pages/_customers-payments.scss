@@ -6,30 +6,30 @@
 // Top payment listing section at the top of the page
 #customers-payments-payments {
 	li {
-		@include outer-container(12);
+		@include outer-container(20);
 
 		.customer-payment-date {
-			@include span-columns(2 of 12);
+			@include span-columns(4 of 20);
 		}
 
 		.customer-payment-type {
-			@include span-columns(2 of 12);
+			@include span-columns(3 of 20);
 		}
 
 		.customer-payment-reference {
-			@include span-columns(2 of 12);
+			@include span-columns(3 of 20);
 		}
 
 		.customer-payment-amount {
-			@include span-columns(2 of 12);
+			@include span-columns(2 of 20);
 		}
 
 		.customer-payment-account {
-			@include span-columns(2 of 12);
+			@include span-columns(4 of 20);
 		}
 
 		.customer-payment-actions {
-			@include span-columns(2 of 12);
+			@include span-columns(4 of 20);
 			@include omega();
 		}
 	}

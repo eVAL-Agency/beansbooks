@@ -974,7 +974,8 @@ div.header .links {
     margin: 0 1em; }
 
 .masthead {
-  font-size: 110%; }
+  font-size: 110%;
+  margin-top: 1em; }
   .masthead li {
     display: inline-block; }
     .masthead li a {
@@ -1466,7 +1467,7 @@ body.customers-payments #customers-payments-payments-search {
   float: right;
   width: 25%; }
 body.customers-payments #customers-payments-payments li {
-  max-width: 12;
+  max-width: 20;
   margin-left: auto;
   margin-right: auto; }
   body.customers-payments #customers-payments-payments li::after {
@@ -1476,43 +1477,43 @@ body.customers-payments #customers-payments-payments li {
   body.customers-payments #customers-payments-payments li .customer-payment-date {
     float: left;
     display: block;
-    margin-right: 2.35765%;
-    width: 14.70196%; }
+    margin-right: 1.40138%;
+    width: 18.8789%; }
     body.customers-payments #customers-payments-payments li .customer-payment-date:last-child {
       margin-right: 0; }
   body.customers-payments #customers-payments-payments li .customer-payment-type {
     float: left;
     display: block;
-    margin-right: 2.35765%;
-    width: 14.70196%; }
+    margin-right: 1.40138%;
+    width: 13.80883%; }
     body.customers-payments #customers-payments-payments li .customer-payment-type:last-child {
       margin-right: 0; }
   body.customers-payments #customers-payments-payments li .customer-payment-reference {
     float: left;
     display: block;
-    margin-right: 2.35765%;
-    width: 14.70196%; }
+    margin-right: 1.40138%;
+    width: 13.80883%; }
     body.customers-payments #customers-payments-payments li .customer-payment-reference:last-child {
       margin-right: 0; }
   body.customers-payments #customers-payments-payments li .customer-payment-amount {
     float: left;
     display: block;
-    margin-right: 2.35765%;
-    width: 14.70196%; }
+    margin-right: 1.40138%;
+    width: 8.73876%; }
     body.customers-payments #customers-payments-payments li .customer-payment-amount:last-child {
       margin-right: 0; }
   body.customers-payments #customers-payments-payments li .customer-payment-account {
     float: left;
     display: block;
-    margin-right: 2.35765%;
-    width: 14.70196%; }
+    margin-right: 1.40138%;
+    width: 18.8789%; }
     body.customers-payments #customers-payments-payments li .customer-payment-account:last-child {
       margin-right: 0; }
   body.customers-payments #customers-payments-payments li .customer-payment-actions {
     float: left;
     display: block;
-    margin-right: 2.35765%;
-    width: 14.70196%;
+    margin-right: 1.40138%;
+    width: 18.8789%;
     margin-right: 0; }
     body.customers-payments #customers-payments-payments li .customer-payment-actions:last-child {
       margin-right: 0; }
@@ -2009,6 +2010,163 @@ body.auth-index div.form.login-form {
   margin: 0 auto;
   border-width: 0; }
 
+body.setup-settings div.form {
+  max-width: 8;
+  margin-left: auto;
+  margin-right: auto; }
+  body.setup-settings div.form::after {
+    clear: both;
+    content: "";
+    display: table; }
+  body.setup-settings div.form .form-element-company-name {
+    float: left;
+    display: block;
+    margin-right: 3.57866%;
+    width: 22.316%; }
+    body.setup-settings div.form .form-element-company-name:last-child {
+      margin-right: 0; }
+  body.setup-settings div.form .form-element-company-email {
+    float: left;
+    display: block;
+    margin-right: 3.57866%;
+    width: 22.316%; }
+    body.setup-settings div.form .form-element-company-email:last-child {
+      margin-right: 0; }
+  body.setup-settings div.form .form-element-company-phone {
+    float: left;
+    display: block;
+    margin-right: 3.57866%;
+    width: 22.316%; }
+    body.setup-settings div.form .form-element-company-phone:last-child {
+      margin-right: 0; }
+  body.setup-settings div.form .form-element-company-fax {
+    float: left;
+    display: block;
+    margin-right: 3.57866%;
+    width: 22.316%;
+    margin-right: 0; }
+    body.setup-settings div.form .form-element-company-fax:last-child {
+      margin-right: 0; }
+  body.setup-settings div.form .form-element-company-address-address1 {
+    float: left;
+    display: block;
+    margin-right: 3.57866%;
+    width: 48.21067%; }
+    body.setup-settings div.form .form-element-company-address-address1:last-child {
+      margin-right: 0; }
+  body.setup-settings div.form .form-element-company-address-address2 {
+    float: left;
+    display: block;
+    margin-right: 3.57866%;
+    width: 48.21067%;
+    margin-right: 0; }
+    body.setup-settings div.form .form-element-company-address-address2:last-child {
+      margin-right: 0; }
+  body.setup-settings div.form .form-element-company-address-city {
+    float: left;
+    display: block;
+    margin-right: 3.57866%;
+    width: 22.316%; }
+    body.setup-settings div.form .form-element-company-address-city:last-child {
+      margin-right: 0; }
+  body.setup-settings div.form .form-element-company-address-state {
+    float: left;
+    display: block;
+    margin-right: 3.57866%;
+    width: 22.316%; }
+    body.setup-settings div.form .form-element-company-address-state:last-child {
+      margin-right: 0; }
+  body.setup-settings div.form .form-element-company-address-zip {
+    float: left;
+    display: block;
+    margin-right: 3.57866%;
+    width: 22.316%; }
+    body.setup-settings div.form .form-element-company-address-zip:last-child {
+      margin-right: 0; }
+  body.setup-settings div.form .form-element-company-address-country {
+    float: left;
+    display: block;
+    margin-right: 3.57866%;
+    width: 22.316%;
+    margin-right: 0; }
+    body.setup-settings div.form .form-element-company-address-country:last-child {
+      margin-right: 0; }
+  body.setup-settings div.form .form-element-company-logo-src {
+    float: left;
+    display: block;
+    margin-right: 3.57866%;
+    width: 22.316%; }
+    body.setup-settings div.form .form-element-company-logo-src:last-child {
+      margin-right: 0; }
+  body.setup-settings div.form .form-element-theme {
+    float: left;
+    display: block;
+    margin-right: 3.57866%;
+    width: 22.316%; }
+    body.setup-settings div.form .form-element-theme:last-child {
+      margin-right: 0; }
+  body.setup-settings div.form .form-element-company-fye {
+    float: left;
+    display: block;
+    margin-right: 3.57866%;
+    width: 22.316%; }
+    body.setup-settings div.form .form-element-company-fye:last-child {
+      margin-right: 0; }
+  body.setup-settings div.form .form-element-company-currency {
+    float: left;
+    display: block;
+    margin-right: 3.57866%;
+    width: 22.316%;
+    margin-right: 0; }
+    body.setup-settings div.form .form-element-company-currency:last-child {
+      margin-right: 0; }
+  body.setup-settings div.form .form-element-remittance-info {
+    float: left;
+    display: block;
+    margin-right: 3.57866%;
+    width: 100%;
+    margin-right: 0; }
+    body.setup-settings div.form .form-element-remittance-info:last-child {
+      margin-right: 0; }
+
+body.print table.page-heading td {
+  padding: 0 0 1em;
+  margin: 0;
+  vertical-align: top;
+  border-bottom-width: 2px; }
+body.print table.page-heading .page-heading-info {
+  text-align: right; }
+body.print .content table {
+  table-layout: auto; }
+  body.print .content table td {
+    vertical-align: top; }
+body.print .content .customer-header-info td {
+  border-bottom-width: 2px; }
+body.print .content .customer-header-info .customer-header-info-order {
+  text-align: right; }
+  body.print .content .customer-header-info .customer-header-info-order .order-title {
+    font-size: 1.6em;
+    font-weight: bold;
+    padding-bottom: 0.5em; }
+  body.print .content .customer-header-info .customer-header-info-order span.label {
+    display: inline-block; }
+  body.print .content .customer-header-info .customer-header-info-order span.value {
+    display: inline-block;
+    width: 7em; }
+body.print .content table.totals {
+  border-width: 1px;
+  border-style: solid;
+  font-weight: bold; }
+  body.print .content table.totals td {
+    border: 0; }
+  body.print .content table.totals td.total {
+    text-align: right; }
+body.print .content .payment-remittance-info {
+  text-align: center;
+  font-size: 1.5em; }
+
+body.theme-default body {
+  color: #404040; }
 body.theme-default .text-red {
   color: #9a0000; }
 body.theme-default a {
@@ -2055,6 +2213,17 @@ body.theme-default div.form {
   background-color: #e1eefc; }
   body.theme-default div.form .form-element {
     height: 5.25em; }
+    body.theme-default div.form .form-element textarea {
+      height: 3.3em; }
+body.theme-default table.page-heading td {
+  border-bottom-color: #11519a; }
+body.theme-default table.customer-header-info td {
+  border-bottom-color: #11519a; }
+body.theme-default table.totals {
+  border-color: #11519a;
+  background-color: #e1eefc; }
+body.theme-default .payment-remittance-info {
+  color: #4f4f4f; }
 body.theme-default .select2-container {
   width: 100%; }
 body.theme-default .select2-container-active .select2-choice, body.theme-default .select2-container-active .select2-choices {

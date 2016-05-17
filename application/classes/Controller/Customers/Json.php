@@ -1436,7 +1436,7 @@ class Controller_Customers_Json extends Controller_Json {
 		$page = $this->request->post('page');
 
 		if( ! $count )
-			$count = 5;
+			$count = 20;
 
 		if( ! $page ) 
 			$page = 0;

@@ -1,78 +1,7 @@
-<style>
-    .left {
-        text-align: left;
-    }
-    .center {
-        text-align: center;
-    }
-    .right {
-        text-align: right;
-    }
-
-    table tr th.line-item:first-child {
-        padding-left: 5px;
-    }
-    table tr th.line-item {
-        vertical-align: top;
-        padding-top: 4px;
-        padding-bottom: 4px;
-        font-weight: bold;
-        min-height: 24px;
-        {{fontsizenormal}}
-    }
-
-
-    table tr td {
-        vertical-align: top;
-    }
-    table tr td.line-item:first-child {
-        padding-left: 5px;
-        border-left: 0px none;
-    }
-    table tr td.line-item {
-        padding-top: 4px;
-        padding-bottom: 4px;
-        {{fontsizenormal}};
-        border-left: 1px solid {{borderdarkgreen}};
-    }
-    table tr td.line-item:last-child {
-        padding-right: 5px;
-    }
-    table tr td.line-item.odd {
-        background: {{backgroundlightgreen}};
-        -webkit-print-color-adjust:exact;
-    }
-
-
-    table tr.totals td:first-child {
-        padding-left: 5px;
-        border-left-width: 1px;
-    }
-    table tr.totals td {
-        font-weight: bold;
-        padding-top: 4px;
-        padding-bottom: 4px;
-        background: {{backgroundlightgreen}};
-        -webkit-print-color-adjust:exact;
-        border-color: {{borderdarkgreen}};
-        border-style: solid;
-        border-top-width: 1px;
-        border-bottom-width: 1px;
-        border-left-width: 0px;
-        border-right-width: 0px;
-        {{fontsizenormal}}
-    }
-    table tr.totals td:last-child {
-        padding-right: 5px;
-        text-align: right;
-        border-right-width: 1px;
-    }
-</style>
-
 <!-- The page header, containing logo, addresses, and overview -->
-{{{tableopen}}}
+<table class="customer-header-info">
 	<tr>
-		<td style="padding-left: 5px; width: 36%; {{fontsizenormal}} text-align: left; min-height: 80px; padding-bottom: 10px;">
+		<td class="customer-header-info-billing">
 			{{#billing}}
 				Bill To: {{company_name}}<br>
 				{{first_name}} {{last_name}}<br>
@@ -84,7 +13,7 @@
 				Bill To: {{#customer}}{{display_name}}{{/customer}}
 			{{/billing}}
 		</td>
-		<td style="padding-left: 5px; width: 36%; {{fontsizenormal}} text-align: left; min-height: 80px; padding-bottom: 10px;">
+		<td class="customer-header-info-shipping">
 			{{#shipping}}
 				Ship To: {{company_name}}<br>
 				{{first_name}} {{last_name}}<br>
@@ -96,58 +25,74 @@
 				Ship To: {{#customer}}{{display_name}}{{/customer}}
 			{{/shipping}}
 		</td>
-		<td style="padding-right: 5px; width: 28%; {{fontsizenormal}} text-align: right; min-height: 50px; padding-bottom: 10px;">
-			<span style="{{fontsizelarge}} font-weight: bold;">{{sale_title}}</span><br>
+		<td class="customer-header-info-order">
+			<div class="order-title">{{sale_title}}</div>
 			{{^invoiced}}
-				<span style="float: left; width: 75px; text-align: right;">Sale Date</span> {{sale_date_formatted}}<br>
-				<span style="float: left; width: 75px; text-align; right;">Total</span> {{sale_total_formatted}}<br>
+				<div class="sale-date">
+					<span class="label">Sale Date</span>
+					<span class="value">{{sale_date_formatted}}</span>	
+				</div>
+				<div class="sale-total">
+					<span class="label">Total</span>
+					<span class="value">{{sale_total_formatted}}</span>
+				</div>
 			{{/invoiced}}
 			{{#invoiced}}
-				<span style="float: left; width: 75px; text-align: right;">Invoice Date</span> {{sale_date_billed_formatted}}<br>
-				<!--<span style="float: left; width: 75px; text-align: right;">Amount Due</span> {{sale_total_formatted}}<br>-->
-				<span style="float: left; width: 75px; text-align: right;">Amount Due</span> {{sale_total_balance_formatted}}<br>
-				<span style="float: left; width: 75px; text-align: right;">Payment Due</span> {{sale_date_due_formatted}}<br>
+				<div class="sale-date">
+					<span class="label">Invoice Date</span>
+					<span class="value">{{sale_date_billed_formatted}}</span>
+				</div>
+				<!--<span class="label">Amount Due</span> {{sale_total_formatted}}<br>-->
+				<div class="amount-due">
+					<span class="label">Amount Due</span>
+					<span class="value">{{sale_total_balance_formatted}}</span>
+				</div>
+				<div class="payment-due-date">
+					<span class="label">Payment Due</span>
+					<span class="value">{{sale_date_due_formatted}}</span>
+				</div>
 			{{/invoiced}}
-			{{#order_number}}<span style="float: left; width: 75px; text-align: right;">Order Num</span> {{order_number}}<br>{{/order_number}}
-			{{#po_number}}<span style="float: left; width: 75px; text-align: right;">PO Num</span> {{po_number}}<br>{{/po_number}}
+			{{#order_number}}
+				<div class="order-number">
+					<span class="label">Order Num</span>
+					<span class="value">{{order_number}}</span>
+				</div>
+			{{/order_number}}
+			{{#po_number}}
+				<div class="po-number">
+					<span class="label">PO Num</span>
+					<span class="value">{{po_number}}</span>
+				</div>
+			{{/po_number}}
 		</td>
 	</tr>
-	<tr>
-		<td style="width:100%; border: 1px solid {{borderdarkgreen}}; height: 0px; line-height: 0px; font-size: 0px;" colspan="3">&nbsp;</td>
-	</tr>
-	<tr>
-		<td style="width:100%; padding-top: 3px;  height: 0px; line-height: 0px; font-size: 0px;" colspan="3">&nbsp;</td>
-	</tr>
-{{{tableclose}}}
+</table>
 
 <!-- Line Items on this invoice -->
-{{{tableopen}}}
+<table>
 	<tr>
-		<th class="line-item left" style=" width: 59%;">Description</th>
-		<th class="line-item center" style="width: 9%;">QTY</th>
-		<th class="line-item center" style="width: 10%;">Price</th>
-		<th class="line-item center" style="width: 10%;">Tax</th>
-		<th class="line-item center" style="width: 12%;">Total</th>
+		<th class="line-item color-me-even text-left">Description</th>
+		<th class="line-item color-me-even text-center">QTY</th>
+		<th class="line-item color-me-even text-center">Price</th>
+		<th class="line-item color-me-even text-center">Tax</th>
+		<th class="line-item color-me-even text-center">Total</th>
 	</tr>
 	{{#sale_lines}}
 		<tr>
-			<td class="line-item {{#odd}}odd{{/odd}} left" style=" width: 59%;">{{description}}</td>
-			<td class="line-item {{#odd}}odd{{/odd}} center" style=" width: 9%;">{{qty_formatted}}</td>
-			<td class="line-item {{#odd}}odd{{/odd}} center" style=" width: 10%;">{{price_formatted}}</td>
-			<td class="line-item {{#odd}}odd{{/odd}} center" style=" width: 10%;">{{tax_formatted}}</td>
-			<td class="line-item {{#odd}}odd{{/odd}} center" style=" width: 12%;">{{total_formatted}}</td>
+			<td class="line-item {{#odd}}color-me-odd{{/odd}} text-left">{{description}}</td>
+			<td class="line-item {{#odd}}color-me-odd{{/odd}} text-center">{{qty_formatted}}</td>
+			<td class="line-item {{#odd}}color-me-odd{{/odd}} text-center">{{price_formatted}}</td>
+			<td class="line-item {{#odd}}color-me-odd{{/odd}} text-center">{{tax_formatted}}</td>
+			<td class="line-item {{#odd}}color-me-odd{{/odd}} text-center">{{total_formatted}}</td>
 		</tr>
 	{{/sale_lines}}
-{{{tableclose}}}
+</table>
 
 <!-- Sub totals of the entire invoice -->
-{{{tableopen}}}
+<table class="totals">
 	<tr>
-		<td style="width:100%; padding-top: 15px;  height: 0px; line-height: 0px; font-size: 0px;" colspan="3">&nbsp;</td>
-	</tr>
-	<tr class="totals">
-		<td width="33%">Subtotal: {{subtotal_formatted}}</td>
-		<td width="33%">
+		<td class="subtotal">Subtotal: {{subtotal_formatted}}</td>
+		<td class="taxes">
 			{{#sale_taxes}}
 				{{name}} {{total_formatted}}<br>
 			{{/sale_taxes}}
@@ -155,27 +100,16 @@
 				&nbsp;
 			{{/sale_taxes}}
 		</td>
-		<td>Total: {{total_formatted}}</td>
+		<td class="total">Total: {{total_formatted}}</td>
 	</tr>
-    <tr>
-        <td style="width:100%; padding-top: 15px;  height: 0px; line-height: 0px; font-size: 0px;" colspan="3">&nbsp;</td>
-    </tr>
-    {{#has_payments}}
-        <tr>
-            <td style="width:100%; border: 1px solid {{borderdarkgreen}}; height: 0px; line-height: 0px; font-size: 0px;" colspan="3">&nbsp;</td>
-        </tr>
-        <tr>
-            <td style="width:100%; padding-top: 15px;  height: 0px; line-height: 0px; font-size: 0px;" colspan="3">&nbsp;</td>
-        </tr>
-    {{/has_payments}}
-{{{tableclose}}}
+</table>
 
 <!-- The payments made to this order, (only displayed if there is at least one payment made on this invoice) -->
 {{#has_payments}}
-    {{{tableopen}}}
+	<table>
         <tr>
-            <th class="line-item left" width="33%">Payments</th>
-            <th class="line-item center" width="33%">Type / Reference</th>
+            <th class="line-item left">Payments</th>
+            <th class="line-item center">Type / Reference</th>
             <th class="line-item right">Amount</th>
         </tr>
         {{^payment_lines}}
@@ -192,23 +126,24 @@
             <td class="line-item {{#odd}}odd{{/odd}} right">{{price_formatted}}</td>
         </tr>
         {{/payment_lines}}
-    {{{tableclose}}}
+    </table>
 
-    {{{tableopen}}}
+	<table>
         <tr>
-            <td style="width:100%; padding-top: 15px;  height: 0px; line-height: 0px; font-size: 0px;" colspan="2">&nbsp;</td>
+            <td colspan="2">&nbsp;</td>
         </tr>
         <tr class="totals">
-            <td width="50%">
+            <td>
                 Invoice Total: {{total_formatted}}
             </td>
             <td>
                 Amount Due: {{sale_total_balance_formatted}}
             </td>
         </tr>
-    {{{tableclose}}}
+	</table>
 {{/has_payments}}
 
-<div style="text-align:center;color:#888;">
-    <p>Please remit payment to: eVAL Ltd., 396 S. Washington Ave., Columbus, OH 43215</p>
-</div>
+
+{{#payment_remittance_info}}
+	<p class="payment-remittance-info">{{payment_remittance_info}}</p>
+{{/payment_remittance_info}}

@@ -1,0 +1,64 @@
+table.page-heading {
+	td {
+		padding: 0 0 1em;
+		margin: 0;
+		vertical-align: top;
+		border-bottom-width: 2px;
+	}
+	
+	.page-heading-info {
+		text-align: right;
+	}
+}
+
+.content {
+	table {
+		table-layout: auto;
+		
+		td {
+			vertical-align: top;
+		}
+	}
+	
+	.customer-header-info {
+		td {
+			border-bottom-width: 2px;
+		}
+
+		.customer-header-info-order {
+			text-align: right;
+
+			.order-title {
+				font-size: 1.6em;
+				font-weight: bold;
+				padding-bottom: 0.5em;
+			}
+			span.label {
+				display: inline-block;
+			}
+			span.value {
+				display: inline-block;
+				width: 7em;
+			}
+		}
+	}
+	
+	table.totals {
+		border-width: 1px;
+		border-style: solid;
+		font-weight: bold;
+		
+		td {
+			border: 0;
+		}
+		
+		td.total {
+			text-align: right;
+		}
+	}
+
+	.payment-remittance-info {
+		text-align: center;
+		font-size: 1.5em;
+	}
+}

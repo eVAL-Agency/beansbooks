@@ -1,8 +1,12 @@
 $red: #9a0000;
 $sitebg: white;
 $siteactive: #11519a;
+$sitefg: #404040;
 //$siteactive: #1a9a23;
 
+body {
+	color: $sitefg;
+}
 
 .text-red {
 	color: $red;
@@ -80,7 +84,31 @@ div.form {
 
 	.form-element {
 		height: 5.25em;
+		
+		textarea {
+			height: 3.3em;
+		}
 	}
+}
+
+// Print page colors
+table.page-heading {
+	td {
+		border-bottom-color: $siteactive;
+	}
+}
+
+table.customer-header-info {
+	td {
+		border-bottom-color: $siteactive;
+	}
+}
+table.totals {
+	border-color: $siteactive;
+	background-color: lighten($siteactive, 60%);
+}
+.payment-remittance-info {
+	color: lighten($sitefg, 6%);
 }
 
 // select2 styles
