@@ -2158,6 +2158,7 @@ body.print .content table.totals {
   border-style: solid;
   font-weight: bold; }
   body.print .content table.totals td {
+    padding: 1em 0.5em;
     border: 0; }
   body.print .content table.totals td.total {
     text-align: right; }

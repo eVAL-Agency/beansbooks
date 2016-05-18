@@ -100,6 +100,27 @@ class View_Customers_Print_Sale extends View_Print {
 		return $this->sale->po_number;
 	}
 
+	/**
+	 * Simple check to see if this sale has been marked as an invoice and has a balance due.
+	 * 
+	 * @return bool
+	 */
+	public function has_amount_due(){
+		
+		if(!$this->sale->date_billed){
+			// This sale has not been converted to an invoice yet, so it's not due.
+			return false;
+		}
+		
+		if($this->sale->balance < 0){
+			// This invoice does have a balance due.
+			return true;
+		}
+		
+		// Umm? default case.
+		return false;
+	}
+
 	public function sale_date_formatted()
 	{
 		return date("F j, Y",strtotime($this->sale->date_created));

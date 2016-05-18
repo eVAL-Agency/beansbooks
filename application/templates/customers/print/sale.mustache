@@ -144,6 +144,8 @@
 {{/has_payments}}
 
 
-{{#payment_remittance_info}}
-	<p class="payment-remittance-info">{{payment_remittance_info}}</p>
-{{/payment_remittance_info}}
+{{#has_amount_due}}
+	{{#payment_remittance_info}}
+		<p class="payment-remittance-info">{{payment_remittance_info}}</p>
+	{{/payment_remittance_info}}
+{{/has_amount_due}}
