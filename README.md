@@ -41,6 +41,11 @@ This is useful for PO numbers, transaction numbers, etc.
 
 Since we import data directly from Amazon, the 16 character was simply too limiting.
 
+### Customers as individuals OR companies
+
+We have changed the logic to allow a customer to be created with ONLY the company_name.
+This allows for customers that are companies to be created.
+
 
 ## Getting Started
 

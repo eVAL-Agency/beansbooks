@@ -189,33 +189,31 @@ class Beans_Customer extends Beans {
 		return $customer;
 	}
 
-	protected function _validate_customer($customer)
-	{
-		if( get_class($customer) != "Model_Entity_Customer" )
+	protected function _validate_customer($customer) {
+		if( get_class($customer) != "Model_Entity_Customer" ){
 			throw new Exception("Invalid Customer.");
-
-		if( ! $customer->first_name OR
-			! strlen($customer->first_name) )
-			throw new Exception("Invalid customer first name: none provided.");
-
-		if( strlen($customer->first_name) > 64 )
-			throw new Exception("Invalid customer first name: maximum of 64 characters.");
-
-		if( ! $customer->last_name OR
-			! strlen($customer->last_name) )
-			throw new Exception("Invalid customer last name: none provided.");
+		}
 		
-		if( strlen($customer->last_name) > 64 )
-			throw new Exception("Invalid customer last name: maximum of 64 characters.");
+		// Ensure that either a first name + last name OR company name are provided.
+		
+		if($customer->company_name && strlen($customer->company_name) > 64){
+			throw new Exception("Please ensure that the customer company name is shorter than 64 characters.");
+		}
 
-		if( strlen($customer->company_name) > 64 )
-			throw new Exception("Invalid customer company name: maximum of 64 characters.");
+		if($customer->first_name && strlen($customer->first_name) > 64){
+			throw new Exception("Please ensure that the customer first name is shorter than 64 characters.");
+		}
 
-		/*
-		if( ! $customer->email OR 
-			! strlen($customer->email) )
-			throw new Exception("Invalid customer email: none provided");
-		*/
+		if($customer->last_name && strlen($customer->last_name) > 64){
+			throw new Exception("Please ensure that the customer last name is shorter than 64 characters.");
+		}
+		
+		if(!(
+			$customer->company_name ||
+			($customer->first_name && $customer->last_name)
+		)){
+			throw new Exception('Please ensure that the customer has either a company name or first AND last names.');
+		}
 	
 		if( $customer->email AND 
 			strlen($customer->email) > 255 )
