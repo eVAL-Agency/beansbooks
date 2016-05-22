@@ -18,7 +18,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 */
 
 
-class View_Partials_Taxes_Taxes_Tax extends KOstache {
+class View_Partials_Taxes_Taxes_Tax extends Kostache {
 	// Receives $this->tax
 	
 	public function id()

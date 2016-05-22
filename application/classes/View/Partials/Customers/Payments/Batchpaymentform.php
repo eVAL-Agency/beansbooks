@@ -17,7 +17,7 @@ You should have received a copy of the BeansBooks Public License
 along with BeansBooks; if not, email info@beansbooks.com.
 */
 
-class View_Partials_Customers_Payments_Batchpaymentform extends KOstache {
+class View_Partials_Customers_Payments_Batchpaymentform extends Kostache {
 	// Receives $this->sale
 
 	public function id()

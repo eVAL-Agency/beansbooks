@@ -18,7 +18,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 */
 
 
-class View_Partials_Vendors_Checks_Newcheck extends KOstache {
+class View_Partials_Vendors_Checks_Newcheck extends Kostache {
 
 	public function render()
 	{

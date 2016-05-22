@@ -17,7 +17,7 @@ You should have received a copy of the BeansBooks Public License
 along with BeansBooks; if not, email info@beansbooks.com.
 */
 
-class View_Partials_Taxes_Payments_Payment extends KOstache {
+class View_Partials_Taxes_Payments_Payment extends Kostache {
 	// Receives $this->payment
 	
 	public function id()

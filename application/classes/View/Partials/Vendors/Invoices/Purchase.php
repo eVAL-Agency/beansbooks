@@ -18,7 +18,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 */
 
 
-class View_Partials_Vendors_Invoices_Purchase extends KOstache {
+class View_Partials_Vendors_Invoices_Purchase extends Kostache {
 	// Receives $this->purchase
 	
 	public function cancelled()

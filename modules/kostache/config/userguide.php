@@ -11,7 +11,7 @@ return array(
 			'enabled' => TRUE,
 			
 			// The name that should show up on the userguide index page
-			'name' => 'KOstache',
+			'name' => 'Kostache',
 
 			// A short description of this module, shown on the index page
 			'description' => 'Logic-less View/Mustache Module for Kohana v3',

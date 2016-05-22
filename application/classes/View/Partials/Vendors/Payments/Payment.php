@@ -18,7 +18,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 */
 
 
-class View_Partials_Vendors_Payments_Payment extends KOstache {
+class View_Partials_Vendors_Payments_Payment extends Kostache {
 	// Receives $this->payment
 	
 	public function id()

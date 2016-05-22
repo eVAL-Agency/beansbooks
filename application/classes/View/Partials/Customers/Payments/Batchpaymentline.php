@@ -18,7 +18,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 */
 
 
-class View_Partials_Customers_Payments_Batchpaymentline extends KOstache {
+class View_Partials_Customers_Payments_Batchpaymentline extends Kostache {
 	
 	public function id()
 	{
