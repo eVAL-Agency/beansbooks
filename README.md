@@ -3,6 +3,17 @@
 This is an unofficial fork of the BeansBooks project to introduce new features, 
 better performance, and more updated library support.
 
+## Reporting Bugs
+
+If you discover bugs or have feature requests with this fork, 
+please use the [eVAL Agency Official Tracker](https://rm.eval.bz/projects/beans-books)
+for this project.  
+Bugs submitted to the upstream project will probably not be noticed by us, 
+nor do we have upstream commit access there.
+
+General comments or requests can be sent to our [support email](mailto:support@evalagency.com).
+
+
 ## Noteable Changes
 
 ### Kohana Base Framework
@@ -27,6 +38,8 @@ The site logo now displays on every page to provide better and more consistent b
 
 No longer are you stuck with just one color for the site.  You can pick between TWO colors now!
 (More to come shortly, I just needed to get something out the door to get back on schedule.)
+
+![Site Theming Ability](https://rm.eval.bz/attachments/download/512/beans-themes.png)
 
 ### Relative Path Fixes
 
