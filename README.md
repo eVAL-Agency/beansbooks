@@ -61,6 +61,15 @@ Since we import data directly from Amazon, the 16 character was simply too limit
 We have changed the logic to allow a customer to be created with ONLY the company_name.
 This allows for customers that are companies to be created.
 
+### Font Awesome
+
+This fork includes iconography from the excellent [font-awesome project](http://fontawesome.io/)!
+ These allow for clean UX hints throughout the application without sacrificing redundant server requests for raster images
+ and display at font-level crispness since, well, they're technicaly fonts!
+
+Currently these icons are used on the login page, "masthead" links, utility links, and a few places on the accounts page.
+Expect more iconography throughout the application to come.
+
 
 ## Getting Started
 
