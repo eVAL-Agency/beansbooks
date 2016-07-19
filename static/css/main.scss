@@ -161,6 +161,10 @@ body.print {
 	@import "pages/print";
 }
 
+body.accounts {
+	@import "pages/accounts";
+}
+
 
 // THEMES!
 body.theme-default {

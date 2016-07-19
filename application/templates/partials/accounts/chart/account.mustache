@@ -1,4 +1,4 @@
-<li rel="{{id}}" class="{{#has_accounts}}list-master active{{/has_accounts}}">
+<li rel="{{id}}" class="{{#has_accounts}}list-master active{{/has_accounts}}{{^has_accounts}}list-child{{/has_accounts}}">
 	{{^top_level}}
 		<input type="hidden" class="parent_account_id" value="{{parent_account_id}}">
 		<input type="hidden" class="account_type_id" value="{{account_type_id}}">

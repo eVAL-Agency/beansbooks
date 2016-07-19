@@ -25,8 +25,6 @@ along with BeansBooks; if not, email info@beansbooks.com.
 		 * CHART
 		 */
 		$('#accounts-chart-accounts .account-actions .delete').live('click',function (e) {
-			e.preventDefault();
-
 			$parentAccountRow = $(this).closest('li');
 			if( $parentAccountRow.hasClass('list-master') ) {
 				if( $parentAccountRow.next('li.list-container').find('ul li:first').hasClass('account-delete') ) {
@@ -47,13 +45,13 @@ along with BeansBooks; if not, email info@beansbooks.com.
 			if( $parentAccountRow.hasClass('list-master') ) {
 				// Has child accounts.
 				$deleteForm = $($('#accounts-chart-delete-children-template').html());
-				$deleteForm.addClass('hidden');
+				$deleteForm.removeClass('hidden');
 				$parentAccountRow.next('li.list-container').find('ul:first').prepend($deleteForm);
 				$deleteForm.slideDown();
 			} else {
 				// Show Form
 				$deleteForm = $($('#accounts-chart-delete-form-template').html());
-				$deleteForm.addClass('hidden');
+				$deleteForm.removeClass('hidden');
 				$deleteForm.attr('rel',$parentAccountRow.attr('rel'));
 				$parentAccountRow.after($deleteForm);
 				$deleteForm.slideDown(function() {
@@ -70,11 +68,11 @@ along with BeansBooks; if not, email info@beansbooks.com.
 					}
 				});
 			}
+			
+			return false;
 		});
 
 		$('#accounts-chart-accounts .account-actions .new').live('click',function (e) {
-			e.preventDefault();
-
 			$parentAccountRow = $(this).closest('li');
 			if( $parentAccountRow.hasClass('list-master') ) {
 				if( $parentAccountRow.next('li.list-container').find('ul li:first').hasClass('account-edit') ) {
@@ -93,7 +91,7 @@ along with BeansBooks; if not, email info@beansbooks.com.
 			}
 
 			$newAccountRow = $($('#accounts-chart-edit-template').html());
-			$newAccountRow.addClass('hidden');
+			$newAccountRow.removeClass('hidden');
 			if( $parentAccountRow.hasClass('list-master') ) {
 				// Insert into next li.list-container
 				$parentAccountRow.next('li.list-container').find('ul:first').prepend($newAccountRow);
@@ -126,17 +124,19 @@ along with BeansBooks; if not, email info@beansbooks.com.
 					$newAccountRow.find('select[name="account_type_id"]').val(guessVal);
 				}
 			}
-			$newAccountRow.find('.account-edit-name').width(100);
+			//$newAccountRow.find('.account-edit-name').width(100);
 			$newAccountRow.slideDown(function() {
-				var totalChildWidth = 0;
+				/*var totalChildWidth = 0;
 				$newAccountRow.find('span:not(.account-edit-name)').each(function() {
 					totalChildWidth += parseInt($(this).outerWidth());
 				});
 				$newAccountRow.find('.account-edit-name').width(parseInt($newAccountRow.innerWidth()-totalChildWidth-30));
+				*/
 				$newAccountRow.find('.account-edit-name input[type="text"]').focus();
 			});
 			// Adjust name entry width.
 			
+			return false;
 		});
 
 		$('#accounts-chart-accounts .account-delete .cancel').live('click',function (e) {
@@ -234,9 +234,9 @@ along with BeansBooks; if not, email info@beansbooks.com.
 		});
 		
 		$('#accounts-chart-accounts .account-actions .edit').live('click',function(e) {
-			e.preventDefault();
-			$accountRow = $(this).closest('li');
-			$editAccountRow = $($('#accounts-chart-edit-template').html());
+			var $accountRow = $(this).closest('li'),
+				$editAccountRow = $($('#accounts-chart-edit-template').html());
+			
 			$editAccountRow.addClass('hidden');
 			$editAccountRow.find('input[name="name"]').val($accountRow.find('input.name').val());
 			$editAccountRow.find('select[name="account_type_id"]').val($accountRow.find('input.account_type_id').val());
@@ -245,8 +245,11 @@ along with BeansBooks; if not, email info@beansbooks.com.
 			$editAccountRow.attr('rel',$accountRow.attr('rel'));
 			$accountRow.after($editAccountRow);
 			$accountRow.slideUp(function() {
+				$editAccountRow.removeClass('hidden');
 				$editAccountRow.slideDown();
-			})
+			});
+			
+			return false;
 		});
 
 		/**
@@ -1227,11 +1230,12 @@ along with BeansBooks; if not, email info@beansbooks.com.
 		});
 
 		$('li.account-reconcile-transaction.new span.account-reconcile-transaction-split a').live('click', function (e) {
-			e.preventDefault();
-		 	
-			$accountTransaction = $(this).closest('li.account-reconcile-transaction');
-			$accountTransactionActions = $accountTransaction.next('.account-reconcile-transaction-actions');
-			var account_id = $accountTransaction.find('input[name="transaction-account-id"]').val();
+			var  $accountTransaction = $(this).closest('li.account-reconcile-transaction'),
+				 $accountTransactionActions = $accountTransaction.next('.account-reconcile-transaction-actions'),
+				account_id = $accountTransaction.find('input[name="transaction-account-id"]').val(),
+				$accountTransactionSplit1, $accountTransactionSplit2;
+				
+			
 		 	$accountTransaction.find('span.account-reconcile-transaction-transfer').html(
 		 		$accountTransaction.find('span.account-reconcile-transaction-transfer select option[value="'+account_id+'"]').html().split('&nbsp;').join('')
 		 	).removeClass('text-center').addClass('text-left').css('text-indent','3px').css('padding-top','1px');

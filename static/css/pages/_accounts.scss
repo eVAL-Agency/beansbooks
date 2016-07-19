@@ -1,0 +1,99 @@
+#accounts-chart-accounts {
+	li.list-master {
+		@include outer-container(20);
+		@include pad(0);
+		
+		span.toggle {
+			@include span-columns(1 of 20);
+		}
+		span.account-name {
+			@include span-columns(11 of 20);
+			@include pad(0);
+		}
+
+		span.account-actions {
+			@include span-columns(5 of 20);
+		}
+		
+		span.account-balance {
+			@include span-columns(3 of 20);
+			@include omega();
+		}
+	}
+	
+	li.list-container {
+		margin-bottom: 0.5em;
+		
+		// Nested things!
+		ul {
+			li.list-master {
+				span.account-name {
+					@include pad(0 0 0 2em);
+				}
+			}
+
+			li.list-container {
+				li.list-child {
+					// Child element 2-deep
+					@include outer-container(20);
+
+					span.account-name {
+						@include pad(0 0 0 8em);
+						@include span-columns(12 of 20);
+					}
+
+					span.account-actions {
+						@include span-columns(5 of 20);
+					}
+
+					span.account-balance {
+						@include span-columns(2 of 20);
+						@include omega();
+					}
+				}
+			}
+		}
+
+		li.list-child {
+			// Child element 1-deep
+			@include outer-container(20);
+
+			span.account-name {
+				@include pad(0 0 0 6em);
+				@include span-columns(12 of 20);
+			}
+
+			span.account-actions {
+				@include span-columns(5 of 20);
+			}
+
+			span.account-balance {
+				@include span-columns(2 of 20);
+				@include omega();
+			}
+		}
+	}
+	
+	li.account-edit {
+		// The edit view for accounts
+		@include outer-container(20);
+		
+		span.account-edit-name {
+			@include span-columns(17 of 20);
+		}
+		span.account-edit-actions {
+			@include span-columns(3 of 20);
+			@include omega();
+		}
+		span.account-edit-parent {
+			@include span-columns(5 of 20);
+		}
+		span.account-edit-terms {
+			@include span-columns(5 of 20);
+		}
+		span.account-edit-type {
+			@include span-columns(10 of 20);
+			@include omega();
+		}
+	}
+}
