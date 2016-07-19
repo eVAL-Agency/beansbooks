@@ -36,10 +36,12 @@ The site logo now displays on every page to provide better and more consistent b
 
 ### Site Themes/Colours!
 
-No longer are you stuck with just one color for the site.  You can pick between TWO colors now!
-(More to come shortly, I just needed to get something out the door to get back on schedule.)
+No longer are you stuck with just one color for the site.  You can pick between FOUR colors now!
 
-![Site Theming Ability](https://rm.eval.bz/attachments/download/512/beans-themes.png)
+![BeansBooks Blue Theme](https://rm.eval.bz/attachments/download/540/beansbooks-blue.png)
+![BeansBooks Dark Theme](https://rm.eval.bz/attachments/download/537/beansbooks-dark.png)
+![BeansBooks Green Theme](https://rm.eval.bz/attachments/download/539/beansbooks-green.png)
+![BeansBooks Grey Theme](https://rm.eval.bz/attachments/download/538/beansbooks-grey.png)
 
 ### Relative Path Fixes
 

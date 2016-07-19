@@ -170,6 +170,12 @@ body.accounts {
 body.theme-default {
 	@import "themes/default";	
 }
+body.theme-dark {
+	@import "themes/dark";
+}
 body.theme-green {
 	@import "themes/green";
+}
+body.theme-grey {
+	@import "themes/grey";
 }

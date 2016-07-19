@@ -1,0 +1,119 @@
+$red: #9a0000;
+$sitebg: #e8e8e8;
+$siteactive: #5c5c5c;
+
+
+.text-red {
+	color: $red;
+}
+
+a {
+	color: $siteactive;
+}
+
+a:hover {
+	color: darken($siteactive, 16%);
+}
+
+#{$all-buttons} {
+	background-color: $siteactive;
+	color: $sitebg;
+	background-image: none;
+}
+#{$all-buttons-hover} {
+	background-color: darken($siteactive, 16%);
+	color: $sitebg;
+	background-image: none;
+}
+a.button[disabled=disabled] {
+	cursor: not-allowed;
+	opacity: 0.5;
+
+	&:hover {
+		background-color: $siteactive;
+	}
+}
+
+#masthead {
+	background-color: $siteactive;
+	color: $sitebg;
+	
+	li.current {
+		font-weight: bold;
+	}
+	
+	a {
+		color: white;
+		
+		&:hover {
+			background-color: $sitebg;
+			color: $siteactive;
+		}
+	}
+}
+
+.tabs {
+	li.current {
+		border-bottom-color: $sitebg;
+		font-weight: bold;
+	}
+}
+
+.dash-index-message {
+	background-color: #f0eb8b;
+}
+
+.color-me-even {
+	background-color: lighten($siteactive, 60%);
+}
+.color-force-green {
+	background-color: lighten($siteactive, 50%);
+}
+
+div.form {
+	border-width: 1px;
+	border-style: solid;
+	padding: 0.25em;
+	margin-bottom: 0.5em;
+	background-color: lighten($siteactive, 60%);
+
+	.form-element {
+		height: 5.25em;
+	}
+}
+
+// select2 styles
+.select2-container {
+	width: 100%;
+}
+.select2-container-active .select2-choice, .select2-container-active .select2-choices {
+	border: 1px solid $siteactive;
+}
+.select2-drop {
+	border: 1px solid $siteactive;
+}
+.select2-results .select2-highlighted {
+	background: $siteactive;
+	color: $sitebg;
+}
+
+
+// JQuery Styles
+.ui-widget-content {
+	background: lighten($siteactive, 60%);
+}
+.ui-dialog .ui-dialog-titlebar {
+	background: $siteactive;
+}
+.ui-dialog .ui-dialog-titlebar-close {
+	background: $siteactive;
+}
+.ui-state-hover,
+.ui-widget-content .ui-state-hover, 
+.ui-widget-header .ui-state-hover, 
+.ui-state-focus, 
+.ui-widget-content .ui-state-focus, 
+.ui-widget-header .ui-state-focus {
+	background: none $siteactive;
+	color: $sitebg;
+}

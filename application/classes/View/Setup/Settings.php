@@ -73,9 +73,19 @@ class View_Setup_Settings extends View_Template {
 				'selected' => ($current == ''),
 			],
 			[
+				'key' => 'dark',
+				'title' => 'Dark',
+				'selected' => ($current == 'dark'),
+			],
+			[
 				'key' => 'green',
 				'title' => 'Green',
 				'selected' => ($current == 'green'),
+			],
+			[
+				'key' => 'grey',
+				'title' => 'Grey',
+				'selected' => ($current == 'grey'),
 			],
 		];
 		
