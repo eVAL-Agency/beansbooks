@@ -115,17 +115,17 @@ class View_Partials_Accounts_View_Transaction extends Kostache {
 
 			if( $this->transaction->payment == "customer" )
 			{
-				$this->edit['url'] = "/customers/payments/".$this->transaction->id;
+				$this->edit['url'] = ROOT_WDIR . "customers/payments/".$this->transaction->id;
 				$element['type'] = "customer payment";
 			}
 			else if( $this->transaction->payment == "expense" )
 			{
-				$this->edit['url'] = "/vendors/expenses/".$this->transaction->form->id;
+				$this->edit['url'] = ROOT_WDIR . "vendors/expenses/".$this->transaction->form->id;
 				$element['type'] = "vendor expense";
 			}
 			else if( $this->transaction->payment = "vendor" )
 			{
-				$this->edit['url'] = "/vendors/payments/".$this->transaction->id;
+				$this->edit['url'] = ROOT_WDIR . "vendors/payments/".$this->transaction->id;
 				$element['type'] = "vendor payment";
 			}
 
@@ -136,24 +136,24 @@ class View_Partials_Accounts_View_Transaction extends Kostache {
 
 			if( $this->transaction->form->type == "sale" )
 			{
-				$this->edit['url'] = "/customers/sales/".$this->transaction->form->id;
+				$this->edit['url'] = ROOT_WDIR . "customers/sales/".$this->transaction->form->id;
 				$element['type'] = "customer sale";
 			}
 			else if( $this->transaction->form->type = "purchase" )
 			{
-				$this->edit['url'] = "/vendors/purchases/".$this->transaction->form->id;
+				$this->edit['url'] = ROOT_WDIR . "vendors/purchases/".$this->transaction->form->id;
 				$element['type'] = "vendor purchase order";
 			}
 			else if( $this->transaction->form->type = "expense" )
 			{
-				$this->edit['url'] = "/vendors/expenses/".$this->transaction->form->id;
+				$this->edit['url'] = ROOT_WDIR . "vendors/expenses/".$this->transaction->form->id;
 				$element['type'] = "vendor expense";
 			}
 			// Probably won't hit last one.
 		}
 		else if( $this->transaction->tax_payment )
 		{
-			$this->edit['url'] = "/vendors/taxpayments/".$this->transaction->tax_payment->id;
+			$this->edit['url'] = ROOT_WDIR . "vendors/taxpayments/".$this->transaction->tax_payment->id;
 			$element['type'] = "tax payment";
 		}
 
@@ -162,20 +162,23 @@ class View_Partials_Accounts_View_Transaction extends Kostache {
 		$this->transfer_account = array();
 		$this->transaction_splits = array();
 		
-		foreach( $this->transaction->account_transactions as $account_transaction )
-		{
-			$amount_credit = (
-								(
-									$current_table_sign == $account_transaction->account->type->table_sign AND 
-									$account_transaction->amount * $account_transaction->account->type->table_sign > 0
-								) OR
-								(
-									$current_table_sign != $account_transaction->account->type->table_sign AND 
-									$account_transaction->amount * $account_transaction->account->type->table_sign < 0
-								)
-							) 
-						   ? $this->_company_currency().number_format(abs($account_transaction->amount),2,'.',',')
-						   : FALSE;
+		foreach( $this->transaction->account_transactions as $account_transaction ) {
+			if(
+				(
+					$current_table_sign == $account_transaction->account->type->table_sign &&
+					$account_transaction->amount * $account_transaction->account->type->table_sign > 0
+				) 
+				OR
+				(
+					$current_table_sign != $account_transaction->account->type->table_sign &&
+					$account_transaction->amount * $account_transaction->account->type->table_sign < 0
+				)
+			){
+				$amount_credit = $this->_company_currency().number_format(abs($account_transaction->amount),2,'.',',');
+			}
+			else{
+				$amount_credit = false;
+			}
 
 			$amount_debit = $amount_credit
 						   ? FALSE

@@ -406,17 +406,18 @@ along with BeansBooks; if not, email info@beansbooks.com.
 
 		// Show / hide split on current transactions
 		$('#accounts-view-transactions li:not(.new,.import,.edit) span.account-transaction-split a').live('click',function (e) {
-			e.preventDefault();
-
-			$transaction = $(this).closest('.account-transaction');
-			$id = $transaction.attr('rel');
-			$transactionSplit = $('#accounts-view-transactions li.split-transaction:not(.edit)[rel="'+$id+'"]');
+			var $transaction = $(this).closest('.account-transaction'),
+				$id = $transaction.attr('rel'),
+				$transactionSplit = $('#accounts-view-transactions li.split-transaction:not(.edit)[rel="'+$id+'"]');
 
 			if( $transactionSplit.is(':visible') ) {
 				$transactionSplit.slideUp();
 			} else {
+				$transactionSplit.removeClass('hidden');
 				$transactionSplit.slideDown();
 			}
+			
+			return false;
 		});
 
 		$('#accounts-view-add-transaction').click(function (e) {

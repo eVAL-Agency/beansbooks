@@ -84,17 +84,17 @@ class View_Accounts_View extends View_Template {
 
 				if( $transaction->payment == "customer" )
 				{
-					$element['edit']['url'] = "/customers/payments/".$transaction->id;
+					$element['edit']['url'] = ROOT_WDIR . "customers/payments/".$transaction->id;
 					$element['type'] = "customer payment";
 				}
 				else if( $transaction->payment == "expense" )
 				{
-					$element['edit']['url'] = "/vendors/expenses/".$transaction->form->id;
+					$element['edit']['url'] = ROOT_WDIR . "vendors/expenses/".$transaction->form->id;
 					$element['type'] = "vendor expense";
 				}
 				else if( $transaction->payment = "vendor" )
 				{
-					$element['edit']['url'] = "/vendors/payments/".$transaction->id;
+					$element['edit']['url'] = ROOT_WDIR . "vendors/payments/".$transaction->id;
 					$element['type'] = "vendor payment";
 				}
 
@@ -105,24 +105,24 @@ class View_Accounts_View extends View_Template {
 
 				if( $transaction->form->type == "sale" )
 				{
-					$element['edit']['url'] = "/customers/sales/".$transaction->form->id;
+					$element['edit']['url'] = ROOT_WDIR . "customers/sales/".$transaction->form->id;
 					$element['type'] = "customer sale";
 				}
 				else if( $transaction->form->type = "purchase" )
 				{
-					$element['edit']['url'] = "/vendors/purchases/".$transaction->form->id;
+					$element['edit']['url'] = ROOT_WDIR . "vendors/purchases/".$transaction->form->id;
 					$element['type'] = "vendor purchase order";
 				}
 				else if( $transaction->form->type = "expense" )
 				{
-					$element['edit']['url'] = "/vendors/expenses/".$transaction->form->id;
+					$element['edit']['url'] = ROOT_WDIR . "vendors/expenses/".$transaction->form->id;
 					$element['type'] = "vendor expense";
 				}
 				// Probably won't hit last one.
 			}
 			else if( $transaction->tax_payment )
 			{
-				$element['edit']['url'] = "/vendors/taxpayments/".$transaction->tax_payment->id;
+				$element['edit']['url'] = ROOT_WDIR . "vendors/taxpayments/".$transaction->tax_payment->id;
 				$element['type'] = "tax payment";
 			}
 

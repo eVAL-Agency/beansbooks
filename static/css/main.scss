@@ -25,6 +25,31 @@
 @import "neat/neat";
 
 
+/*!
+ *  Font Awesome 4.6.3 by @davegandy - http://fontawesome.io - @fontawesome
+ *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+ */
+
+// First, tweak some settings for FA.
+// I personally prefer "<i class="icon icon-blah"/>" instead of "<i class="fa fa-blah"}/>".
+$fa-css-prefix:       icon;
+
+@import "fontawesome/variables";
+@import "fontawesome/mixins";
+@import "fontawesome/path";
+@import "fontawesome/core";
+@import "fontawesome/larger";
+@import "fontawesome/fixed-width";
+@import "fontawesome/list";
+@import "fontawesome/bordered-pulled";
+@import "fontawesome/animated";
+@import "fontawesome/rotated-flipped";
+@import "fontawesome/stacked";
+@import "fontawesome/icons";
+@import "fontawesome/screen-reader";
+
+
+
 // The main wrapper will be the primary outer container that's set to at most 1200px.
 .wrapper {
 	@include outer-container(1050px);

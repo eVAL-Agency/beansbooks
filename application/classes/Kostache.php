@@ -21,7 +21,24 @@ along with BeansBooks; if not, email info@beansbooks.com.
  * Ensure that we can get beans_settings when loading partials via AJAX.
  */
 
-class Kostache extends Kohana_Kostache { 
+class Kostache extends Kohana_Kostache {
+
+	/**
+	 * Loads the template and partial paths.
+	 *
+	 * @param   string $template path
+	 * @param   array  $partials paths
+	 *
+	 * @uses    Kostache::template
+	 * @uses    Kostache::partial
+	 */
+	public function __construct($template = NULL, array $partials = NULL) {
+		parent::__construct($template, $partials);
+
+		// Tack on the root web directory of this site
+		// This should be present for EVERY template of the site
+		$this->root_wdir = ROOT_WDIR;
+	}
 
 	// V2Item - Override this to use cache or something similar.
 	// Cascade _company_currency() throughout view classes.

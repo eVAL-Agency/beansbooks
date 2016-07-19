@@ -1,4 +1,6 @@
 #accounts-chart-accounts {
+	// The primary accounts listing page.
+	
 	li.list-master {
 		@include outer-container(20);
 		@include pad(0);
@@ -94,6 +96,89 @@
 		span.account-edit-type {
 			@include span-columns(10 of 20);
 			@include omega();
+		}
+	}
+}
+
+#accounts-view-transactions {
+	// A specific account, for the URL /accounts/view/#.
+	
+	ul{
+		li.account-transaction {
+			@include outer-container(50);
+
+			span.account-transaction-edit {
+				@include span-columns(1 of 50);
+			}
+			span.account-transaction-date {
+				@include span-columns(4 of 50);
+			}
+			span.account-transaction-number {
+				@include span-columns(7 of 50);
+			}
+			span.account-transaction-description {
+				@include span-columns(12 of 50);
+			}
+			span.account-transaction-transfer {
+				@include span-columns(12 of 50);
+			}
+			span.account-transaction-jump {
+				@include span-columns(1 of 50);
+			}
+			span.account-transaction-split {
+				@include span-columns(1 of 50);
+			}
+			span.account-transaction-reconcile {
+				@include span-columns(1 of 50);
+			}
+			span.account-transaction-credit {
+				@include span-columns(3 of 50);
+			}
+			span.account-transaction-debit {
+				@include span-columns(3 of 50);
+			}
+			span.account-transaction-balance {
+				@include span-columns(5 of 50);
+				@include omega();
+			}
+		}
+		
+		li.split-transaction {
+			ul {
+				li.account-transaction {
+					// Nested entry toggled from the split transaction view.
+					@include outer-container(50);
+					
+					span.account-transaction-number {
+						@include span-columns(12 of 50);
+					}
+					span.account-transaction-description {
+						@include span-columns(12 of 50);
+					}
+					span.account-transaction-transfer {
+						@include span-columns(12 of 50);
+					}
+					span.account-transaction-jump {
+						@include span-columns(1 of 50);
+					}
+					span.account-transaction-split {
+						@include span-columns(1 of 50);
+					}
+					span.account-transaction-reconcile {
+						@include span-columns(1 of 50);
+					}
+					span.account-transaction-credit {
+						@include span-columns(3 of 50);
+					}
+					span.account-transaction-debit {
+						@include span-columns(3 of 50);
+					}
+					span.account-transaction-balance {
+						@include span-columns(5 of 50);
+						@include omega();
+					}
+				}
+			}
 		}
 	}
 }
