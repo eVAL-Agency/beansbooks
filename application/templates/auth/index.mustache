@@ -1,9 +1,21 @@
 <div class="login-form form text-center">
 	<form action="" method="POST">
 		<div class="text-large">BeansBooks Login</div>
-		<input type="text" name="email" placeholder="Email Address">
+		<div class="login-element-wrapper">
+			<span class="login-element-prefix">
+				<i class="icon icon-user"></i>
+			</span>
+			<input type="text" name="email" placeholder="Email Address">	
+		</div>
+		
 		<div class="clear"></div>
-		<input type="password" name="password" placeholder="Password">
+		<div class="login-element-wrapper">
+			<span class="login-element-prefix">
+				<i class="icon icon-lock"></i>
+			</span>
+			<input type="password" name="password" placeholder="Password">
+		</div>
+		
 		<div class="clear"></div>
 		<a href="#" class="button auth-login-submit" onclick="">Login</a>
         

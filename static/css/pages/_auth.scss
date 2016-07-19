@@ -9,4 +9,20 @@ div.form.login-form {
 	max-width: 40em;
 	margin: 0 auto;
 	border-width: 0;
+	
+	div.login-element-wrapper {
+		// Display a nice little icon on the login form, just for aesthetics.
+		position: relative;
+		
+		span.login-element-prefix {
+			position: absolute;
+			left: 0;
+			width: 2%;
+			padding: 0.25em 0 0.35em 0.25em;
+		}
+
+		input[type="text"], input[type="password"] {
+			padding-left: 1.5em;
+		}
+	}
 }

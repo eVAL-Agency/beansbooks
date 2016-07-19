@@ -4196,6 +4196,15 @@ body.auth-index div.form.login-form {
   max-width: 40em;
   margin: 0 auto;
   border-width: 0; }
+  body.auth-index div.form.login-form div.login-element-wrapper {
+    position: relative; }
+    body.auth-index div.form.login-form div.login-element-wrapper span.login-element-prefix {
+      position: absolute;
+      left: 0;
+      width: 2%;
+      padding: 0.25em 0 0.35em 0.25em; }
+    body.auth-index div.form.login-form div.login-element-wrapper input[type="text"], body.auth-index div.form.login-form div.login-element-wrapper input[type="password"] {
+      padding-left: 1.5em; }
 
 body.setup-settings div.form {
   max-width: 8;
