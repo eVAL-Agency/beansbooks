@@ -11,9 +11,24 @@
 	{{#logged_in}}
 		<div class="links">
 			<ul>
-				<li><a href="{{root_wdir}}auth/logout">Logout</a></li>
-				<li><a href="{{root_wdir}}myaccount/">My Account</a></li>
-				<li><a href="{{root_wdir}}help">Help</a></li>
+				<li>
+					<a href="{{root_wdir}}auth/logout">
+						<i class="icon icon-sign-out"></i>
+						Logout
+					</a>
+				</li>
+				<li>
+					<a href="{{root_wdir}}myaccount/">
+						<i class="icon icon-user"></i>
+						My Account
+					</a>
+				</li>
+				<li>
+					<a href="{{root_wdir}}help">
+						<i class="icon icon-question-circle-o"></i>
+						Help
+					</a>
+				</li>
 			</ul>
 		</div>
 	{{/logged_in}}
@@ -25,7 +40,12 @@
 <div id="masthead" class="masthead">
 	<ul>
 		{{#masthead_links}}
-			<li class="{{class}} {{#current}}current{{/current}}"><a href="{{url}}" class="{{#current}}current{{/current}}">{{text}}</a></li>
+			<li class="{{class}} {{#current}}current{{/current}}">
+				<a href="{{url}}" class="{{#current}}current{{/current}}">
+					{{#icon}}<i class="icon icon-{{icon}}"></i>{{/icon}}
+					{{text}}
+				</a>
+			</li>
 		{{/masthead_links}}
 	</ul>
 </div>

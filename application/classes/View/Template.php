@@ -182,27 +182,32 @@ class View_Template extends Kostache_Layout {
 			'url' => ROOT_WDIR . 'dash/',
 			'text' => 'Dash',
 			'class' => 'dash',
+			'icon' => 'dashboard',
 		);
 		$masthead_links[] = array(
 			'url' => ROOT_WDIR . 'customers/',
 			'text' => 'Customers',
 			'class' => 'customers',
+			'icon' => 'users',
 		);
 		$masthead_links[] = array(
 			'url' => ROOT_WDIR . 'vendors/',
 			'text' => 'Vendors',
 			'class' => 'vendors',
+			'icon' => 'building',
 		);
 		$masthead_links[] = array(
 			'url' => ROOT_WDIR . 'accounts/',
 			'text' => 'Accounts',
 			'class' => 'accounts',
+			'icon' => 'list',
 		);
 		
 		$masthead_links[] = array(
 			'url' => ROOT_WDIR . 'setup/',
 			'text' => 'Setup',
 			'class' => 'setup',
+			'icon' => 'cogs',
 		);
 		
 		$currentURI = ROOT_WDIR . $this->request->uri();
