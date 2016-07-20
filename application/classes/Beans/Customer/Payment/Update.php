@@ -213,7 +213,7 @@ class Beans_Customer_Payment_Update extends Beans_Customer_Payment {
 						strtotime($sale->date_cancelled) < strtotime($update_transaction_data->date) OR 
 						(
 							$sale->date_cancelled == $update_transaction_data->date &&
-							$sale->invoice_transaction_id < $this->_old_payment->id
+							$sale->cancel_transaction_id < $this->_old_payment->id
 						)
 					)
 				) ) 

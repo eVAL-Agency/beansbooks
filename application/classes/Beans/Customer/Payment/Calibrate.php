@@ -264,7 +264,7 @@ class Beans_Customer_Payment_Calibrate extends Beans_Customer_Payment {
 						strtotime($sale->date_cancelled) < strtotime($payment_object->date) OR 
 						(
 							$sale->date_cancelled == $payment_object->date &&
-							$sale->invoice_transaction_id < $payment->id
+							$sale->cancel_transaction_id < $payment->id
 						)
 					)
 				) ) 
