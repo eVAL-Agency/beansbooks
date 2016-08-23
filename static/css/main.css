@@ -4533,24 +4533,21 @@ body.accounts #accounts-view-transactions ul li.account-transaction {
     float: left;
     display: block;
     margin-right: 0.55588%;
-    width: 7.48859%;
-    width: 8%; }
+    width: 7.48859%; }
     body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-date:last-child {
       margin-right: 0; }
   body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-number {
     float: left;
     display: block;
     margin-right: 0.55588%;
-    width: 13.52195%;
-    width: 9%; }
+    width: 13.52195%; }
     body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-number:last-child {
       margin-right: 0; }
   body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-description {
     float: left;
     display: block;
     margin-right: 0.55588%;
-    width: 23.57753%;
-    width: 35%; }
+    width: 23.57753%; }
     body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-description:last-child {
       margin-right: 0; }
   body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-transfer {
@@ -4558,7 +4555,7 @@ body.accounts #accounts-view-transactions ul li.account-transaction {
     display: block;
     margin-right: 0.55588%;
     width: 23.57753%;
-    width: 15%; }
+    width: 17%; }
     body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-transfer:last-child {
       margin-right: 0; }
   body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-jump {
@@ -4605,8 +4602,7 @@ body.accounts #accounts-view-transactions ul li.account-transaction {
     display: block;
     margin-right: 0.55588%;
     width: 9.49971%;
-    margin-right: 0;
-    width: 10%; }
+    margin-right: 0; }
     body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-balance:last-child {
       margin-right: 0; }
   body.accounts #accounts-view-transactions ul li.account-transaction .text-center {
