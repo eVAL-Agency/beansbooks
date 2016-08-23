@@ -107,20 +107,32 @@
 		li.account-transaction {
 			@include outer-container(50);
 
+		    span {
+			    display: inline-block;
+			}
+
 			span.account-transaction-edit {
 				@include span-columns(1 of 50);
 			}
 			span.account-transaction-date {
 				@include span-columns(4 of 50);
+
+			    width: 8%;
 			}
 			span.account-transaction-number {
 				@include span-columns(7 of 50);
+
+			    width: 9%;
 			}
 			span.account-transaction-description {
 				@include span-columns(12 of 50);
+
+			    width: 35%;
 			}
 			span.account-transaction-transfer {
 				@include span-columns(12 of 50);
+
+			    width: 15%;
 			}
 			span.account-transaction-jump {
 				@include span-columns(1 of 50);
@@ -130,17 +142,31 @@
 			}
 			span.account-transaction-reconcile {
 				@include span-columns(1 of 50);
+
+			    width: 2%;
 			}
 			span.account-transaction-credit {
 				@include span-columns(3 of 50);
+
+			    width: 8%;
 			}
 			span.account-transaction-debit {
 				@include span-columns(3 of 50);
+
+			    width: 8%;
+			    color: #bd0000;
 			}
 			span.account-transaction-balance {
 				@include span-columns(5 of 50);
 				@include omega();
+
+			    width: 10%;
 			}
+
+		  .text-center {
+			  text-align: left;
+		  }
+
 		}
 		
 		li.split-transaction {
