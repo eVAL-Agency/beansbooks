@@ -125,8 +125,6 @@
 			}
 			span.account-transaction-transfer {
 				@include span-columns(12 of 50);
-
-			    width: 17%;
 			}
 			span.account-transaction-jump {
 				@include span-columns(1 of 50);
@@ -137,17 +135,12 @@
 			span.account-transaction-reconcile {
 				@include span-columns(1 of 50);
 
-			    width: 2%;
 			}
 			span.account-transaction-credit {
 				@include span-columns(3 of 50);
-
-			    width: 8%;
 			}
 			span.account-transaction-debit {
 				@include span-columns(3 of 50);
-
-			    width: 8%;
 			    color: #bd0000;
 			}
 			span.account-transaction-balance {

@@ -4554,8 +4554,7 @@ body.accounts #accounts-view-transactions ul li.account-transaction {
     float: left;
     display: block;
     margin-right: 0.55588%;
-    width: 23.57753%;
-    width: 17%; }
+    width: 23.57753%; }
     body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-transfer:last-child {
       margin-right: 0; }
   body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-jump {
@@ -4576,16 +4575,14 @@ body.accounts #accounts-view-transactions ul li.account-transaction {
     float: left;
     display: block;
     margin-right: 0.55588%;
-    width: 1.45524%;
-    width: 2%; }
+    width: 1.45524%; }
     body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-reconcile:last-child {
       margin-right: 0; }
   body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-credit {
     float: left;
     display: block;
     margin-right: 0.55588%;
-    width: 5.47748%;
-    width: 8%; }
+    width: 5.47748%; }
     body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-credit:last-child {
       margin-right: 0; }
   body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-debit {
@@ -4593,7 +4590,6 @@ body.accounts #accounts-view-transactions ul li.account-transaction {
     display: block;
     margin-right: 0.55588%;
     width: 5.47748%;
-    width: 8%;
     color: #bd0000; }
     body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-debit:last-child {
       margin-right: 0; }
