@@ -4362,319 +4362,326 @@ body.print .content .payment-remittance-info {
   text-align: center;
   font-size: 1.5em; }
 
-body.accounts #accounts-chart-accounts li.list-master {
-  max-width: 20;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0; }
-  body.accounts #accounts-chart-accounts li.list-master::after {
-    clear: both;
-    content: "";
-    display: table; }
-  body.accounts #accounts-chart-accounts li.list-master span.toggle {
-    float: left;
-    display: block;
-    margin-right: 1.40138%;
-    width: 3.66869%; }
-    body.accounts #accounts-chart-accounts li.list-master span.toggle:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-chart-accounts li.list-master span.account-name {
-    float: left;
-    display: block;
-    margin-right: 1.40138%;
-    width: 54.36938%;
+body.accounts {
+  /** Reconciliation form styles **/ }
+  body.accounts #accounts-chart-accounts li.list-master {
+    max-width: 20;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0; }
-    body.accounts #accounts-chart-accounts li.list-master span.account-name:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-chart-accounts li.list-master span.account-actions {
-    float: left;
-    display: block;
-    margin-right: 1.40138%;
-    width: 23.94897%; }
-    body.accounts #accounts-chart-accounts li.list-master span.account-actions:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-chart-accounts li.list-master span.account-balance {
-    float: left;
-    display: block;
-    margin-right: 1.40138%;
-    width: 13.80883%;
-    margin-right: 0; }
-    body.accounts #accounts-chart-accounts li.list-master span.account-balance:last-child {
-      margin-right: 0; }
-body.accounts #accounts-chart-accounts li.list-container {
-  margin-bottom: 0.5em; }
-  body.accounts #accounts-chart-accounts li.list-container ul li.list-master span.account-name {
-    padding: 0 0 0 2em; }
-  body.accounts #accounts-chart-accounts li.list-container ul li.list-container li.list-child {
-    max-width: 20;
-    margin-left: auto;
-    margin-right: auto; }
-    body.accounts #accounts-chart-accounts li.list-container ul li.list-container li.list-child::after {
+    body.accounts #accounts-chart-accounts li.list-master::after {
       clear: both;
       content: "";
       display: table; }
-    body.accounts #accounts-chart-accounts li.list-container ul li.list-container li.list-child span.account-name {
-      padding: 0 0 0 8em;
+    body.accounts #accounts-chart-accounts li.list-master span.toggle {
       float: left;
       display: block;
       margin-right: 1.40138%;
-      width: 59.43945%; }
-      body.accounts #accounts-chart-accounts li.list-container ul li.list-container li.list-child span.account-name:last-child {
+      width: 3.66869%; }
+      body.accounts #accounts-chart-accounts li.list-master span.toggle:last-child {
         margin-right: 0; }
-    body.accounts #accounts-chart-accounts li.list-container ul li.list-container li.list-child span.account-actions {
+    body.accounts #accounts-chart-accounts li.list-master span.account-name {
+      float: left;
+      display: block;
+      margin-right: 1.40138%;
+      width: 54.36938%;
+      padding: 0; }
+      body.accounts #accounts-chart-accounts li.list-master span.account-name:last-child {
+        margin-right: 0; }
+    body.accounts #accounts-chart-accounts li.list-master span.account-actions {
       float: left;
       display: block;
       margin-right: 1.40138%;
       width: 23.94897%; }
-      body.accounts #accounts-chart-accounts li.list-container ul li.list-container li.list-child span.account-actions:last-child {
+      body.accounts #accounts-chart-accounts li.list-master span.account-actions:last-child {
         margin-right: 0; }
-    body.accounts #accounts-chart-accounts li.list-container ul li.list-container li.list-child span.account-balance {
+    body.accounts #accounts-chart-accounts li.list-master span.account-balance {
       float: left;
       display: block;
       margin-right: 1.40138%;
-      width: 8.73876%;
+      width: 13.80883%;
       margin-right: 0; }
-      body.accounts #accounts-chart-accounts li.list-container ul li.list-container li.list-child span.account-balance:last-child {
+      body.accounts #accounts-chart-accounts li.list-master span.account-balance:last-child {
         margin-right: 0; }
-  body.accounts #accounts-chart-accounts li.list-container li.list-child {
+  body.accounts #accounts-chart-accounts li.list-container {
+    margin-bottom: 0.5em; }
+    body.accounts #accounts-chart-accounts li.list-container ul li.list-master span.account-name {
+      padding: 0 0 0 2em; }
+    body.accounts #accounts-chart-accounts li.list-container ul li.list-container li.list-child {
+      max-width: 20;
+      margin-left: auto;
+      margin-right: auto; }
+      body.accounts #accounts-chart-accounts li.list-container ul li.list-container li.list-child::after {
+        clear: both;
+        content: "";
+        display: table; }
+      body.accounts #accounts-chart-accounts li.list-container ul li.list-container li.list-child span.account-name {
+        padding: 0 0 0 8em;
+        float: left;
+        display: block;
+        margin-right: 1.40138%;
+        width: 59.43945%; }
+        body.accounts #accounts-chart-accounts li.list-container ul li.list-container li.list-child span.account-name:last-child {
+          margin-right: 0; }
+      body.accounts #accounts-chart-accounts li.list-container ul li.list-container li.list-child span.account-actions {
+        float: left;
+        display: block;
+        margin-right: 1.40138%;
+        width: 23.94897%; }
+        body.accounts #accounts-chart-accounts li.list-container ul li.list-container li.list-child span.account-actions:last-child {
+          margin-right: 0; }
+      body.accounts #accounts-chart-accounts li.list-container ul li.list-container li.list-child span.account-balance {
+        float: left;
+        display: block;
+        margin-right: 1.40138%;
+        width: 8.73876%;
+        margin-right: 0; }
+        body.accounts #accounts-chart-accounts li.list-container ul li.list-container li.list-child span.account-balance:last-child {
+          margin-right: 0; }
+    body.accounts #accounts-chart-accounts li.list-container li.list-child {
+      max-width: 20;
+      margin-left: auto;
+      margin-right: auto; }
+      body.accounts #accounts-chart-accounts li.list-container li.list-child::after {
+        clear: both;
+        content: "";
+        display: table; }
+      body.accounts #accounts-chart-accounts li.list-container li.list-child span.account-name {
+        padding: 0 0 0 6em;
+        float: left;
+        display: block;
+        margin-right: 1.40138%;
+        width: 59.43945%; }
+        body.accounts #accounts-chart-accounts li.list-container li.list-child span.account-name:last-child {
+          margin-right: 0; }
+      body.accounts #accounts-chart-accounts li.list-container li.list-child span.account-actions {
+        float: left;
+        display: block;
+        margin-right: 1.40138%;
+        width: 23.94897%; }
+        body.accounts #accounts-chart-accounts li.list-container li.list-child span.account-actions:last-child {
+          margin-right: 0; }
+      body.accounts #accounts-chart-accounts li.list-container li.list-child span.account-balance {
+        float: left;
+        display: block;
+        margin-right: 1.40138%;
+        width: 8.73876%;
+        margin-right: 0; }
+        body.accounts #accounts-chart-accounts li.list-container li.list-child span.account-balance:last-child {
+          margin-right: 0; }
+  body.accounts #accounts-chart-accounts li.account-edit {
     max-width: 20;
     margin-left: auto;
     margin-right: auto; }
-    body.accounts #accounts-chart-accounts li.list-container li.list-child::after {
+    body.accounts #accounts-chart-accounts li.account-edit::after {
       clear: both;
       content: "";
       display: table; }
-    body.accounts #accounts-chart-accounts li.list-container li.list-child span.account-name {
-      padding: 0 0 0 6em;
+    body.accounts #accounts-chart-accounts li.account-edit span.account-edit-name {
       float: left;
       display: block;
       margin-right: 1.40138%;
-      width: 59.43945%; }
-      body.accounts #accounts-chart-accounts li.list-container li.list-child span.account-name:last-child {
+      width: 84.78979%; }
+      body.accounts #accounts-chart-accounts li.account-edit span.account-edit-name:last-child {
         margin-right: 0; }
-    body.accounts #accounts-chart-accounts li.list-container li.list-child span.account-actions {
+    body.accounts #accounts-chart-accounts li.account-edit span.account-edit-actions {
+      float: left;
+      display: block;
+      margin-right: 1.40138%;
+      width: 13.80883%;
+      margin-right: 0; }
+      body.accounts #accounts-chart-accounts li.account-edit span.account-edit-actions:last-child {
+        margin-right: 0; }
+    body.accounts #accounts-chart-accounts li.account-edit span.account-edit-parent {
       float: left;
       display: block;
       margin-right: 1.40138%;
       width: 23.94897%; }
-      body.accounts #accounts-chart-accounts li.list-container li.list-child span.account-actions:last-child {
+      body.accounts #accounts-chart-accounts li.account-edit span.account-edit-parent:last-child {
         margin-right: 0; }
-    body.accounts #accounts-chart-accounts li.list-container li.list-child span.account-balance {
+    body.accounts #accounts-chart-accounts li.account-edit span.account-edit-terms {
       float: left;
       display: block;
       margin-right: 1.40138%;
-      width: 8.73876%;
-      margin-right: 0; }
-      body.accounts #accounts-chart-accounts li.list-container li.list-child span.account-balance:last-child {
+      width: 23.94897%; }
+      body.accounts #accounts-chart-accounts li.account-edit span.account-edit-terms:last-child {
         margin-right: 0; }
-body.accounts #accounts-chart-accounts li.account-edit {
-  max-width: 20;
-  margin-left: auto;
-  margin-right: auto; }
-  body.accounts #accounts-chart-accounts li.account-edit::after {
-    clear: both;
-    content: "";
-    display: table; }
-  body.accounts #accounts-chart-accounts li.account-edit span.account-edit-name {
-    float: left;
-    display: block;
-    margin-right: 1.40138%;
-    width: 84.78979%; }
-    body.accounts #accounts-chart-accounts li.account-edit span.account-edit-name:last-child {
+    body.accounts #accounts-chart-accounts li.account-edit span.account-edit-type {
+      float: left;
+      display: block;
+      margin-right: 1.40138%;
+      width: 49.29931%;
       margin-right: 0; }
-  body.accounts #accounts-chart-accounts li.account-edit span.account-edit-actions {
-    float: left;
-    display: block;
-    margin-right: 1.40138%;
-    width: 13.80883%;
-    margin-right: 0; }
-    body.accounts #accounts-chart-accounts li.account-edit span.account-edit-actions:last-child {
+      body.accounts #accounts-chart-accounts li.account-edit span.account-edit-type:last-child {
+        margin-right: 0; }
+  body.accounts #accounts-view-transactions ul li.account-transaction {
+    max-width: 50;
+    margin-left: auto;
+    margin-right: auto; }
+    body.accounts #accounts-view-transactions ul li.account-transaction::after {
+      clear: both;
+      content: "";
+      display: table; }
+    body.accounts #accounts-view-transactions ul li.account-transaction span {
+      display: inline-block; }
+    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-edit {
+      float: left;
+      display: block;
+      margin-right: 0.55588%;
+      width: 1.45524%; }
+      body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-edit:last-child {
+        margin-right: 0; }
+    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-date {
+      float: left;
+      display: block;
+      margin-right: 0.55588%;
+      width: 7.48859%; }
+      body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-date:last-child {
+        margin-right: 0; }
+    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-number {
+      float: left;
+      display: block;
+      margin-right: 0.55588%;
+      width: 13.52195%; }
+      body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-number:last-child {
+        margin-right: 0; }
+    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-description {
+      float: left;
+      display: block;
+      margin-right: 0.55588%;
+      width: 23.57753%; }
+      body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-description:last-child {
+        margin-right: 0; }
+    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-transfer {
+      float: left;
+      display: block;
+      margin-right: 0.55588%;
+      width: 23.57753%; }
+      body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-transfer:last-child {
+        margin-right: 0; }
+    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-jump {
+      float: left;
+      display: block;
+      margin-right: 0.55588%;
+      width: 1.45524%; }
+      body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-jump:last-child {
+        margin-right: 0; }
+    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-split {
+      float: left;
+      display: block;
+      margin-right: 0.55588%;
+      width: 1.45524%; }
+      body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-split:last-child {
+        margin-right: 0; }
+    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-reconcile {
+      float: left;
+      display: block;
+      margin-right: 0.55588%;
+      width: 1.45524%; }
+      body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-reconcile:last-child {
+        margin-right: 0; }
+    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-credit {
+      float: left;
+      display: block;
+      margin-right: 0.55588%;
+      width: 5.47748%; }
+      body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-credit:last-child {
+        margin-right: 0; }
+    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-debit {
+      float: left;
+      display: block;
+      margin-right: 0.55588%;
+      width: 5.47748%;
+      color: #bd0000; }
+      body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-debit:last-child {
+        margin-right: 0; }
+    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-balance {
+      float: left;
+      display: block;
+      margin-right: 0.55588%;
+      width: 9.49971%;
       margin-right: 0; }
-  body.accounts #accounts-chart-accounts li.account-edit span.account-edit-parent {
-    float: left;
-    display: block;
-    margin-right: 1.40138%;
-    width: 23.94897%; }
-    body.accounts #accounts-chart-accounts li.account-edit span.account-edit-parent:last-child {
+      body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-balance:last-child {
+        margin-right: 0; }
+    body.accounts #accounts-view-transactions ul li.account-transaction .text-center {
+      text-align: left; }
+  body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction {
+    max-width: 50;
+    margin-left: auto;
+    margin-right: auto; }
+    body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction::after {
+      clear: both;
+      content: "";
+      display: table; }
+    body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-number {
+      float: left;
+      display: block;
+      margin-right: 0.55588%;
+      width: 23.57753%; }
+      body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-number:last-child {
+        margin-right: 0; }
+    body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-description {
+      float: left;
+      display: block;
+      margin-right: 0.55588%;
+      width: 23.57753%; }
+      body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-description:last-child {
+        margin-right: 0; }
+    body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-transfer {
+      float: left;
+      display: block;
+      margin-right: 0.55588%;
+      width: 23.57753%; }
+      body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-transfer:last-child {
+        margin-right: 0; }
+    body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-jump {
+      float: left;
+      display: block;
+      margin-right: 0.55588%;
+      width: 1.45524%; }
+      body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-jump:last-child {
+        margin-right: 0; }
+    body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-split {
+      float: left;
+      display: block;
+      margin-right: 0.55588%;
+      width: 1.45524%; }
+      body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-split:last-child {
+        margin-right: 0; }
+    body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-reconcile {
+      float: left;
+      display: block;
+      margin-right: 0.55588%;
+      width: 1.45524%; }
+      body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-reconcile:last-child {
+        margin-right: 0; }
+    body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-credit {
+      float: left;
+      display: block;
+      margin-right: 0.55588%;
+      width: 5.47748%; }
+      body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-credit:last-child {
+        margin-right: 0; }
+    body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-debit {
+      float: left;
+      display: block;
+      margin-right: 0.55588%;
+      width: 5.47748%; }
+      body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-debit:last-child {
+        margin-right: 0; }
+    body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-balance {
+      float: left;
+      display: block;
+      margin-right: 0.55588%;
+      width: 9.49971%;
       margin-right: 0; }
-  body.accounts #accounts-chart-accounts li.account-edit span.account-edit-terms {
-    float: left;
-    display: block;
-    margin-right: 1.40138%;
-    width: 23.94897%; }
-    body.accounts #accounts-chart-accounts li.account-edit span.account-edit-terms:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-chart-accounts li.account-edit span.account-edit-type {
-    float: left;
-    display: block;
-    margin-right: 1.40138%;
-    width: 49.29931%;
-    margin-right: 0; }
-    body.accounts #accounts-chart-accounts li.account-edit span.account-edit-type:last-child {
-      margin-right: 0; }
-body.accounts #accounts-view-transactions ul li.account-transaction {
-  max-width: 50;
-  margin-left: auto;
-  margin-right: auto; }
-  body.accounts #accounts-view-transactions ul li.account-transaction::after {
-    clear: both;
-    content: "";
-    display: table; }
-  body.accounts #accounts-view-transactions ul li.account-transaction span {
+      body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-balance:last-child {
+        margin-right: 0; }
+  body.accounts .reconcile-form .new span {
+    max-width: 12em;
     display: inline-block; }
-  body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-edit {
-    float: left;
-    display: block;
-    margin-right: 0.55588%;
-    width: 1.45524%; }
-    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-edit:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-date {
-    float: left;
-    display: block;
-    margin-right: 0.55588%;
-    width: 7.48859%; }
-    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-date:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-number {
-    float: left;
-    display: block;
-    margin-right: 0.55588%;
-    width: 13.52195%; }
-    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-number:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-description {
-    float: left;
-    display: block;
-    margin-right: 0.55588%;
-    width: 23.57753%; }
-    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-description:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-transfer {
-    float: left;
-    display: block;
-    margin-right: 0.55588%;
-    width: 23.57753%; }
-    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-transfer:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-jump {
-    float: left;
-    display: block;
-    margin-right: 0.55588%;
-    width: 1.45524%; }
-    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-jump:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-split {
-    float: left;
-    display: block;
-    margin-right: 0.55588%;
-    width: 1.45524%; }
-    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-split:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-reconcile {
-    float: left;
-    display: block;
-    margin-right: 0.55588%;
-    width: 1.45524%; }
-    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-reconcile:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-credit {
-    float: left;
-    display: block;
-    margin-right: 0.55588%;
-    width: 5.47748%; }
-    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-credit:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-debit {
-    float: left;
-    display: block;
-    margin-right: 0.55588%;
-    width: 5.47748%;
-    color: #bd0000; }
-    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-debit:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-balance {
-    float: left;
-    display: block;
-    margin-right: 0.55588%;
-    width: 9.49971%;
-    margin-right: 0; }
-    body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-balance:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-view-transactions ul li.account-transaction .text-center {
-    text-align: left; }
-body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction {
-  max-width: 50;
-  margin-left: auto;
-  margin-right: auto; }
-  body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction::after {
-    clear: both;
-    content: "";
-    display: table; }
-  body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-number {
-    float: left;
-    display: block;
-    margin-right: 0.55588%;
-    width: 23.57753%; }
-    body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-number:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-description {
-    float: left;
-    display: block;
-    margin-right: 0.55588%;
-    width: 23.57753%; }
-    body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-description:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-transfer {
-    float: left;
-    display: block;
-    margin-right: 0.55588%;
-    width: 23.57753%; }
-    body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-transfer:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-jump {
-    float: left;
-    display: block;
-    margin-right: 0.55588%;
-    width: 1.45524%; }
-    body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-jump:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-split {
-    float: left;
-    display: block;
-    margin-right: 0.55588%;
-    width: 1.45524%; }
-    body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-split:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-reconcile {
-    float: left;
-    display: block;
-    margin-right: 0.55588%;
-    width: 1.45524%; }
-    body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-reconcile:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-credit {
-    float: left;
-    display: block;
-    margin-right: 0.55588%;
-    width: 5.47748%; }
-    body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-credit:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-debit {
-    float: left;
-    display: block;
-    margin-right: 0.55588%;
-    width: 5.47748%; }
-    body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-debit:last-child {
-      margin-right: 0; }
-  body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-balance {
-    float: left;
-    display: block;
-    margin-right: 0.55588%;
-    width: 9.49971%;
-    margin-right: 0; }
-    body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-balance:last-child {
-      margin-right: 0; }
+  body.accounts .reconcile-form .new {
+    padding: 1em; }
 
 body.theme-default body {
   color: #404040; }
