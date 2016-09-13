@@ -4363,7 +4363,8 @@ body.print .content .payment-remittance-info {
   font-size: 1.5em; }
 
 body.accounts {
-  /** Reconciliation form styles **/ }
+  /** Reconciliation form styles **/
+  /** Temporary Even and Odd row styles **/ }
   body.accounts #accounts-chart-accounts li.list-master {
     max-width: 20;
     margin-left: auto;
@@ -4682,6 +4683,38 @@ body.accounts {
     display: inline-block; }
   body.accounts .reconcile-form .new {
     padding: 1em; }
+  body.accounts .row-elements.row-elements-alternating-colors li.account-reconcile-transaction {
+    position: relative;
+    padding: 0.2em 0 0 1.5em;
+    border-bottom: 1px solid #aaa; }
+  body.accounts .row-elements.row-elements-alternating-colors li:nth-child(odd) {
+    background: #eee; }
+  body.accounts .row-elements.row-elements-alternating-colors li:nth-child(even) {
+    background: #fbfbfb; }
+  body.accounts .reconcile-form .account-reconcile-transaction .checkbox.manual {
+    float: left;
+    display: inline-block;
+    z-index: 999;
+    left: 0.25em;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    top: 0.25em; }
+  body.accounts li.account-reconcile-transaction {
+    position: relative;
+    padding: 0.2em 0 0 1.5em; }
+  body.accounts .account-reconcile-transaction span {
+    min-width: 9%;
+    display: inline-block; }
+  body.accounts span.account-reconcile-transaction-description {
+    min-width: 50%; }
+  body.accounts span.account-reconcile-transaction-include {
+    float: left; }
+  body.accounts .account-reconcile-transaction.new span {
+    max-width: 9em;
+    display: inline-block; }
+  body.accounts .account-reconcile-transaction.new span.account-reconcile-transaction-description {
+    min-width: 19em; }
 
 body.theme-default body {
   color: #404040; }
