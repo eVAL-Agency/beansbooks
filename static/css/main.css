@@ -4715,6 +4715,11 @@ body.accounts {
     display: inline-block; }
   body.accounts .account-reconcile-transaction.new span.account-reconcile-transaction-description {
     min-width: 19em; }
+  body.accounts .account-reconcile-transaction.new span.account-reconcile-transaction-transfer {
+    min-width: 15em; }
+  body.accounts .account-reconcile-transaction.new span.account-reconcile-transaction-transfer {
+    min-width: 2.5em;
+    width: 2.5em; }
   body.accounts div#accounts-reconcile-status {
     position: fixed;
     right: 0.5em;

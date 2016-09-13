@@ -268,6 +268,15 @@ span.account-reconcile-transaction-include {
   span.account-reconcile-transaction-description {
 	min-width: 19em;
   }
+
+  span.account-reconcile-transaction-transfer {
+	min-width: 15em;
+  }
+
+  span.account-reconcile-transaction-transfer {
+	min-width: 2.5em;
+	width: 2.5em;
+  }
 }
 
 div#accounts-reconcile-status {
