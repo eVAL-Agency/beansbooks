@@ -269,3 +269,21 @@ span.account-reconcile-transaction-include {
 	min-width: 19em;
   }
 }
+
+div#accounts-reconcile-status {
+  position: fixed;
+  right: 0.5em;
+  top: 120px !important;
+  z-index: 9999;
+
+  input {
+	width: 100%;
+	display: inline-block;
+	background: transparent;
+	border: 0 none;
+	box-shadow: none;
+	font-weight: bold;
+	padding: 0;
+  }
+
+}

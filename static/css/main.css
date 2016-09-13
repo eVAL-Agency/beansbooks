@@ -4715,6 +4715,19 @@ body.accounts {
     display: inline-block; }
   body.accounts .account-reconcile-transaction.new span.account-reconcile-transaction-description {
     min-width: 19em; }
+  body.accounts div#accounts-reconcile-status {
+    position: fixed;
+    right: 0.5em;
+    top: 120px !important;
+    z-index: 9999; }
+    body.accounts div#accounts-reconcile-status input {
+      width: 100%;
+      display: inline-block;
+      background: transparent;
+      border: 0 none;
+      box-shadow: none;
+      font-weight: bold;
+      padding: 0; }
 
 body.theme-default body {
   color: #404040; }
