@@ -698,8 +698,8 @@ textarea {
  * Hide from both screenreaders and browsers: h5bp.com/u
  */
 .hidden {
-  /*display: none !important;*/
-  visibility: hidden; }
+  display: none;
+  /*visibility: hidden;*/ }
 
 /*
  * Hide only visually, but have it available for screenreaders: h5bp.com/v
