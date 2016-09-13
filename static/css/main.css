@@ -4717,7 +4717,7 @@ body.accounts {
     min-width: 19em; }
   body.accounts .account-reconcile-transaction.new span.account-reconcile-transaction-transfer {
     min-width: 15em; }
-  body.accounts .account-reconcile-transaction.new span.account-reconcile-transaction-transfer {
+  body.accounts .account-reconcile-transaction.new span.account-reconcile-transaction-split {
     min-width: 2.5em;
     width: 2.5em; }
   body.accounts div#accounts-reconcile-status {
