@@ -26,6 +26,7 @@ application/config/url.php
 # Temp files created by gedit, (or something...)
 *~
 *.swp
+.sass-cache
 
 # Skip some additional PhpStorm metafiles.  These are all project centric
 # I need to include codeStyleSettings.xml since that is useful to have in the project.
