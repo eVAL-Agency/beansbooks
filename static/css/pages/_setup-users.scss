@@ -1,0 +1,17 @@
+div.setup-users-users {
+	@include outer-container(8);
+	
+	.setup-users-users-user-name {
+		@include span-columns(2 of 8);
+	}
+	.setup-users-users-user-email {
+		@include span-columns(2 of 8);
+	}
+	.setup-users-users-user-role {
+		@include span-columns(2 of 8);
+	}
+	.setup-users-users-user-actions {
+		@include span-columns(2 of 8);
+		@include omega();
+	}
+}

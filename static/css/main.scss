@@ -152,6 +152,24 @@ div.footer {
 	border-top-style: solid;
 }
 
+div.select-checkbox {
+	padding: 0.25em 0.5em;
+	cursor: pointer;
+	position: relative;
+	
+	.dropdown {
+		background: white;
+		position: absolute;
+		z-index: 99;
+		left: 0;
+		padding: 0.5em;
+		font-size: 85%;
+		border-width: 0 1px 1px;
+		border-color: #C6C6C6;
+		border-style: solid;
+	}
+}
+
 
 // PAGE SPECIFIC STYLES!
 
@@ -180,6 +198,9 @@ body.auth-index {
 
 body.setup-settings {
 	@import "pages/setup-settings";
+}
+body.setup-users {
+	@import "pages/setup-users";
 }
 
 body.print {

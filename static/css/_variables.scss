@@ -55,3 +55,15 @@ $all-buttons: append($all-buttons, 'button.ui-button.ui-state-default', comma);
 $all-buttons-active: append($all-buttons-active, 'button.ui-button.ui-state-default:active', comma);
 $all-buttons-focus: append($all-buttons-focus, 'button.ui-button.ui-state-default:focus', comma);
 $all-buttons-hover: append($all-buttons-hover, 'button.ui-button.ui-state-default:hover', comma);
+
+
+/*div.select-checkbox {
+	border: 1px solid #C6C6C6;
+	&:focus {
+		border-color: #1565c0;
+		box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 5px rgba(18, 89, 169, 0.7);
+		outline: none;
+	}
+}*/
+
+$all-text-inputs: append($all-text-inputs, 'div.select-checkbox', comma);
