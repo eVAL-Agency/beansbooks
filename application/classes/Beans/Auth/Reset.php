@@ -102,7 +102,7 @@ class Beans_Auth_Reset extends Beans_Auth {
 			}
 			catch( Exception $e )
 			{
-				throw new Exception ("An error occurred when sending the email: have you setup email properly in config.php?");
+				throw new Exception ("An error occurred when sending the email: have you setup email properly in email.php?<br/>" . $e->getMessage());
 			}
 		}
 
