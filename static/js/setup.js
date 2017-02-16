@@ -355,7 +355,6 @@ along with BeansBooks; if not, email info@beansbooks.com.
 		});
 
 		$('.setup-users-api-row a.generate-new').live('click', function(e) {
-			e.preventDefault();
 			if( confirm("Are you sure you want to generate a new API key?  This will cause your previous key to no longer work.") ) {
 				$apiInfo = $(this).closest('.setup-users-api-row');
 				showPleaseWait();
@@ -370,17 +369,15 @@ along with BeansBooks; if not, email info@beansbooks.com.
 							showError(data.error);
 						} else {
 							$newApiInfo = $(data.data.auth.html);
-							$newApiInfo.addClass('hidden');
+							//$newApiInfo.addClass('hidden');
 							$apiInfo.before($newApiInfo);
-							$apiInfo.slideUp(function() {
-								$newApiInfo.slideDown();
-								$apiInfo.remove();
-							});
+							$apiInfo.remove();
 						}
 					},
 					'json'
 				);
 			}
+			return false;
 		});
 
 		// Calibration
