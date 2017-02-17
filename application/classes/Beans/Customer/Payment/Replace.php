@@ -425,7 +425,7 @@ class Beans_Customer_Payment_Replace extends Beans_Customer_Payment {
 			throw new Exception("UNEXPECTED ERROR: COULD NOT CALIBRATE CUSTOMER SALES: ".$customer_sale_calibrate_invoice_result->error);
 
 		// Recalibrate Customer Invoices / Cancellations
-		$customer_sale_calibrate_cancel = new Beans_customer_Sale_Calibrate_Cancel($this->_beans_data_auth((object)array(
+		$customer_sale_calibrate_cancel = new Beans_Customer_Sale_Calibrate_Cancel($this->_beans_data_auth((object)array(
 			'ids' => $handled_sales_ids,
 		)));
 		$customer_sale_calibrate_cancel_result = $customer_sale_calibrate_cancel->execute();
