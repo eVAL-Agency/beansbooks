@@ -293,7 +293,7 @@ textarea { resize: vertical; }
 .ir:before { content: ""; display: block; width: 0; height: 150%; }
 
 /* Hide from both screenreaders and browsers: h5bp.com/u */
-.hidden { display: none !important; visibility: hidden; }
+.hidden { display: none; /*visibility: hidden;*/ }
 
 /* Hide only visually, but have it available for screenreaders: h5bp.com/v */
 .visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
@@ -2066,6 +2066,7 @@ body.print .content table.totals td { padding: 1em 0.5em; border: 0; }
 body.print .content table.totals td.total { text-align: right; }
 body.print .content .payment-remittance-info { text-align: center; font-size: 1.5em; }
 
+body.accounts { /** Reconciliation form styles **/ /** Temporary Even and Odd row styles **/ }
 body.accounts #accounts-chart-accounts li.list-master { max-width: 20; margin-left: auto; margin-right: auto; padding: 0; }
 body.accounts #accounts-chart-accounts li.list-master::after { clear: both; content: ""; display: table; }
 body.accounts #accounts-chart-accounts li.list-master span.toggle { float: left; display: block; margin-right: 1.40138%; width: 3.66869%; }
@@ -2117,17 +2118,17 @@ body.accounts #accounts-view-transactions ul li.account-transaction span.account
 body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-number:last-child { margin-right: 0; }
 body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-description { float: left; display: block; margin-right: 0.55588%; width: 23.57753%; }
 body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-description:last-child { margin-right: 0; }
-body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-transfer { float: left; display: block; margin-right: 0.55588%; width: 23.57753%; width: 17%; }
+body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-transfer { float: left; display: block; margin-right: 0.55588%; width: 23.57753%; }
 body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-transfer:last-child { margin-right: 0; }
 body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-jump { float: left; display: block; margin-right: 0.55588%; width: 1.45524%; }
 body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-jump:last-child { margin-right: 0; }
 body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-split { float: left; display: block; margin-right: 0.55588%; width: 1.45524%; }
 body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-split:last-child { margin-right: 0; }
-body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-reconcile { float: left; display: block; margin-right: 0.55588%; width: 1.45524%; width: 2%; }
+body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-reconcile { float: left; display: block; margin-right: 0.55588%; width: 1.45524%; }
 body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-reconcile:last-child { margin-right: 0; }
-body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-credit { float: left; display: block; margin-right: 0.55588%; width: 5.47748%; width: 8%; }
+body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-credit { float: left; display: block; margin-right: 0.55588%; width: 5.47748%; }
 body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-credit:last-child { margin-right: 0; }
-body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-debit { float: left; display: block; margin-right: 0.55588%; width: 5.47748%; width: 8%; color: #bd0000; }
+body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-debit { float: left; display: block; margin-right: 0.55588%; width: 5.47748%; color: #bd0000; }
 body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-debit:last-child { margin-right: 0; }
 body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-balance { float: left; display: block; margin-right: 0.55588%; width: 9.49971%; margin-right: 0; }
 body.accounts #accounts-view-transactions ul li.account-transaction span.account-transaction-balance:last-child { margin-right: 0; }
@@ -2152,6 +2153,22 @@ body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-
 body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-debit:last-child { margin-right: 0; }
 body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-balance { float: left; display: block; margin-right: 0.55588%; width: 9.49971%; margin-right: 0; }
 body.accounts #accounts-view-transactions ul li.split-transaction ul li.account-transaction span.account-transaction-balance:last-child { margin-right: 0; }
+body.accounts .reconcile-form .new span { max-width: 12em; display: inline-block; }
+body.accounts .reconcile-form .new { padding: 1em; }
+body.accounts .row-elements.row-elements-alternating-colors li.account-reconcile-transaction { position: relative; padding: 0.2em 0 0 1.5em; border-bottom: 1px solid #aaa; }
+body.accounts .row-elements.row-elements-alternating-colors li:nth-child(odd) { background: #eee; }
+body.accounts .row-elements.row-elements-alternating-colors li:nth-child(even) { background: #fbfbfb; }
+body.accounts .reconcile-form .account-reconcile-transaction .checkbox.manual { float: left; display: inline-block; z-index: 999; left: 0.25em; position: absolute; right: 0; cursor: pointer; top: 0.25em; }
+body.accounts li.account-reconcile-transaction { position: relative; padding: 0.2em 0 0 1.5em; }
+body.accounts .account-reconcile-transaction span { min-width: 9%; display: inline-block; }
+body.accounts span.account-reconcile-transaction-description { min-width: 50%; }
+body.accounts span.account-reconcile-transaction-include { float: left; }
+body.accounts .account-reconcile-transaction.new span { max-width: 9em; display: inline-block; }
+body.accounts .account-reconcile-transaction.new span.account-reconcile-transaction-description { min-width: 19em; }
+body.accounts .account-reconcile-transaction.new span.account-reconcile-transaction-transfer { min-width: 15em; }
+body.accounts .account-reconcile-transaction.new span.account-reconcile-transaction-split { min-width: 2.5em; width: 2.5em; }
+body.accounts div#accounts-reconcile-status { position: fixed; right: 0.5em; top: 120px !important; z-index: 9999; }
+body.accounts div#accounts-reconcile-status input { width: 100%; display: inline-block; background: transparent; border: 0 none; box-shadow: none; font-weight: bold; padding: 0; }
 
 body.theme-default body { color: #404040; }
 body.theme-default .text-red { color: #9a0000; }

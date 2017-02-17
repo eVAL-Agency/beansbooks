@@ -125,8 +125,6 @@
 			}
 			span.account-transaction-transfer {
 				@include span-columns(12 of 50);
-
-			    width: 17%;
 			}
 			span.account-transaction-jump {
 				@include span-columns(1 of 50);
@@ -137,17 +135,12 @@
 			span.account-transaction-reconcile {
 				@include span-columns(1 of 50);
 
-			    width: 2%;
 			}
 			span.account-transaction-credit {
 				@include span-columns(3 of 50);
-
-			    width: 8%;
 			}
 			span.account-transaction-debit {
 				@include span-columns(3 of 50);
-
-			    width: 8%;
 			    color: #bd0000;
 			}
 			span.account-transaction-balance {
@@ -199,4 +192,107 @@
 			}
 		}
 	}
+}
+
+/** Reconciliation form styles **/
+
+.row-elements-alternating-colors {
+  li:nth-child(odd){
+
+  }
+}
+
+.reconcile-form .new span {
+  max-width: 12em;
+  display: inline-block;
+}
+
+
+.reconcile-form .new {
+  padding: 1em;
+}
+
+/** Temporary Even and Odd row styles **/
+.row-elements.row-elements-alternating-colors {
+
+  li.account-reconcile-transaction {
+	position: relative;
+	padding: 0.2em 0 0 1.5em;
+	border-bottom: 1px solid #aaa;
+  }
+
+  li:nth-child(odd) {
+	background: #eee;
+  }
+
+  li:nth-child(even) {
+	background: #fbfbfb;
+  }
+}
+
+.reconcile-form .account-reconcile-transaction .checkbox.manual {
+  float: left;
+  display: inline-block;
+  z-index: 999;
+  left: 0.25em;
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  top: 0.25em;
+}
+
+li.account-reconcile-transaction {
+  position: relative;
+  padding: 0.2em 0 0 1.5em;
+}
+
+.account-reconcile-transaction span {
+  min-width: 9%;
+  display: inline-block;
+}
+
+span.account-reconcile-transaction-description {
+  min-width: 50%;
+}
+
+span.account-reconcile-transaction-include {
+  float: left;
+}
+
+.account-reconcile-transaction.new {
+  span {
+	max-width: 9em;
+	display: inline-block;
+  }
+
+  span.account-reconcile-transaction-description {
+	min-width: 19em;
+  }
+
+  span.account-reconcile-transaction-transfer {
+	min-width: 15em;
+  }
+
+  span.account-reconcile-transaction-split {
+	min-width: 2.5em;
+	width: 2.5em;
+  }
+}
+
+div#accounts-reconcile-status {
+  position: fixed;
+  right: 0.5em;
+  top: 120px !important;
+  z-index: 9999;
+
+  input {
+	width: 100%;
+	display: inline-block;
+	background: transparent;
+	border: 0 none;
+	box-shadow: none;
+	font-weight: bold;
+	padding: 0;
+  }
+
 }
