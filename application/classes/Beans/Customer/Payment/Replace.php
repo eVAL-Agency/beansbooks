@@ -416,7 +416,7 @@ class Beans_Customer_Payment_Replace extends Beans_Customer_Payment {
 			throw new Exception("Update failure - could not convert transaction to payment: ".$update_transaction_result->error);
 
 		// Recalibrate Customer Invoices / Cancellations
-		$customer_sale_calibrate_invoice = new Beans_customer_Sale_Calibrate_Invoice($this->_beans_data_auth((object)array(
+		$customer_sale_calibrate_invoice = new Beans_Customer_Sale_Calibrate_Invoice($this->_beans_data_auth((object)array(
 			'ids' => $handled_sales_ids,
 		)));
 		$customer_sale_calibrate_invoice_result = $customer_sale_calibrate_invoice->execute();
