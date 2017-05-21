@@ -81,11 +81,11 @@ class View_Print extends Kostache_Layout {
 			if( ! $this->_swift_logo_embed )
 				$this->_swift_logo_embed = $this->swift_email_message->embed(new Swift_Image(base64_decode($beans_settings->company_logo_data),$beans_settings->company_logo_filename,$beans_settings->company_logo_type));
 			
-			return '<img alt="'.$beans_settings->company_name.'" src="'.$this->_swift_logo_embed.'" style="max-height: 50px; max-width: 150px;">';
+			return '<img alt="'.$beans_settings->company_name.'" src="'.$this->_swift_logo_embed.'">';
 		}
 		else
 		{
-			return '<img alt="'.$beans_settings->company_name.'" src="data:'.$beans_settings->company_logo_type.';base64,'.$beans_settings->company_logo_data.'" style="max-height: 50px; max-width: 150px;">';
+			return '<img alt="'.$beans_settings->company_name.'" src="data:'.$beans_settings->company_logo_type.';base64,'.$beans_settings->company_logo_data.'">';
 		}
 	}
 
