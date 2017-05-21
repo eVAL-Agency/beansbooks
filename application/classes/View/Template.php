@@ -890,28 +890,27 @@ class View_Template extends Kostache_Layout {
 	}
 
 	protected $_swift_logo_embed = FALSE;
-	public function companylogo()
-	{
+	public function companylogo() {
 		$beans_settings = $this->beans_settings();
 
-		if( ! $beans_settings )
+		if( ! $beans_settings ){
 			return FALSE;
-
-		if( ! isset($beans_settings->LOCAL) OR 
-			! isset($beans_settings->company_logo_filename) )
-			return FALSE;
-
-		if( isset($this->swift_email_message) AND
-			$this->swift_email_message )
-		{
-			if( ! $this->_swift_logo_embed )
-				$this->_swift_logo_embed = $this->swift_email_message->embed(new Swift_Image(base64_decode($beans_settings->company_logo_data),$beans_settings->company_logo_filename,$beans_settings->company_logo_type));
-			
-			return '<img alt="'.$beans_settings->company_name.'" src="'.$this->_swift_logo_embed.'" style="max-height: 50px; max-width: 150px;">';
 		}
-		else
-		{
-			return '<img alt="'.$beans_settings->company_name.'" src="data:'.$beans_settings->company_logo_type.';base64,'.$beans_settings->company_logo_data.'" style="max-height: 50px; max-width: 150px;">';
+			
+
+		if( ! isset($beans_settings->LOCAL) ||  ! isset($beans_settings->company_logo_filename) ){
+			return FALSE;
+		}
+
+		if( isset($this->swift_email_message) && $this->swift_email_message ) {
+			if( ! $this->_swift_logo_embed ){
+				$this->_swift_logo_embed = $this->swift_email_message->embed(new Swift_Image(base64_decode($beans_settings->company_logo_data),$beans_settings->company_logo_filename,$beans_settings->company_logo_type));
+			}
+			
+			return '<img alt="'.$beans_settings->company_name.'" src="'.$this->_swift_logo_embed.'">';
+		}
+		else {
+			return '<img alt="'.$beans_settings->company_name.'" src="data:'.$beans_settings->company_logo_type.';base64,'.$beans_settings->company_logo_data.'">';
 		}
 	}
 
