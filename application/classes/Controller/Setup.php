@@ -173,9 +173,12 @@ class Controller_Setup extends Controller_View {
 						{
 							$width = imagesx($image);
 							$height = imagesy($image);
-							if( $width > 150 OR
-								$height > 50 )
-							{
+							
+							// Original code:
+							// $width > 150 || $height > 50
+							// This has been taken out because 150x50 is pathetically small.
+							// but, it's not always about the size of the tool ;)
+							if( false ) {
 								// Resize
 								$new_width = 150;
 								$new_height = 50;
